@@ -1,0 +1,95 @@
+// Custom.scss 
+// -------------------------------------------------------- */
+
+// 自定義變數：有修改的拉出來寫比較好找
+// Include any default variable overrides here (though functions won’t be available)
+// $body-bg: #f1f4f9;
+// $body-color: #111;
+$primary: #2c5760;
+$secondary: #bed0d3;
+$info: #fff5b5;
+$light: #f1f4f9; // 淺藍背景
+$modal-fade-transform: scale(.9);
+// 修改全域的字型
+// $font-family-sans-serif: "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// Option A: Include all of Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// bootstrap icon
+// Update the import directory to point to it‘s location within node_modules
+$bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
+// Import the Sass files as usual
+@import "bootstrap-icons/font/bootstrap-icons";
+
+// Then add additional custom code here
+// -------------------------------------------------------- */
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.roboto-font {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700; // value from 100 to 900
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.chiron-goround-tc-font {
+  font-family: "Chiron GoRound TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500; // value from 200 to 900
+  font-style: normal;
+}
+
+// Navbar
+.topNav {
+  @include media-breakpoint-up(lg) {
+    height: 76px;
+  }
+  .logo_svg {
+    fill: var(--bs-dark);
+  }
+  .navicon {
+    i {
+      font-size: 1.5rem;
+    }
+    .txt {
+      @include media-breakpoint-down(lg) {
+        display: none;
+      }
+    }
+  }
+}
+
+
+/* -----------------------------------
+ * AdminLogin.vue 登入頁
+ * ----------------------------------- */
+.signArea {
+  position: relative;
+  border-radius: 2em;
+  background-color: var(--bs-body-bg);
+  padding: 2.6em 1.5em 2.25em;
+  box-shadow: 2vw 2vw 6vw #e6e6e6, -2vw -2vw 6vw #fcfcfc;
+  @include media-breakpoint-up(md) {
+    padding: 2.75em 3.5em 2.25em;
+    box-shadow: 6px 6px 18px #e6e6e6, -6px -6px 18px #fcfcfc;
+  }
+  &::before {
+    z-index: -1;
+    content: "LOGIN";
+    position: absolute;
+    top: -1.3em;
+    left: 50%;
+    transform: translateX(-48%) scale(1.7) skew(-15deg);
+    color: #d2d2d2;
+    font-size: 3.4em;
+    font-weight: 900;
+    letter-spacing: 0.01em;
+    font-family: "Roboto", sans-serif;
+    // font-style: italic;
+  }
+}
