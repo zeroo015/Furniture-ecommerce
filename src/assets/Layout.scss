@@ -93,3 +93,25 @@ $bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
     // font-style: italic;
   }
 }
+
+
+/* -----------------------------------
+ * AdminDashboard.vue 管理後台
+ * ----------------------------------- */
+.tabNav {
+  .nav-item {
+    border-radius: .5rem;
+    overflow: hidden;
+  }
+  .nav-link {
+    &.active {
+      font-weight: 700;
+      background-color: #fff;
+      border-bottom: solid var(--bs-primary) .475rem;
+      @include media-breakpoint-up(md) {
+        border-bottom: none;
+        border-right: solid var(--bs-primary) .7rem;
+      }
+    }
+  }
+}

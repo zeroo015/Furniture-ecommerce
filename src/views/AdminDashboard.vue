@@ -1,7 +1,26 @@
 <template>
   <AdminNavbar></AdminNavbar>
-  <div class="container position-relative">
-    <router-view></router-view>
+  <div class="container position-relative p-4">
+    <div class="row">
+      <!-- 頁籤 -->
+      <div class="col-md-3 pb-3">
+        <ul class="nav flex-md-column text-start tabNav">
+          <li class="nav-item">
+            <router-link to="/admin" class="nav-link py-md-3">商品管理</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/admin/order" class="nav-link py-md-3">訂單管理</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/admin/coupon" class="nav-link py-md-3">優惠券管理</router-link>
+          </li>
+        </ul>
+      </div>
+      <!-- 列表區 -->
+      <div class="col-9 bg-white rounded-3">
+        <router-view/>
+      </div>
+    </div>
   </div>
 </template>
 
