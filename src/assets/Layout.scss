@@ -44,6 +44,11 @@ $bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
   font-style: normal;
 }
 
+html, body {
+  margin: 0;
+  height: 100%; /* 確保頁面高度撐滿視窗 */
+}
+
 // Navbar
 .topNav {
   @include media-breakpoint-up(lg) {
@@ -59,6 +64,27 @@ $bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
     .txt {
       @include media-breakpoint-down(lg) {
         display: none;
+      }
+    }
+  }
+  a:hover {
+    color: var(--bs-primary);
+    .logo_svg {
+      fill: var(--bs-primary);
+    }
+  }
+}
+
+// Footer
+footer {
+  a {
+    color: var(--bs-secondary-color);
+    &:hover {
+      color: var(--bs-primary);
+    }
+    i.fs-4 {
+      @include media-breakpoint-down(lg) {
+        font-size: 1.5rem !important;
       }
     }
   }

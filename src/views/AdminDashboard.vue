@@ -1,26 +1,35 @@
 <template>
-  <AdminNavbar></AdminNavbar>
-  <div class="container position-relative p-4">
-    <div class="row">
-      <!-- 頁籤 -->
-      <div class="col-md-3 pb-3">
-        <ul class="nav flex-md-column text-start tabNav">
-          <li class="nav-item">
-            <router-link to="/admin" class="nav-link py-md-3">商品管理</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/admin/order" class="nav-link py-md-3">訂單管理</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/admin/coupon" class="nav-link py-md-3">優惠券管理</router-link>
-          </li>
-        </ul>
-      </div>
-      <!-- 列表區 -->
-      <div class="col-9 bg-white rounded-3">
-        <router-view/>
+  <div class="d-flex flex-column min-vh-100">
+    <AdminNavbar></AdminNavbar>
+    <div class="container position-relative p-4 flex-shrink-0">
+      <div class="row">
+        <!-- 頁籤 -->
+        <div class="col-md-3 pb-2">
+          <ul class="nav flex-md-column text-start tabNav">
+            <li class="nav-item">
+              <router-link to="/admin" class="nav-link py-md-3">商品管理</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/admin/order" class="nav-link py-md-3">訂單管理</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/admin/coupon" class="nav-link py-md-3">優惠券管理</router-link>
+            </li>
+          </ul>
+        </div>
+        <!-- 列表區 -->
+        <div class="col-md-9 bg-white rounded-3">
+          <router-view/>
+        </div>
       </div>
     </div>
+    <!-- Sticky footer >> flexbox 自動撐滿剩餘區域 -->
+    <footer class="footer mt-auto py-3">
+      <div class="container p-lg-0 d-flex justify-content-center flex-column flex-md-row">
+        <a class="me-2" href="#"><i class="bi bi-github fs-4"></i></a>
+        <span class="align-self-center text-muted" style="font-size: .875rem">© 2026 SOOThing. All rights reserved. 本網站僅作個人練習，無商業用途</span>
+      </div>
+    </footer>
   </div>
 </template>
 
