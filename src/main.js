@@ -9,6 +9,7 @@ import 'vue-loading-overlay/dist/css/index.css'
 
 import App from './App.vue'
 import router from './router'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js' // 可使用 dataset(data-bs-*)，實體化元件須 (1)個別元件 import bootstrap 元件 (2)全域註冊
 import { currency, date } from '@/methods/filters.js'
 
 const pinia = createPinia()

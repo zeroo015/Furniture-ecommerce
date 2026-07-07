@@ -7,9 +7,11 @@
 // $body-color: #111;
 $primary: #2c5760;
 $secondary: #bed0d3;
-$info: #fff5b5;
+$info: #9cb6b7;
+$warning: #fff5b5;
 $light: #f1f4f9; // 淺藍背景
 $modal-fade-transform: scale(.9);
+$border-color: #333;
 // 修改全域的字型
 // $font-family-sans-serif: "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
@@ -48,6 +50,10 @@ html, body {
   margin: 0;
   height: 100%; /* 確保頁面高度撐滿視窗 */
 }
+a {
+  text-decoration: none;
+  color: #333;
+}
 
 // Navbar
 .topNav {
@@ -56,10 +62,17 @@ html, body {
   }
   .logo_svg {
     fill: var(--bs-dark);
+    @include media-breakpoint-down(md) {
+        transform: scale(.95);
+        transform-origin: top right;
+      }
   }
   .navicon {
     i {
       font-size: 1.5rem;
+    }
+    .big-icon {
+      font-size: 1.6rem;
     }
     .txt {
       @include media-breakpoint-down(lg) {
@@ -67,16 +80,29 @@ html, body {
       }
     }
   }
-  a:hover {
-    color: var(--bs-primary);
-    .logo_svg {
-      fill: var(--bs-primary);
+  a {
+    color: var(--bs-dark);
+    &.nav-link.active {
+      color: var(--bs-primary);
+    }
+    &:hover {
+      color: var(--bs-primary);
+      .logo_svg {
+        fill: var(--bs-primary);
+      }
     }
   }
 }
 
 // Footer
 footer {
+  .logo_svg {
+    fill: var(--bs-white);
+    @include media-breakpoint-down(md) {
+        transform: scale(.95);
+        transform-origin: top right;
+      }
+  }
   a {
     color: var(--bs-secondary-color);
     &:hover {
@@ -85,6 +111,41 @@ footer {
     i.fs-4 {
       @include media-breakpoint-down(lg) {
         font-size: 1.5rem !important;
+      }
+    }
+  }
+  &.bg-dark {
+    a{
+      color: #fff;
+      &:hover {
+        color: var(--bs-secondary);
+        .logo_svg {
+          fill: var(--bs-secondary);
+        }
+      }
+    }
+  }
+}
+
+// 動態
+.link-animated {
+  @include media-breakpoint-up(md) {
+    position: relative;
+    &::after {
+      content: "";
+      transform-origin: left;
+      background: currentColor;
+      width: 85%;
+      height: 1px;
+      transition: transform .3s;
+      position: absolute;
+      bottom: 4px;
+      left: 11%;
+      transform: scaleX(0);
+    }
+    &:hover {
+      &::after {
+        transform: scaleX(1);
       }
     }
   }
@@ -138,6 +199,441 @@ footer {
         border-bottom: none;
         border-right: solid var(--bs-primary) .7rem;
       }
+    }
+  }
+}
+
+
+/* -----------------------------------
+ * MainPage.vue 前台首頁
+ * ----------------------------------- */
+.home {
+  padding-top: 76px;
+}
+.main {
+  a:hover {
+    @include media-breakpoint-up(md) {
+      .bi::before {
+        transition: all .2s ease;
+        transform: translateX(4px);
+      }
+    } 
+  }
+}
+.Area {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  padding: 0;
+}
+.Area1220 {
+  @include media-breakpoint-up(lg) {
+    width: 1220px;
+  }
+}
+.Areabottom {
+  @include media-breakpoint-up(md) {
+    margin-bottom: 80px;
+  }
+}
+.AreaTitle {
+  .smTxt {
+    font-size: 1.5em;
+    letter-spacing: .01em;
+    margin-bottom: -1em;
+  }
+  .engTxt {
+    font-size: 4.375em;
+    line-height: 1.35;
+  }
+}
+.decoDot {
+  position: relative;
+  width: fit-content;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 24%;
+    right: -.825rem;
+    width: .435rem;
+    height: .435rem;
+    border-radius: 50%;
+    background-color: var(--bs-info);
+  }
+}
+
+// 版頭
+.Area_top {
+  z-index: 3;
+  position: relative;
+  @include media-breakpoint-up(md) {
+    height: 482px;
+  }
+  .box {
+    @include media-breakpoint-up(md) {
+      padding: 88px 69px 0 96px;
+    }
+  }
+  .title {
+    font-size: 11.4em;
+    line-height: 1.2;
+    letter-spacing: .01em;
+    color: #2e4a50;
+  }
+  .subtitle {
+    font-size: 1.5em;
+    letter-spacing: .01em;
+  }
+  .PD_info {
+    z-index: 2;
+    .txt1 {
+      font-size: 1.75em;
+      line-height: .95;
+      letter-spacing: .1em;
+    }
+    .txt2 {
+      flex-basis: 60%;
+      font-size: 1.125em;
+      line-height: 1.2;
+      letter-spacing: .15em;
+    }
+  }
+  .btnMore {
+    z-index: 1;
+    width: fit-content;
+    font-size: 1.125em;
+    margin-top: -1px;
+  }
+  .box_PD {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 24px;
+      right: 5px;
+    }
+  }
+  .scroll {
+    position: absolute;
+    top: 72%;
+    right: -8%;
+    transform: rotate(-90deg);
+    img {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+// 最新消息
+.Area_news {
+  &::before {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -36%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 6em;
+  }
+  .box {
+    padding: 3.25em 5em;
+  }
+}
+
+// 商品分類
+.Area_category {
+  .AreaTitle {
+    margin-bottom: 2em;
+    padding-right: 5em;
+  }
+  .PD_cate {
+    position: relative;
+    i.bi {
+      position: absolute;
+      right: 10%;
+      top: 45%;
+      font-size: 1.75em;
+    }
+  }
+}
+
+// 品牌理念
+.Area_about {
+  .AreaTitle {
+    margin-bottom: 2em;
+    padding-left: 5em;
+  }
+  .txtArea {
+    position: relative;
+    margin-bottom: 7.9em;
+    .slogan {
+      .txt1 {
+        letter-spacing: .1em;
+      }
+      .txt2 {
+        font-weight: 500;
+        line-height: 1.1;
+      }
+    }
+    .story {
+      margin-bottom: 4.8em;
+      letter-spacing: .1em;
+    }
+    .decoTxt {
+      position: absolute;
+      font-size: 1.125em;
+      letter-spacing: 0.035em;
+      bottom: -1.9em;
+      &::before {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        top: -.9em;
+        width: 8.8em;
+        height: 2.6em;
+        background-color: #fff;
+      }
+    }
+    &.txtR {
+      padding-left: 15.6em;
+      margin-left: -2.8em;
+      margin-right: 2.7em;
+      .decoTxt {
+        right: 0;
+        &::before {
+          left: 45%;
+        }
+      }
+    }
+    &.txtL {
+      padding-left: 5em;
+      margin-bottom: 4.6em;
+      margin-right: -6.6em;
+      .story {
+        margin-bottom: 5.9em;
+      }
+      .decoTxt {
+        left: 0;
+        &::before {
+          left: -15%;
+        }
+      }
+    }
+  }
+  .picArea {
+    z-index: -1;
+    position: relative;
+    .decoBig {
+      z-index: -1;
+      position: absolute;
+      font-size: 6.75em;
+      line-height: 1;
+      letter-spacing: .02em;
+    }
+  }
+  .box_1 {
+    .picArea {
+      .decoBig {
+        transform: rotate(-90deg);
+        right: -2.85em;
+        top: 32.4%;
+      }
+    }
+  }
+  .box_2 {
+    position: relative;
+    transform: translateX(290px);
+    .txtArea {
+      &.txtL {
+        padding-left: 0;
+        margin-right: -5em;
+        margin-bottom: 13.5em;
+        .slogan {
+          margin-left: -276px;
+        }
+        .story {
+          margin-bottom: 10.7em;
+          margin-left: -276px;
+        }
+      }
+    }
+    .picArea {
+      .decoBig {
+        left: -6.65em;
+        top: 54%;
+      }
+    }
+    .pic2 {
+      position: absolute;
+      padding: 0;
+      left: -468px;
+      bottom: -6.7em;
+      width: auto;
+    }
+  }
+  .box_3 {
+    z-index: 3;
+    position: relative;
+    margin-top: -2.4em;
+    margin-left: -1.6em;
+    .picArea {
+      .decoBig {
+        transform: rotate(-90deg);
+        right: -1.75em;
+        top: 64.1%;
+      }
+    }
+  }
+}
+
+// 限時促銷
+.Area_sale {
+  @include media-breakpoint-up(md) {
+    margin-bottom: 40px;
+  }
+  .box {
+    padding-top: 3.4%;
+    padding-bottom: 6.3%;
+    background: url('@/assets/images/saleBN_bg.png') no-repeat;
+    background-position: center top;
+    background-size: 100%;
+  }
+  .timer {
+    margin: 1.1em auto;
+    padding-bottom: 2em;
+    .timer-text {
+      span {
+        position: relative;
+        margin-left: .25em;
+        padding: .75rem;
+        font-size: 2em;
+        &::after {
+          position: absolute;
+          content: "hours";
+          bottom: -2em;
+          left: 50%;
+          transform: translateX(-50%);
+          color: #fff;
+          font-size: .5em;
+          font-weight: 400;
+        }
+        &.DD {
+          &::after {
+            content: "days";
+          }
+        }
+        &.MM {
+          &::after {
+            content: "mins";
+          }
+        }
+        &.SS {
+          &::after {
+            content: "secs";
+          }
+        }
+      }
+      i {
+        color: transparent;
+      }
+    }
+  }
+}
+
+// 看更多
+.Area_more {
+  a {
+    letter-spacing: .075em;
+  }
+}
+
+
+/* -----------------------------------
+ * PDShop.vue 前台商品館頁
+ * ----------------------------------- */
+.shop {
+  .navArea {
+    .box {
+      @include media-breakpoint-up(md) {
+        width: 900px;
+        margin: 0 auto;
+      }
+      .navItem {
+        padding: .5em 0 .75em;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// 商品列表
+.PD_item {
+  position: relative;
+  // transition: all .4s ease;
+  @include media-breakpoint-down(md) {
+    font-size: 3vw;
+  }
+  .tag {
+    font-size: 1.125em;
+    padding: .25em .625em;
+  }
+  .card-body {
+    padding: 1em 0;
+  }
+  .pdName {
+    font-size: 1.3125em;
+    margin-bottom: .5em;
+  }
+  .oriPrice {
+    font-size: .9375em;
+  }
+  .salePrice {
+    font-size: 1.75em;
+  }
+  .actionGroup {
+    position: absolute;
+    bottom: 1.6em;
+    right: .63em;
+    i.bi {
+      font-size: 1.625em;
+    }
+    .icon {
+      i:last-child {
+        display: none;
+      }
+    }
+    .iconAddLike {
+      margin-right: .25em;
+      i.bi {
+        &::before {
+          vertical-align: -0.2em;
+        }
+      }
+    }
+  }
+  .card-img-top {
+    // 正方形圖片
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    transition: all .4s ease;
+  }
+  &:hover {
+    @include media-breakpoint-up(md) {
+      // transform: translateY(-6px);
+      .card-img-top {
+        border: solid 4px var(--bs-primary);
+      }
+    }
+  }
+  .icon:hover {
+    i:first-child {
+      display: none;
+    }
+    i:last-child {
+      display: block;
     }
   }
 }

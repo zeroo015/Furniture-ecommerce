@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     getProducts(page = 1) {
-      const api = `${process.env.VUE_APP_API}/v2/api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}` // 取得商品列表 api
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}` // 取得商品列表 api
       this.$http.get(api)
         .then((res) => {
           console.log(res.data)
