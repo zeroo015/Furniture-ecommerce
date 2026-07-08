@@ -3,7 +3,7 @@
     <ul class="pagination justify-content-center">
       <!-- 上一頁 -->
       <li class="page-item me-2" :class="{ disabled: !pages.has_pre }">
-        <a class="page-link rounded-circle" href="#" aria-label="Previous"><i class="bi bi-arrow-left-short"></i></a>
+        <a class="page-link rounded-circle" href="#" aria-label="Previous" @click.prevent="$emit('update-page', pages.current_page - 1)"><i class="bi bi-arrow-left-short"></i></a>
       </li>
       <!-- v-for -->
       <li class="page-item me-2" v-for="page in pages.total_pages" :key="page" :class="{ active: page === pages.current_page }">
@@ -11,7 +11,7 @@
       </li>
       <!-- 下一頁 -->
       <li class="page-item" :class="{ disabled: !pages.has_next }">
-        <a class="page-link rounded-circle" href="#" aria-label="Next"><i class="bi bi-arrow-right-short"></i></a>
+        <a class="page-link rounded-circle" href="#" aria-label="Next" @click.prevent="$emit('update-page', pages.current_page + 1)"><i class="bi bi-arrow-right-short"></i></a>
       </li>
     </ul>
   </nav>

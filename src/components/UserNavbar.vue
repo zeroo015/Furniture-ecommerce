@@ -26,7 +26,7 @@
       </div>
     </div>
   </nav>
-  <SearchOffcanvas ref="searchoffcanvas"></SearchOffcanvas>
+  <SearchOffcanvas ref="searchOffcanvas"></SearchOffcanvas>
   <CartOffcanvas ref="cartOffcanvas"></CartOffcanvas>
 </template>
 
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     openSearchOffcanvas() {
-      this.$refs.searchoffcanvas.showOffcanvas()
+      this.$refs.searchOffcanvas.showOffcanvas()
     },
     openCartOffcanvas() {
       this.$refs.cartOffcanvas.showOffcanvas()
