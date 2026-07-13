@@ -15,7 +15,7 @@ import UserFooter from '@/components/UserFooter.vue'
 // 匯入 store
 import countdownTimer from '@/stores/countdownTimer'
 export default {
-  name: 'HomeView',
+  // name: 'HomeView',
   components: {
     UserNavbar,
     UserFooter

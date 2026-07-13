@@ -1,11 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    // component: HomeView,
+    component: () => import('../views/HomeView.vue'),
     children: [
       {
         path: '',
@@ -58,6 +59,18 @@ const routes = [
         path: 'coupon',
         name: 'coupon',
         component: () => import('../views/AdminCoupon.vue')
+      }
+    ]
+  },
+  {
+    path: '/product',
+    name: 'testMain',
+    component: () => import('../views/HomeView.vue'),
+    children: [
+      {
+        path: ':productId(.*)', // 單一商品頁使用動態路由
+        name: 'product',
+        component: () => import('../views/PDDetail.vue')
       }
     ]
   }
