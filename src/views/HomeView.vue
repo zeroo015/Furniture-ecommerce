@@ -13,12 +13,20 @@
 import UserNavbar from '@/components/UserNavbar.vue'
 import UserFooter from '@/components/UserFooter.vue'
 // 匯入 store
+import { mapActions } from 'pinia'
 import countdownTimer from '@/stores/countdownTimer'
+import cartStore from '@/stores/cartStore'
 export default {
   // name: 'HomeView',
   components: {
     UserNavbar,
     UserFooter
+  },
+  methods: {
+    ...mapActions(cartStore, ['getCart'])
+  },
+  created() {
+    this.getCart()
   },
   mounted() {
     // 啟動倒數

@@ -23,7 +23,7 @@
         <ul class="list-unstyled fs-5">
           <li class="mb-2">2026 日式家居新選物全新上架<i class="bi bi-arrow-right-short text-info"></i></li>
           <li class="mb-2">2026 新會員首購折 100<i class="bi bi-arrow-right-short text-info"></i></li>
-          <li class="mb-2">0601＿0615 限時優惠／消費滿 2000 折 200<i class="bi bi-arrow-right-short text-info"></i></li>
+          <li class="mb-2">0601＿0615 限時優惠／領取優惠碼全站消費 9 折<i class="bi bi-arrow-right-short text-info"></i></li>
           <li><span class="badge bg-primary rounded-4 align-text-top me-2">預告</span>人氣 IP 聯名商品將於 7 月到貨</li>
         </ul>
       </div>
@@ -141,8 +141,9 @@
 
 <script>
 import CountdownClock from '@/components/CountdownClock.vue'
-import { mapState } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import useCountdownStore from '@/stores/countdownTimer.js'
+import cartStore from '@/stores/cartStore'
 export default {
   components: {
     CountdownClock
@@ -151,9 +152,7 @@ export default {
     ...mapState(useCountdownStore, ['isEnded'])
   },
   methods: {
-    goShop() {
-      this.$router.push('/shop')
-    }
+    ...mapActions(cartStore, ['goShop'])
   },
   mounted() {
     document.body.style.backgroundColor = '#f1f4f9'

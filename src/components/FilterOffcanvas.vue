@@ -60,7 +60,7 @@
 <script>
 import offcanvasMixin from '@/mixins/offcanvasMixin'
 import { mapState, mapActions } from 'pinia'
-import { useProductStore } from '@/stores/productStore.js'
+import { useProductStore } from '@/stores/productStore'
 export default {
   data() {
     return {

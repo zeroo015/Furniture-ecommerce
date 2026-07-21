@@ -9,7 +9,10 @@
         <!-- <router-link to="" class="nav-link navicon me-1"><i class="bi bi-person-circle big-icon" data-title="會員中心"></i></router-link>
         <router-link to="/like" class="nav-link navicon me-1"><i class="bi bi-postcard-heart big-icon" data-title="追蹤清單"></i></router-link> -->
         <a class="nav-link navicon" href="#" @click.prevent="openSearchOffcanvas"><i class="bi bi-search" data-title="搜尋"></i></a>
-        <a class="nav-link navicon" href="#" @click.prevent="openCartOffcanvas"><i class="bi bi-cart-check big-icon" data-title="購物車"></i></a>
+        <a class="nav-link navicon" href="#" @click.prevent="openCartOffcanvas">
+          <i class="bi bi-cart-check big-icon" data-title="購物車"></i>
+          <span class="cartNum translate-middle badge rounded-pill bg-primary">{{ cart.length }}</span>
+        </a>
       </div>
       <!-- 漢堡 -->
       <button class="navbar-toggler pe-1 border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +36,15 @@
 <script>
 import SearchOffcanvas from './SearchOffcanvas.vue'
 import CartOffcanvas from './CartOffcanvas.vue'
+import { mapState } from 'pinia'
+import cartStore from '@/stores/cartStore.js'
 export default {
   components: {
     SearchOffcanvas,
     CartOffcanvas
+  },
+  computed: {
+    ...mapState(cartStore, ['cart'])
   },
   methods: {
     openSearchOffcanvas() {

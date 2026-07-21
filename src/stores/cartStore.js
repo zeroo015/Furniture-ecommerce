@@ -1,0 +1,136 @@
+import axios from 'axios'
+import router from '@/router'
+import { defineStore } from 'pinia'
+import statusStore from './statusStore'
+
+const status = statusStore()
+export default defineStore('cartStore', {
+  state: () => ({
+    cart: [],
+    total: {},
+    tempCart: {},
+    couponCode: '',
+    form: {
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        address: ''
+      },
+      message: ''
+    },
+    order: {
+      products: {},
+      user: {}
+    }
+  }),
+  actions: {
+    // 加入購物車
+    addCart(id, qty = 1) {
+      status.cartLoading = id
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart` // 購物車 api
+      const cartItem = { product_id: id, qty: qty } // 建立回傳資料格式
+      axios.post(api, { data: cartItem })
+        .then((res) => {
+          // console.log(res.data)
+          this.getCart()
+          status.cartLoading = ''
+        })
+    },
+    // 取得購物車清單
+    getCart() {
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart` // 購物車 api
+      axios.get(api)
+        .then((res) => {
+          // console.log(res.data)
+          this.cart = res.data.data.carts
+          this.total.total = res.data.data.total
+          this.total.final_total = res.data.data.final_total
+          // 如果有套用優惠券帶入 couponCode
+          if (this.cart[0]?.coupon) {
+            this.couponCode = this.cart[0].coupon.code
+          }
+        })
+    },
+    // 更改商品數量
+    changeQty(item, newQty) {
+      status.cartLoading = item.id
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart/${item.id}` // 更改數量 api
+      const cartItem = { product_id: item.product_id, qty: newQty }
+      let apiMethod = 'put'
+      if (item.qty === 0) {
+        apiMethod = 'delete'
+      }
+      axios[apiMethod](api, { data: cartItem })
+        .then((res) => {
+          // console.log(res.data)
+          status.cartLoading = ''
+          this.getCart()
+        })
+    },
+    // 刪除單一商品
+    delItem(id) {
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart/${id}` // 更改數量 api
+      axios.delete(api)
+        .then((res) => {
+          this.getCart()
+        })
+    },
+    // 清空購物車
+    clearCart() {
+      if (confirm('確定清空購物車?')) {
+        status.cartLoading = 'clearCart'
+        const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/carts` // 刪除全部購物車 api
+        axios.delete(api)
+          .then((res) => {
+            this.getCart()
+            status.cartLoading = ''
+          })
+      }
+    },
+    // 建立訂單
+    createOrder() {
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/order` // 建立訂單 api
+      const order = this.form
+      axios.post(api, { data: order })
+        .then((res) => {
+          // console.log(res)
+          const orderId = res.data.orderId
+          router.push(`/paying/${orderId}`)
+        })
+    },
+    // 取得單一訂單
+    getOrder(id) {
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/order/${id}` // 取得某筆訂單 api
+      axios.get(api)
+        .then((res) => {
+          console.log(res.data)
+          this.order = res.data.order
+        })
+    },
+    // 結帳付款
+    goPay(id) {
+      status.cartLoading = 'paying'
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/pay/${id}` // 付款 api
+      axios.post(api)
+        .then((res) => {
+          console.log(res)
+          this.getOrder(id) // 重新取得訂單確認付款狀態
+          this.getCart() // 重新取得購物車清單
+          status.cartLoading = ''
+          setTimeout(() => {
+            router.push('/finished')
+          }, 3000)
+        })
+    },
+    goShop() {
+      router.push('/shop')
+    },
+    goCartlist() {
+      router.push('/cart')
+    },
+    goCheckout() {
+      router.push('/checkout')
+    }
+  }
+})

@@ -32,6 +32,26 @@ const routes = [
         path: 'FAQ',
         name: 'FAQ',
         component: () => import('../views/FAQPage.vue')
+      },
+      {
+        path: 'cart',
+        name: 'cart',
+        component: () => import('../views/UserCartlist.vue')
+      },
+      {
+        path: 'checkout',
+        name: 'checkout',
+        component: () => import('../views/UserCheckout.vue')
+      },
+      {
+        path: 'paying/:orderId',
+        name: 'paying',
+        component: () => import('../views/UserPay.vue')
+      },
+      {
+        path: 'finished',
+        name: 'finished',
+        component: () => import('../views/UserFinish.vue')
       }
     ]
   },
@@ -64,7 +84,7 @@ const routes = [
   },
   {
     path: '/product',
-    name: 'testMain',
+    name: 'userProduct',
     component: () => import('../views/HomeView.vue'),
     children: [
       {

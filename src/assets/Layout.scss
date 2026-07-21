@@ -46,6 +46,15 @@ $bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
   font-style: normal;
 }
 
+i.bi {
+  &.bolder {
+    &::before {
+      font-weight: 700 !important;
+      transform: translateY(1px);
+    }
+  }
+}
+
 html, body {
   margin: 0;
   height: 100%; /* 確保頁面高度撐滿視窗 */
@@ -68,11 +77,22 @@ a {
       }
   }
   .navicon {
+    position: relative;
     i {
       font-size: 1.5rem;
     }
     .big-icon {
       font-size: 1.6rem;
+    }
+    .cartNum {
+      position: absolute;
+      top: 18%;
+      left: 100%;
+      font-size: 0.5em;
+      height: 2em;
+      min-width: 2em;
+      border-radius: 2em;
+      align-content: center;
     }
     .txt {
       @include media-breakpoint-down(lg) {
@@ -250,6 +270,7 @@ footer {
   }
 }
 .Areabottom {
+  margin-bottom: 10vw;
   @include media-breakpoint-up(md) {
     margin-bottom: 80px;
   }
@@ -662,7 +683,7 @@ footer {
 // 商品列表
 .PD_item {
   position: relative;
-  // transition: all .4s ease;
+  transition: all .4s ease;
   @include media-breakpoint-down(md) {
     font-size: 3vw;
   }
@@ -706,6 +727,11 @@ footer {
         }
       }
     }
+    .iconAddCart {
+      &.disabled {
+        pointer-events: none;
+      }
+    }
   }
   .card-img-top {
     // 正方形圖片
@@ -717,10 +743,10 @@ footer {
   }
   &:hover {
     @include media-breakpoint-up(md) {
-      // transform: translateY(-6px);
-      .card-img-top {
-        border: solid 4px var(--bs-primary);
-      }
+      transform: translateY(-6px);
+      // .card-img-top {
+      //   border: solid 4px var(--bs-primary);
+      // }
     }
   }
   .icon:hover {

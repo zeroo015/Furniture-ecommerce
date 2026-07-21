@@ -71,10 +71,13 @@
                 <i class="bi bi-heart"></i>
                 <i class="bi bi-heart-fill text-primary"></i>
               </a> -->
-              <!-- v-on 加入購物車 -->
-              <a href="#" class="icon iconAddCart" data-title="購物車">
-                <i class="bi bi-cart-plus"></i>
-                <i class="bi bi-cart-plus-fill text-primary"></i>
+              <!-- v-on 加入購物車 (1)顯示 loading 狀態 (2)disabled 以免重複點擊 -->
+              <a href="#" class="icon iconAddCart" data-title="購物車" @click.prevent="addCart(item.id)" :class="{disabled: cartLoading === item.id}">
+                <div v-if="cartLoading === item.id" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
+                <template v-else>
+                  <i class="bi bi-cart-plus"></i>
+                  <i class="bi bi-cart-plus-fill text-primary"></i>
+                </template>
               </a>
             </div>
           </div>
@@ -91,17 +94,22 @@
 import FilterOffcanvas from '@/components/FilterOffcanvas.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
 import { mapState, mapActions } from 'pinia'
-import { useProductStore } from '@/stores/productStore.js'
+import { useProductStore } from '@/stores/productStore'
+import cartStore from '@/stores/cartStore'
+import statusStore from '@/stores/statusStore'
 export default {
   components: {
     FilterOffcanvas,
     PaginationItem
   },
   computed: {
-    ...mapState(useProductStore, ['pageData', 'pagination', 'filterObj', 'filterData', 'filterTotal', 'order'])
+    ...mapState(useProductStore, ['pageData', 'pagination', 'filterObj', 'filterData', 'filterTotal', 'order']),
+    ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
     ...mapActions(useProductStore, ['getProducts', 'goPage', 'goProduct', 'sortBy', 'filterType', 'resetPage']),
+    ...mapActions(cartStore, ['addCart', 'getCart']),
+
     openFilterOffcanvas() {
       this.$refs.filterOffcanvas.showOffcanvas()
     },
