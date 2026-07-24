@@ -38,9 +38,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">取消</button>
           <!-- emit：將內層 v-model 更新的 tempCoupon 傳到外層儲存 -->
-          <button type="button" class="btn btn-primary" @click="$emit('update-coupon', tempCoupon)">確認</button>
+          <button type="button" class="btn btn-dark" @click="$emit('update-coupon', tempCoupon)">確認</button>
         </div>
       </div>
     </div>

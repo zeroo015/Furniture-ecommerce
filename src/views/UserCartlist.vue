@@ -89,7 +89,7 @@
         </table>
         <!-- 套用優惠券 -->
         <div class="input-group mt-4">
-          <input type="text" class="form-control border-primary" placeholder="請輸入優惠代碼" v-model="couponCode">
+          <input type="text" class="form-control border-primary" placeholder="請輸入優惠代碼" v-model="coupon.code">
           <button class="btn btn-outline-primary" type="button" @click="addCoupon">套用優惠碼</button>
         </div>
         <small class="text-success ms-1" v-if="total.final_total !== total.total">已套用優惠券</small>
@@ -119,6 +119,7 @@
 <script>
 import ProgressBar from '@/components/ProgressBar.vue'
 import { mapState, mapActions } from 'pinia'
+import { useProductStore } from '@/stores/productStore'
 import cartStore from '@/stores/cartStore'
 import statusStore from '@/stores/statusStore'
 export default {
@@ -131,11 +132,12 @@ export default {
     ProgressBar
   },
   computed: {
-    ...mapState(cartStore, ['cart', 'total', 'couponCode']),
+    ...mapState(cartStore, ['cart', 'total', 'coupon']),
     ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
-    ...mapActions(cartStore, ['changeQty', 'delItem', 'clearCart', 'goCheckout', 'goShop']),
+    ...mapActions(useProductStore, ['goShop']),
+    ...mapActions(cartStore, ['changeQty', 'delItem', 'clearCart', 'goCheckout', 'addCoupon']),
 
     // 一鍵複製優惠券碼
     async copyCoupon(refName) {

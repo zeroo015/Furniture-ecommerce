@@ -13,10 +13,10 @@
 
 <script>
 import { mapActions } from 'pinia'
-import cartStore from '@/stores/cartStore'
+import { useProductStore } from '@/stores/productStore'
 export default {
   methods: {
-    ...mapActions(cartStore, ['goShop'])
+    ...mapActions(useProductStore, ['goShop'])
   }
 }
 </script>

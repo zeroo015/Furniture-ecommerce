@@ -7,7 +7,7 @@
       <!-- 左側：填寫資料表單 -->
       <div class="userData col-lg-7 col-11 mx-auto">
         <h5 class="mb-3">收件人資料</h5>
-        <v-form v-slot="{ errors }" @submit="createOrder" id="checkForm" class="mt-3">
+        <v-form v-slot="{ errors }" @submit="createOrder(form)" id="checkForm" class="mt-3">
           <!-- 姓名 -->
           <div class="row mb-3">
             <label for="name" class="col-sm-1 col-form-label">姓名</label>
@@ -108,11 +108,25 @@ import ProgressBar from '@/components/ProgressBar.vue'
 import { mapState, mapActions } from 'pinia'
 import cartStore from '@/stores/cartStore'
 export default {
+  data() {
+    return {
+      // 未送出的表單資訊屬於未確認的資料狀態，儲存在各別的元件中有更好的效能
+      form: {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
+        },
+        message: ''
+      }
+    }
+  },
   components: {
     ProgressBar
   },
   computed: {
-    ...mapState(cartStore, ['cart', 'total', 'form'])
+    ...mapState(cartStore, ['cart', 'total'])
   },
   methods: {
     ...mapActions(cartStore, ['goCartlist', 'createOrder'])

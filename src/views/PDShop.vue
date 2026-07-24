@@ -107,7 +107,7 @@ export default {
     ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
-    ...mapActions(useProductStore, ['getProducts', 'goPage', 'goProduct', 'sortBy', 'filterType', 'resetPage']),
+    ...mapActions(useProductStore, ['getSaleProducts', 'goPage', 'goProduct', 'sortBy', 'filterType', 'resetPage']),
     ...mapActions(cartStore, ['addCart', 'getCart']),
 
     openFilterOffcanvas() {
@@ -134,7 +134,7 @@ export default {
     }
   },
   created() {
-    this.getProducts()
+    this.getSaleProducts()
   }
 }
 </script>

@@ -9,15 +9,9 @@ export default defineStore('cartStore', {
     cart: [],
     total: {},
     tempCart: {},
-    couponCode: '',
-    form: {
-      user: {
-        name: '',
-        email: '',
-        tel: '',
-        address: ''
-      },
-      message: ''
+    coupon: {
+      code: '',
+      title: ''
     },
     order: {
       products: {},
@@ -48,7 +42,7 @@ export default defineStore('cartStore', {
           this.total.final_total = res.data.data.final_total
           // 如果有套用優惠券帶入 couponCode
           if (this.cart[0]?.coupon) {
-            this.couponCode = this.cart[0].coupon.code
+            this.coupon = this.cart[0].coupon
           }
         })
     },
@@ -89,9 +83,9 @@ export default defineStore('cartStore', {
       }
     },
     // 建立訂單
-    createOrder() {
+    createOrder(form) {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/order` // 建立訂單 api
-      const order = this.form
+      const order = form
       axios.post(api, { data: order })
         .then((res) => {
           // console.log(res)
@@ -123,14 +117,20 @@ export default defineStore('cartStore', {
           }, 3000)
         })
     },
-    goShop() {
-      router.push('/shop')
-    },
     goCartlist() {
       router.push('/cart')
     },
     goCheckout() {
       router.push('/checkout')
+    },
+    // 套用優惠券
+    addCoupon() {
+      const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/coupon` // 套用優惠券 api
+      const coupon = { code: this.coupon.code }
+      axios.post(api, { data: coupon })
+        .then((res) => {
+          this.getCart() // 重新抓取購物車最新折扣資料
+        })
     }
   }
 })

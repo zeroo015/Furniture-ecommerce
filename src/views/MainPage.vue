@@ -39,11 +39,11 @@
         <div class="pb-3 fs-2">商品分類</div>
       </div>
       <div class="box d-flex">
-        <router-link class="PD_cate"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt=""><i class="bi bi-arrow-right-circle-fill text-primary"></i></router-link>
-        <router-link class="PD_cate"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt=""><i class="bi bi-arrow-right-circle-fill text-primary"></i></router-link>
-        <router-link class="PD_cate"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt=""><i class="bi bi-arrow-right-circle-fill text-primary"></i></router-link>
-        <router-link class="PD_cate"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt=""><i class="bi bi-arrow-right-circle-fill text-primary"></i></router-link>
-        <router-link class="PD_cate"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt=""><i class="bi bi-arrow-right-circle-fill text-primary"></i></router-link>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '椅')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="椅"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '沙發')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="沙發"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '桌')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="桌"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '燈')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="燈"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '櫃')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="櫃"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
       </div>
     </div>
 
@@ -143,7 +143,7 @@
 import CountdownClock from '@/components/CountdownClock.vue'
 import { mapState, mapActions } from 'pinia'
 import useCountdownStore from '@/stores/countdownTimer.js'
-import cartStore from '@/stores/cartStore'
+import { useProductStore } from '@/stores/productStore'
 export default {
   components: {
     CountdownClock
@@ -152,7 +152,7 @@ export default {
     ...mapState(useCountdownStore, ['isEnded'])
   },
   methods: {
-    ...mapActions(cartStore, ['goShop'])
+    ...mapActions(useProductStore, ['filterType', 'goShop'])
   },
   mounted() {
     document.body.style.backgroundColor = '#f1f4f9'

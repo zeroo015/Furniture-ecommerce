@@ -86,13 +86,13 @@ export const useProductStore = defineStore('productStore', {
     }
   },
   actions: {
-    getProducts() {
+    getSaleProducts() {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/products/all` // 取得所有商品 api
       axios.get(api)
         .then((res) => {
           // console.log(res.data)
           this.products = res.data.products
-          this.filterObj.category = 'all'
+          // this.filterObj.category = 'all'
           this.calcPage()
           this.resetPage() // 確保載入後在第一頁
         })
@@ -115,6 +115,11 @@ export const useProductStore = defineStore('productStore', {
         this.pagination.has_next = false
       }
     },
+    // 回商品首頁
+    goShop() {
+      this.filterObj.category = 'all'
+      router.push('/shop')
+    },
     // 前往分頁
     goPage(page) {
       // 避免超出邊界頁面
@@ -132,6 +137,10 @@ export const useProductStore = defineStore('productStore', {
     },
     // 更新篩選依據 - navArea 用
     filterType(type, target) {
+      router.push({
+        path: '/shop', // 你的商品頁面路徑
+        query: { category: target } // 網址會變成 /products?category=electronics
+      })
       this.filterObj[type] = target
     },
     // 篩選條件變動時自動切回第一頁
