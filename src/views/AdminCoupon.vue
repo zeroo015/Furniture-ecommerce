@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="coupon pt-3 pb-2">
     <!-- 新增商品 -->
     <div class="text-end mb-3 me-1">
@@ -49,6 +50,9 @@
 import CouponModal from '@/components/CouponModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
+import { mapState } from 'pinia'
+import statusStore from '@/stores/statusStore'
+const status = statusStore()
 export default {
   data() {
     return {
@@ -63,13 +67,18 @@ export default {
     DelModal,
     PaginationItem
   },
+  computed: {
+    ...mapState(statusStore, ['isLoading'])
+  },
   methods: {
     getCoupons(page = 1) {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/coupons/?page=${page}` // 取得優惠券列表 api
       this.$http.get(api)
         .then((res) => {
           this.coupons = res.data.coupons
           this.pagination = res.data.pagination
+          status.isLoading = false
         })
         .catch((err) => {
           console.log(err.response.data)
@@ -88,6 +97,7 @@ export default {
       this.$refs.couponModal.showModal()
     },
     updateCoupon(item) {
+      status.isLoading = true
       this.tempCoupon = item
       let api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/coupon` // 新增優惠券 api
       let apiMethod = 'post'
@@ -97,8 +107,10 @@ export default {
       }
       this.$http[apiMethod](api, { data: this.tempCoupon })
         .then((res) => {
+          status.isLoading = false
           this.$refs.couponModal.hideModal()
           this.getCoupons()
+          status.msgState(res, '優惠券更新')
         })
     },
     openDelModal(item) {
@@ -106,12 +118,15 @@ export default {
       this.$refs.delModal.showModal()
     },
     delCoupon() {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}` // 刪除優惠券 api
       this.$http.delete(api)
         .then((res) => {
-          console.log(res, this.tempCoupon)
+          // console.log(res, this.tempCoupon)
+          status.isLoading = false
           this.$refs.delModal.hideModal()
           this.getCoupons()
+          status.msgState(res, '優惠券刪除')
         })
     }
   },

@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="order pt-3 pb-2">
     <!-- 訂單列表 -->
     <div class="table-responsive mb-1">
@@ -36,7 +37,7 @@
             </td>
             <td>
               <!-- v-on 開啟訂單浮層 (1)tempOrder 傳入 OrderModal -->
-              <button type="button" class="btn btn-outline-primary btn-sm me-lg-2 mb-1 mb-lg-0" @click="openOrderModal(item)">編輯</button>
+              <button type="button" class="btn btn-outline-primary btn-sm me-lg-2 mb-1 mb-lg-0" @click="openOrderModal(item)">查看</button>
               <!-- v-on 開啟刪除浮層 (1)自定義 tempOrder.title 傳入 DelModal -->
               <button type="button" class="btn btn-outline-danger btn-sm" @click="openDelModal(item)">刪除</button>
             </td>
@@ -55,6 +56,9 @@
 import OrderModal from '@/components/OrderModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
+import { mapState } from 'pinia'
+import statusStore from '@/stores/statusStore'
+const status = statusStore()
 export default {
   data() {
     return {
@@ -68,17 +72,23 @@ export default {
     DelModal,
     PaginationItem
   },
+  computed: {
+    ...mapState(statusStore, ['isLoading'])
+  },
   methods: {
     getOrders(page = 1) {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/orders/?page=${page}` // 取得訂單列表 api
       this.$http.get(api)
         .then((res) => {
           console.log(res.data)
           this.orders = res.data.orders
           this.pagination = res.data.pagination
+          status.isLoading = false
         })
     },
     updateOrder(item) {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/order/${item.id}` // 修改訂單 api
       const paid = {
         is_paid: item.is_paid,
@@ -86,9 +96,11 @@ export default {
       }
       this.$http.put(api, { data: paid })
         .then((res) => {
+          status.isLoading = false
           if (res.data.success) {
             this.getOrders() // 若成功重新取得列表
           }
+          status.msgState(res, '付款狀態更新')
         })
     },
     openOrderModal(item) {
@@ -101,11 +113,14 @@ export default {
       this.$refs.delModal.showModal()
     },
     delOrder() {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}` // 刪除訂單 api
       this.$http.delete(api)
         .then((res) => {
+          status.isLoading = false
           this.$refs.delModal.hideModal()
           this.getOrders()
+          status.msgState(res, '訂單刪除')
         })
     }
   },

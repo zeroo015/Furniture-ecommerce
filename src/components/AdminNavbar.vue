@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <nav class="navbar navbar-expand-lg navbar-light bg-white topNav">
     <div class="container p-lg-0">
       <router-link to="/" class="navbar-brand pt-3 pb-2">
@@ -16,12 +17,20 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import statusStore from '@/stores/statusStore'
+const status = statusStore()
 export default {
+  computed: {
+    ...mapState(statusStore, ['isLoading'])
+  },
   methods: {
     logout() {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/logout` // 登出 api
       this.$http.post(api)
         .then((res) => {
+          status.isLoading = false
           this.$router.push('/login')
           // 清空 hexToken cookie
           document.cookie = `hexToken=;expires= ${new Date(0).toGMTString()}` // set the expires parameter to a past date

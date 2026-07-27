@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="container-fluid login">
     <!-- v-on 登入 -->
     <form class="row justify-content-center align-items-center min-vh-100" @submit.prevent="signIn">
@@ -19,6 +20,9 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
+import statusStore from '@/stores/statusStore'
+const status = statusStore()
 export default {
   data() {
     return {
@@ -28,12 +32,17 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState(statusStore, ['isLoading'])
+  },
   methods: {
     signIn() {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/admin/signin` // 登入 api
       this.$http.post(api, this.user)
         .then((res) => {
-          console.log(res.data)
+          // console.log(res.data)
+          status.isLoading = false
           if (res.data.success) {
             const { token, expired } = res.data
             document.cookie = `hexToken=${token};expires=${new Date(expired)}` // 存入 cookie (hexToken 為自定義變數名稱，expired 轉換成 cookie 可記錄的格式)

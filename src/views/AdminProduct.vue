@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="product pt-3 pb-2">
     <!-- 新增商品 -->
     <div class="text-end mb-3 me-1">
@@ -49,6 +50,9 @@
 import ProductModal from '@/components/ProductModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
+import { mapState } from 'pinia'
+import statusStore from '@/stores/statusStore'
+const status = statusStore()
 export default {
   data() {
     return {
@@ -63,14 +67,19 @@ export default {
     DelModal,
     PaginationItem
   },
+  computed: {
+    ...mapState(statusStore, ['isLoading'])
+  },
   methods: {
     getProducts(page = 1) {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}` // 取得商品列表 api
       this.$http.get(api)
         .then((res) => {
           console.log(res.data)
           this.products = res.data.products
           this.pagination = res.data.pagination
+          status.isLoading = false
         })
         .catch((err) => {
           console.log(err.response.data)
@@ -86,6 +95,7 @@ export default {
       this.$refs.productModal.showModal()
     },
     updateProduct(item) {
+      status.isLoading = true
       this.tempProduct = item
       // 新增商品
       let api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/product`
@@ -97,8 +107,10 @@ export default {
       }
       this.$http[apiMethod](api, { data: this.tempProduct })
         .then((res) => {
+          status.isLoading = false
           this.$refs.productModal.hideModal()
           this.getProducts()
+          status.msgState(res, '商品更新')
         })
     },
     openDelModal(item) {
@@ -106,11 +118,14 @@ export default {
       this.$refs.delModal.showModal()
     },
     delProduct() {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}` // 刪除商品 api
       this.$http.delete(api)
         .then((res) => {
+          status.isLoading = false
           this.$refs.delModal.hideModal()
           this.getProducts()
+          status.msgState(res, '商品刪除')
         })
     }
   },

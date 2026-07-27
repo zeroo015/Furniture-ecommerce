@@ -2,6 +2,7 @@
   <div class="home d-flex flex-column min-vh-100 overflow-hidden">
     <UserNavbar></UserNavbar>
     <div class="position-relative pb-5 flex-shrink-0">
+      <ToastMsgs></ToastMsgs>
       <router-view/>
     </div>
     <UserFooter></UserFooter>
@@ -12,6 +13,7 @@
 // @ is an alias to /src
 import UserNavbar from '@/components/UserNavbar.vue'
 import UserFooter from '@/components/UserFooter.vue'
+import ToastMsgs from '@/components/ToastMsgs.vue'
 // 匯入 store
 import { mapActions } from 'pinia'
 import countdownTimer from '@/stores/countdownTimer'
@@ -20,7 +22,8 @@ export default {
   // name: 'HomeView',
   components: {
     UserNavbar,
-    UserFooter
+    UserFooter,
+    ToastMsgs
   },
   methods: {
     ...mapActions(cartStore, ['getCart'])

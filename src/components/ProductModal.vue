@@ -27,7 +27,10 @@
               </div>
               <div class="mb-4">
                 <!-- v-on 圖片加入多圖陣列 -->
-                <button class="btn btn-primary btn-sm d-block w-100" @click="cofirmAdd">新增圖片</button>
+                <button class="btn btn-primary btn-sm d-block w-100" @click="cofirmAdd">
+                  <div v-if="cartLoading === 'uploadFile'" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
+                  <template v-else>新增圖片</template>
+                </button>
               </div>
               <!-- 多圖顯示區 -->
               <div v-if="tempProduct.imagesUrl">
@@ -134,6 +137,9 @@
 
 <script>
 import modalMixin from '@/mixins/modalMixin'
+import { mapState } from 'pinia'
+import statusStore from '@/stores/statusStore'
+const status = statusStore()
 export default {
   data() {
     return {
@@ -176,12 +182,16 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState(statusStore, ['cartLoading'])
+  },
   methods: {
     addUrlImg() {
       const inputUrl = this.$refs.urlInput.value
       this.tempProduct.imageUrl = inputUrl
     },
     uploadFile() {
+      status.cartLoading = 'uploadFile'
       const uploadedFile = this.$refs.fileInput.files[0] // 上傳的圖
       const formData = new FormData()
       formData.append('file-to-upload', uploadedFile)
@@ -189,6 +199,8 @@ export default {
       this.$http.post(api, formData)
         .then((res) => {
           this.tempProduct.imageUrl = res.data.imageUrl
+          status.cartLoading = ''
+          status.msgState(res, '圖片上傳')
         })
         .catch((err) => {
           console.log(err.response.data)

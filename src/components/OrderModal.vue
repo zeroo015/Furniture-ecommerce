@@ -85,7 +85,6 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">取消</button>
           <button type="button" class="btn btn-dark" data-bs-dismiss="modal">確認</button>
         </div>
       </div>

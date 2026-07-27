@@ -2,6 +2,7 @@
   <div class="d-flex flex-column min-vh-100">
     <AdminNavbar></AdminNavbar>
     <div class="container position-relative p-4 flex-shrink-0">
+      <ToastMsgs></ToastMsgs>
       <div class="row">
         <!-- 頁籤 -->
         <div class="col-md-3 pb-2">
@@ -35,9 +36,11 @@
 
 <script>
 import AdminNavbar from '@/components/AdminNavbar.vue'
+import ToastMsgs from '@/components/ToastMsgs.vue'
 export default {
   components: {
-    AdminNavbar
+    AdminNavbar,
+    ToastMsgs
   },
   created() {
     // 取得名為 hexToken 的 cookie，內含驗證資訊

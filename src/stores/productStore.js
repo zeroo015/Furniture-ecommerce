@@ -1,7 +1,9 @@
 import axios from 'axios'
 import router from '@/router'
 import { defineStore } from 'pinia'
+import statusStore from './statusStore'
 
+const status = statusStore()
 export const useProductStore = defineStore('productStore', {
   state: () => ({
     products: [],
@@ -87,14 +89,18 @@ export const useProductStore = defineStore('productStore', {
   },
   actions: {
     getSaleProducts() {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/products/all` // 取得所有商品 api
       axios.get(api)
         .then((res) => {
           // console.log(res.data)
           this.products = res.data.products
-          // this.filterObj.category = 'all'
+          if (!this.filterObj.category) {
+            this.filterObj.category = 'all' // 避免其他頁頁面跳轉類別條件被覆蓋 >> 若無類別再執行
+          }
           this.calcPage()
           this.resetPage() // 確保載入後在第一頁
+          status.isLoading = false
         })
     },
     // 計算總頁數

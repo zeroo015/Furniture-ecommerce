@@ -1,5 +1,6 @@
 <template>
   <!-- 購物車頁(2) -->
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="checkout container-lg pt-5">
     <!-- 進度條 -->
     <ProgressBar class="progressOne Areabottom" :progress="50" :is-active2="true"></ProgressBar>

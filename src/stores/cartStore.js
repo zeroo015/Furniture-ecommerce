@@ -29,10 +29,12 @@ export default defineStore('cartStore', {
           // console.log(res.data)
           this.getCart()
           status.cartLoading = ''
+          status.msgState(res, '加入購物車')
         })
     },
     // 取得購物車清單
     getCart() {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart` // 購物車 api
       axios.get(api)
         .then((res) => {
@@ -44,6 +46,7 @@ export default defineStore('cartStore', {
           if (this.cart[0]?.coupon) {
             this.coupon = this.cart[0].coupon
           }
+          status.isLoading = false
         })
     },
     // 更改商品數量
@@ -64,9 +67,12 @@ export default defineStore('cartStore', {
     },
     // 刪除單一商品
     delItem(id) {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart/${id}` // 更改數量 api
       axios.delete(api)
         .then((res) => {
+          status.isLoading = false
+          status.msgState(res, '商品刪除')
           this.getCart()
         })
     },
@@ -77,29 +83,34 @@ export default defineStore('cartStore', {
         const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/carts` // 刪除全部購物車 api
         axios.delete(api)
           .then((res) => {
-            this.getCart()
             status.cartLoading = ''
+            status.msgState(res, '清空購物車')
+            this.getCart()
           })
       }
     },
     // 建立訂單
     createOrder(form) {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/order` // 建立訂單 api
       const order = form
       axios.post(api, { data: order })
         .then((res) => {
           // console.log(res)
           const orderId = res.data.orderId
+          status.isLoading = false
           router.push(`/paying/${orderId}`)
         })
     },
     // 取得單一訂單
     getOrder(id) {
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/order/${id}` // 取得某筆訂單 api
       axios.get(api)
         .then((res) => {
-          console.log(res.data)
+          // console.log(res.data)
           this.order = res.data.order
+          status.isLoading = false
         })
     },
     // 結帳付款
@@ -108,10 +119,11 @@ export default defineStore('cartStore', {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/pay/${id}` // 付款 api
       axios.post(api)
         .then((res) => {
-          console.log(res)
+          // console.log(res)
+          status.cartLoading = ''
+          status.msgState(res, '訂單付款')
           this.getOrder(id) // 重新取得訂單確認付款狀態
           this.getCart() // 重新取得購物車清單
-          status.cartLoading = ''
           setTimeout(() => {
             router.push('/finished')
           }, 3000)
@@ -125,11 +137,19 @@ export default defineStore('cartStore', {
     },
     // 套用優惠券
     addCoupon() {
+      if (!this.coupon.code) return
+      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/coupon` // 套用優惠券 api
       const coupon = { code: this.coupon.code }
       axios.post(api, { data: coupon })
         .then((res) => {
+          status.isLoading = false
+          status.msgState(res, '套用優惠券')
           this.getCart() // 重新抓取購物車最新折扣資料
+        })
+        .catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '套用優惠券')
         })
     }
   }
