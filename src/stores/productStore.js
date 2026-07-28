@@ -146,11 +146,28 @@ export const useProductStore = defineStore('productStore', {
     },
     // 更新篩選依據 - navArea 用
     filterType(type, target) {
-      router.push({
-        path: '/shop', // 你的商品頁面路徑
-        query: { category: target } // 網址會變成 /products?category=electronics
-      })
-      this.filterObj[type] = target
+      this.clearFilters()
+      if (type === 'category') {
+        router.push({
+          path: '/shop', // 商品頁路徑
+          query: { category: target } // 網址會變成 /products?category=electronics
+        })
+        this.filterObj[type] = target
+      }
+      if (type === 'keyword') {
+        router.push({
+          path: '/shop',
+          query: { search: target }
+        })
+        this.filterObj[type] = target
+      }
+      if (type === 'style') {
+        router.push({
+          path: '/shop',
+          query: { style: target }
+        })
+        this.filterObj[type].push(target)
+      }
     },
     // 篩選條件變動時自動切回第一頁
     resetPage() {

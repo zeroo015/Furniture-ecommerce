@@ -21,7 +21,7 @@ export default {
   mounted() {
     const toastEl = this.$refs.toast
     const toast = new Toast(toastEl, {
-      delay: 5000 // 5 秒後自動隱藏
+      delay: 3000 // 3 秒後自動隱藏
     })
     this.$refs.toast.classList.add('slideLeft')
     toast.show()

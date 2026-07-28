@@ -689,6 +689,12 @@ footer {
       }
     }
   }
+  @include media-breakpoint-up(lg) {
+    padding-top: 53px;
+    .navArea {
+      top: 76px;
+    }
+  }
 }
 
 // 按鈕區

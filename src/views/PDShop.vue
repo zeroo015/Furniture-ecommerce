@@ -1,7 +1,7 @@
 <template>
   <div class="shop">
     <!-- 商品類別頁籤 -->
-    <div class="navArea bg-white border-bottom">
+    <div class="navArea bg-white border-bottom fixed-top">
       <div class="container-lg p-lg-0">
         <div class="box d-flex justify-content-center">
           <div class="navItem flex-fill" @click="filterType('category', 'all')" :class="{'active': filterObj.category === 'all'}">所有商品</div>
