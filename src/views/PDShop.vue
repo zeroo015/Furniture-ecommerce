@@ -1,5 +1,4 @@
 <template>
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="shop">
     <!-- 商品類別頁籤 -->
     <div class="navArea bg-white border-bottom">
@@ -105,7 +104,7 @@ export default {
   },
   computed: {
     ...mapState(useProductStore, ['pageData', 'pagination', 'filterObj', 'filterData', 'filterTotal', 'order']),
-    ...mapState(statusStore, ['isLoading', 'cartLoading'])
+    ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
     ...mapActions(useProductStore, ['getSaleProducts', 'goPage', 'goProduct', 'sortBy', 'filterType', 'resetPage']),

@@ -201,9 +201,9 @@ export default {
           this.tempProduct.imageUrl = res.data.imageUrl
           status.cartLoading = ''
           status.msgState(res, '圖片上傳')
-        })
-        .catch((err) => {
-          console.log(err.response.data)
+        }).catch((err) => {
+          status.cartLoading = ''
+          status.msgState(err, '圖片上傳')
         })
     },
     cofirmAdd() {

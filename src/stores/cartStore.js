@@ -30,11 +30,13 @@ export default defineStore('cartStore', {
           this.getCart()
           status.cartLoading = ''
           status.msgState(res, '加入購物車')
+        }).catch((err) => {
+          status.cartLoading = ''
+          status.msgState(err, '加入購物車')
         })
     },
-    // 取得購物車清單
+    // 取得購物車清單: 不加 Vueloading 體驗較順暢
     getCart() {
-      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart` // 購物車 api
       axios.get(api)
         .then((res) => {
@@ -46,7 +48,8 @@ export default defineStore('cartStore', {
           if (this.cart[0]?.coupon) {
             this.coupon = this.cart[0].coupon
           }
-          status.isLoading = false
+        }).catch((err) => {
+          console.log(err.response.data)
         })
     },
     // 更改商品數量
@@ -63,6 +66,9 @@ export default defineStore('cartStore', {
           // console.log(res.data)
           status.cartLoading = ''
           this.getCart()
+        }).catch((err) => {
+          status.cartLoading = ''
+          status.msgState(err, '更改商品數量')
         })
     },
     // 刪除單一商品
@@ -74,6 +80,9 @@ export default defineStore('cartStore', {
           status.isLoading = false
           status.msgState(res, '商品刪除')
           this.getCart()
+        }).catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '商品刪除')
         })
     },
     // 清空購物車
@@ -86,6 +95,9 @@ export default defineStore('cartStore', {
             status.cartLoading = ''
             status.msgState(res, '清空購物車')
             this.getCart()
+          }).catch((err) => {
+            status.cartLoading = ''
+            status.msgState(err, '清空購物車')
           })
       }
     },
@@ -100,17 +112,20 @@ export default defineStore('cartStore', {
           const orderId = res.data.orderId
           status.isLoading = false
           router.push(`/paying/${orderId}`)
+        }).catch((err) => {
+          console.log(err.response.data)
+          status.isLoading = false
         })
     },
-    // 取得單一訂單
+    // 取得單一訂單: 不加 Vueloading 體驗較順暢
     getOrder(id) {
-      status.isLoading = true
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/order/${id}` // 取得某筆訂單 api
       axios.get(api)
         .then((res) => {
           // console.log(res.data)
           this.order = res.data.order
-          status.isLoading = false
+        }).catch((err) => {
+          console.log(err.response.data)
         })
     },
     // 結帳付款
@@ -127,6 +142,9 @@ export default defineStore('cartStore', {
           setTimeout(() => {
             router.push('/finished')
           }, 3000)
+        }).catch((err) => {
+          status.cartLoading = ''
+          status.msgState(err, '訂單付款')
         })
     },
     goCartlist() {
@@ -144,12 +162,11 @@ export default defineStore('cartStore', {
       axios.post(api, { data: coupon })
         .then((res) => {
           status.isLoading = false
-          status.msgState(res, '套用優惠券')
+          status.msgState(res, '套用優惠碼')
           this.getCart() // 重新抓取購物車最新折扣資料
-        })
-        .catch((err) => {
+        }).catch((err) => {
           status.isLoading = false
-          status.msgState(err, '套用優惠券')
+          status.msgState(err, '套用優惠碼')
         })
     }
   }

@@ -48,6 +48,9 @@ export default {
             document.cookie = `hexToken=${token};expires=${new Date(expired)}` // 存入 cookie (hexToken 為自定義變數名稱，expired 轉換成 cookie 可記錄的格式)
             this.$router.push('/admin')
           }
+        }).catch((err) => {
+          console.log(err.response.data)
+          status.isLoading = false
         })
     }
   },

@@ -1,5 +1,4 @@
 <template>
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="order pt-3 pb-2">
     <!-- 訂單列表 -->
     <div class="table-responsive mb-1">
@@ -56,7 +55,6 @@
 import OrderModal from '@/components/OrderModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
-import { mapState } from 'pinia'
 import statusStore from '@/stores/statusStore'
 const status = statusStore()
 export default {
@@ -72,9 +70,6 @@ export default {
     DelModal,
     PaginationItem
   },
-  computed: {
-    ...mapState(statusStore, ['isLoading'])
-  },
   methods: {
     getOrders(page = 1) {
       status.isLoading = true
@@ -84,6 +79,9 @@ export default {
           console.log(res.data)
           this.orders = res.data.orders
           this.pagination = res.data.pagination
+          status.isLoading = false
+        }).catch((err) => {
+          console.log(err.response.data)
           status.isLoading = false
         })
     },
@@ -101,6 +99,9 @@ export default {
             this.getOrders() // 若成功重新取得列表
           }
           status.msgState(res, '付款狀態更新')
+        }).catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '付款狀態更新')
         })
     },
     openOrderModal(item) {
@@ -121,6 +122,9 @@ export default {
           this.$refs.delModal.hideModal()
           this.getOrders()
           status.msgState(res, '訂單刪除')
+        }).catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '訂單刪除')
         })
     }
   },

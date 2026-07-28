@@ -101,6 +101,9 @@ export const useProductStore = defineStore('productStore', {
           this.calcPage()
           this.resetPage() // 確保載入後在第一頁
           status.isLoading = false
+        }).catch((err) => {
+          console.log(err.response.data)
+          status.isLoading = false
         })
     },
     // 計算總頁數

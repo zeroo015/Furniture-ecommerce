@@ -1,4 +1,5 @@
 <template>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="d-flex flex-column min-vh-100">
     <AdminNavbar></AdminNavbar>
     <div class="container position-relative p-4 flex-shrink-0">
@@ -37,10 +38,15 @@
 <script>
 import AdminNavbar from '@/components/AdminNavbar.vue'
 import ToastMsgs from '@/components/ToastMsgs.vue'
+import { mapState } from 'pinia'
+import statusStore from '@/stores/statusStore'
 export default {
   components: {
     AdminNavbar,
     ToastMsgs
+  },
+  computed: {
+    ...mapState(statusStore, ['isLoading'])
   },
   created() {
     // 取得名為 hexToken 的 cookie，內含驗證資訊
@@ -59,8 +65,7 @@ export default {
         if (!res.data.success) {
           this.$router.push('/login')
         }
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.log(err.response.data)
         this.$router.push('/login')
       })

@@ -1,7 +1,7 @@
 <template>
   <div class="toast bg-white mb-2" :class="`border-${msg.style}`" role="alert" aria-live="assertive" aria-atomic="true" ref="toast">
     <div class="toast-body text-start d-flex">
-      <div class="icon me-1 fs-2">
+      <div class="icon me-1 fs-3">
         <i v-if="msg.style === 'success'" class="bi bi-check-circle-fill text-success"></i>
         <i v-else class="bi bi-x-circle-fill text-danger"></i>
       </div>

@@ -25,7 +25,8 @@
             </div>
             <div class="price position-relative">
               <small class="me-1">金額</small>
-              {{ $filters.currency(item.final_total) }}
+              <!-- 顯示原價，非折後價 final_total -->
+              {{ $filters.currency(item.total) }}
               <div class="del_icon position-absolute bottom-0 end-0">
                 <a href="" @click.prevent="delItem(item.id)"><i class="bi bi-trash3 text-sm"></i></a>
               </div>

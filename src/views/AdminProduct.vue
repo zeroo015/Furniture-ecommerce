@@ -1,5 +1,4 @@
 <template>
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="product pt-3 pb-2">
     <!-- 新增商品 -->
     <div class="text-end mb-3 me-1">
@@ -50,7 +49,6 @@
 import ProductModal from '@/components/ProductModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
-import { mapState } from 'pinia'
 import statusStore from '@/stores/statusStore'
 const status = statusStore()
 export default {
@@ -67,9 +65,6 @@ export default {
     DelModal,
     PaginationItem
   },
-  computed: {
-    ...mapState(statusStore, ['isLoading'])
-  },
   methods: {
     getProducts(page = 1) {
       status.isLoading = true
@@ -80,9 +75,9 @@ export default {
           this.products = res.data.products
           this.pagination = res.data.pagination
           status.isLoading = false
-        })
-        .catch((err) => {
+        }).catch((err) => {
           console.log(err.response.data)
+          status.isLoading = false
         })
     },
     openModel(isNew, item) {
@@ -111,6 +106,9 @@ export default {
           this.$refs.productModal.hideModal()
           this.getProducts()
           status.msgState(res, '商品更新')
+        }).catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '商品更新')
         })
     },
     openDelModal(item) {
@@ -126,6 +124,9 @@ export default {
           this.$refs.delModal.hideModal()
           this.getProducts()
           status.msgState(res, '商品刪除')
+        }).catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '商品刪除')
         })
     }
   },

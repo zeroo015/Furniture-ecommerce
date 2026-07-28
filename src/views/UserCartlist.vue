@@ -1,6 +1,5 @@
 <template>
   <!-- 購物車頁(1) -->
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <!-- 空車 -->
   <div class="emptyCart container-lg pt-5" v-if="cart.length < 1">
     <div class="fs-2 mt-1"><i class="bi bi-cart-x-fill text-primary"></i></div>
@@ -134,7 +133,7 @@ export default {
   },
   computed: {
     ...mapState(cartStore, ['cart', 'total', 'coupon']),
-    ...mapState(statusStore, ['isLoading', 'cartLoading'])
+    ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
     ...mapActions(useProductStore, ['goShop']),

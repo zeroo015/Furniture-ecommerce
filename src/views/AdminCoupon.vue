@@ -1,5 +1,4 @@
 <template>
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="coupon pt-3 pb-2">
     <!-- 新增商品 -->
     <div class="text-end mb-3 me-1">
@@ -50,7 +49,6 @@
 import CouponModal from '@/components/CouponModal.vue'
 import DelModal from '@/components/DelModal.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
-import { mapState } from 'pinia'
 import statusStore from '@/stores/statusStore'
 const status = statusStore()
 export default {
@@ -67,9 +65,6 @@ export default {
     DelModal,
     PaginationItem
   },
-  computed: {
-    ...mapState(statusStore, ['isLoading'])
-  },
   methods: {
     getCoupons(page = 1) {
       status.isLoading = true
@@ -79,9 +74,9 @@ export default {
           this.coupons = res.data.coupons
           this.pagination = res.data.pagination
           status.isLoading = false
-        })
-        .catch((err) => {
+        }).catch((err) => {
           console.log(err.response.data)
+          status.isLoading = false
         })
     },
     openCouponModal(isNew, item) {
@@ -111,6 +106,9 @@ export default {
           this.$refs.couponModal.hideModal()
           this.getCoupons()
           status.msgState(res, '優惠券更新')
+        }).catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '優惠券更新')
         })
     },
     openDelModal(item) {
@@ -127,6 +125,9 @@ export default {
           this.$refs.delModal.hideModal()
           this.getCoupons()
           status.msgState(res, '優惠券刪除')
+        }).catch((err) => {
+          status.isLoading = false
+          status.msgState(err, '優惠券刪除')
         })
     }
   },

@@ -9,7 +9,7 @@ export default defineStore('statusStore', {
   actions: {
     msgState(res, apiRequest = '更新') {
       let msg = {}
-      if (res.data.success) {
+      if (res.data?.success) {
         msg = {
           type: 'Success',
           style: 'success',
@@ -17,7 +17,7 @@ export default defineStore('statusStore', {
         }
       } else {
         // api 回傳的訊息有些是字串，有些則是陣列 >> 統一格式為陣列
-        const message = typeof res.data.message === 'string' ? [res.data.message] : res.data.message
+        const message = typeof res.response.data.message === 'string' ? [res.response.data.message] : res.response.data.message // err.response.data
         msg = {
           type: 'Error',
           style: 'danger',
