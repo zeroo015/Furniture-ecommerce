@@ -136,10 +136,6 @@ export const useProductStore = defineStore('productStore', {
       this.pagination.current_page = page
       this.getPageStatus()
     },
-    // 前往單一商品頁
-    goProduct(id) {
-      router.push(`/product/${id}`)
-    },
     // 更新排序依據
     sortBy(order) {
       this.order = order

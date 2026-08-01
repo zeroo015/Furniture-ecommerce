@@ -95,6 +95,7 @@ import FilterOffcanvas from '@/components/FilterOffcanvas.vue'
 import PaginationItem from '@/components/PaginationItem.vue'
 import { mapState, mapActions } from 'pinia'
 import { useProductStore } from '@/stores/productStore'
+import { useBrowseLogStore } from '@/stores/productBrowse'
 import cartStore from '@/stores/cartStore'
 import statusStore from '@/stores/statusStore'
 export default {
@@ -107,7 +108,8 @@ export default {
     ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
-    ...mapActions(useProductStore, ['getSaleProducts', 'goPage', 'goProduct', 'sortBy', 'filterType', 'resetPage']),
+    ...mapActions(useProductStore, ['getSaleProducts', 'goPage', 'sortBy', 'filterType', 'resetPage']),
+    ...mapActions(useBrowseLogStore, ['goProduct']),
     ...mapActions(cartStore, ['addCart', 'getCart']),
 
     openFilterOffcanvas() {
