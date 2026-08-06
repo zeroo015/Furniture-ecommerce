@@ -5,6 +5,7 @@
     <div class="position-relative pb-5 flex-shrink-0">
       <ToastMsgs></ToastMsgs>
       <router-view/>
+      <GoTop></GoTop>
     </div>
     <UserFooter></UserFooter>
   </div>
@@ -15,6 +16,7 @@
 import UserNavbar from '@/components/UserNavbar.vue'
 import UserFooter from '@/components/UserFooter.vue'
 import ToastMsgs from '@/components/ToastMsgs.vue'
+import GoTop from '@/components/GoTop.vue'
 // 匯入 store
 import { mapState, mapActions } from 'pinia'
 import countdownTimer from '@/stores/countdownTimer'
@@ -25,7 +27,8 @@ export default {
   components: {
     UserNavbar,
     UserFooter,
-    ToastMsgs
+    ToastMsgs,
+    GoTop
   },
   computed: {
     ...mapState(statusStore, ['isLoading'])

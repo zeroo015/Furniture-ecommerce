@@ -251,6 +251,11 @@ footer {
 		-webkit-transform: translateX(0%);
 	}
 }
+/*motionLine*/
+@keyframes motionLine {
+  0%   { width: 0;}
+  100% { width: 3.7em;}
+}
 
 // 輪播共用
 .swiper {
@@ -431,6 +436,7 @@ footer {
       font-size: 1.125em;
       line-height: 1.2;
       letter-spacing: .15em;
+      border-color: #333 !important;
     }
   }
   .btnMore {
@@ -442,23 +448,129 @@ footer {
   .box_PD {
     @include media-breakpoint-up(md) {
       position: absolute;
-      top: 24px;
-      right: 5px;
+      top: 0;
+      right: -26px;
     }
   }
   .scroll {
     position: absolute;
     top: 72%;
-    right: -8%;
+    left: -9.5%;
     transform: rotate(-90deg);
     img {
       transform: rotate(90deg);
     }
+    .arrowline {
+      position: relative;
+      height: 1px;
+      width: 4.5em;
+      background-color: #333;
+      &::after {
+        position: absolute;
+        content: "";
+        top: -0.7em;
+        left: -10.5%;
+        width: 1.5em;
+        height: 1.5em;
+        border: solid 1px #333;
+        border-radius: 10em;
+      }
+      &::before {
+        position: absolute;
+        content: "";
+        top: -0.28125em;
+        left: 2%;
+        width: .625em;
+        height: .625em;
+        border: solid 1px #333;
+        border-color: transparent transparent #333 #333;
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+/* -----------------------------------
+ * 版頭品輪播設定 - 自定義分頁
+ * ----------------------------------- */
+.topPDSwiper.swiper-horizontal {
+  height: 136%;
+  .swiper-slide {
+    cursor: pointer;
+    background-color: transparent;
+  }
+  .number-pagination {
+    width: 36%;
+    margin-left: 64%;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300; // value from 100 to 900
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  
+    // 自定義數字型
+    .swiper-pagination-bullet {
+      margin: 0 .875em;
+      background: none;
+    }
+    .swiper-pagination-bullet-active {
+      position: relative;
+      margin-right: 4.25em;
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: -0.56em;
+        left: 1.5em;
+        width: 3.7em;
+        height: 1px;
+        background-color: var(--bs-secondary);
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -0.56em;
+        left: 1.5em;
+        height: 1px;
+        background-color: #333;
+        animation: motionLine 4s linear both;
+      }
+    }
+    // 圓形數字 from official demo
+    // .swiper-pagination-bullet {
+    //   width: 20px;
+    //   height: 20px;
+    //   text-align: center;
+    //   line-height: 20px;
+    //   font-size: 12px;
+    //   color: #000;
+    //   opacity: 1;
+    //   background: rgba(0, 0, 0, 0.2);
+    // }
+    // .swiper-pagination-bullet-active {
+    //   color: #fff;
+    //   background: #007aff;
+    // }
+  }
+  .swiper-button-prev, .swiper-button-next {
+    top: 96.8%;
+    transform: scale(0.6);
+    &:hover {
+      color: #fff;
+      background-color: var(--bs-primary);
+      transform: scale(0.75);
+    }
+  }
+  .swiper-button-prev {
+    left: 70.8%;
+  }
+  .swiper-button-next {
+    right: 5.9%;
   }
 }
 
 // 最新消息
 .Area_news {
+  z-index: unset;
   &::before {
     z-index: -1;
     content: "";
@@ -472,6 +584,8 @@ footer {
     border-radius: 6em;
   }
   .box {
+    position: relative;
+    z-index: 5;
     padding: 3.25em 5em;
   }
 }
@@ -484,12 +598,21 @@ footer {
   }
   .PD_cate {
     position: relative;
+    transition: all .4s ease;
     i.bi {
       position: absolute;
       right: 10%;
       top: 45%;
       font-size: 1.75em;
+      &::before {
+        transform: none;
+      }
     }
+    &:hover {
+      @include media-breakpoint-up(md) {
+        transform: translateY(-6px);
+      }
+  }
   }
 }
 

@@ -3,17 +3,11 @@
 
     <!-- 版頭 -->
     <div class="Area Area1220 Area_top">
-      <div class="box col-md-8 d-flex flex-column text-start">
-        <div class="subtitle decoDot ps-2">Featured Item</div>
-        <div class="title roboto-font">Chairs</div>
-        <div class="PD_info d-flex flex-row gap-1 justify-content-end align-items-end">
-          <div class="txt1 chiron-goround-tc-font">經典熱銷</div>
-          <div class="txt2 pb-1 me-1 text-end border-bottom">橄欖綠質感工作椅</div>
-        </div>
-        <button type="button" class="btnMore btn pb-0 pt-1 rounded-0 text-primary bg-white align-self-end">MORE+</button>
+      <SwiperTopPD></SwiperTopPD>
+      <div class="scroll d-flex align-content-center">
+        <div class="arrowline align-self-center"></div>
+        <span class="ms-2">SCROLL</span>
       </div>
-      <div class="box_PD"><img src="../assets/images/topPD_01.png" alt=""></div>
-      <div class="scroll"><img src="../assets/images/arrow.png" alt=""><span class="ms-4">SCROLL</span></div>
     </div>
 
     <!-- 最新消息 -->
@@ -21,9 +15,10 @@
       <div class="box col-md-8 text-start">
         <div class="AreaTitle pb-3 fs-2">最新消息</div>
         <ul class="list-unstyled fs-5">
-          <li class="mb-2">2026 日式家居新選物全新上架<i class="bi bi-arrow-right-short text-info"></i></li>
-          <li class="mb-2">2026 新會員首購折 100<i class="bi bi-arrow-right-short text-info"></i></li>
-          <li class="mb-2">0601＿0615 限時優惠／領取優惠碼全站消費 9 折<i class="bi bi-arrow-right-short text-info"></i></li>
+          <!-- <li class="mb-2">2026 日式家居新選物全新上架<i class="bi bi-arrow-right-short text-info"></i></li> -->
+          <li class="mb-2">2026 試營運期間購物即享免運優惠</li>
+          <li class="mb-2"><a href="#" @click.prevent="goto('Area_sale')">2026 夏日限定全品項 8 折<i class="bi bi-arrow-right-short text-info"></i></a></li>
+          <li class="mb-2"><a href="#" @click.prevent="goShop">0601＿0615 限時優惠／領取優惠碼全站消費 9 折<i class="bi bi-arrow-right-short text-info"></i></a></li>
           <li><span class="badge bg-primary rounded-4 align-text-top me-2">預告</span>人氣 IP 聯名商品將於 7 月到貨</li>
         </ul>
       </div>
@@ -40,15 +35,15 @@
       </div>
       <div class="box d-flex">
         <a class="PD_cate" href="#" @click.prevent="filterType('category', '椅')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="椅"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
-        <a class="PD_cate" href="#" @click.prevent="filterType('category', '沙發')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="沙發"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
-        <a class="PD_cate" href="#" @click.prevent="filterType('category', '桌')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="桌"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
-        <a class="PD_cate" href="#" @click.prevent="filterType('category', '燈')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="燈"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
-        <a class="PD_cate" href="#" @click.prevent="filterType('category', '櫃')"><img class="img-fluid" src="../assets/images/PD_cate1.png" alt="櫃"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '沙發')"><img class="img-fluid" src="../assets/images/PD_cate2.png" alt="沙發"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '桌')"><img class="img-fluid" src="../assets/images/PD_cate3.png" alt="桌"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '燈')"><img class="img-fluid" src="../assets/images/PD_cate4.png" alt="燈"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
+        <a class="PD_cate" href="#" @click.prevent="filterType('category', '櫃')"><img class="img-fluid" src="../assets/images/PD_cate5.png" alt="櫃"><i class="bi bi-arrow-right-circle-fill text-primary"></i></a>
       </div>
     </div>
 
     <!-- 品牌理念 -->
-    <div class="Area Area1220 Area_about">
+    <div class="Area Area1220 Area_about" id="Area_about">
       <div class="AreaTitle d-flex align-items-end">
         <div class="engTxt roboto-font decoDot text-primary me-4">About</div>
         <div class="pb-3 fs-2">品牌理念</div>
@@ -117,7 +112,7 @@
     </div>
 
     <!-- 限時促銷 -->
-    <div class="Area Area1220 Area_sale Areabottom">
+    <div class="Area Area1220 Area_sale Areabottom" id="Area_sale">
       <div class="box">
         <div class="AreaTitle d-flex justify-content-center align-items-end text-white">
           <div class="smTxt decoDot align-self-end me-4 mb-2">Deal of the Day</div>
@@ -140,19 +135,26 @@
 </template>
 
 <script>
+import SwiperTopPD from '@/components/SwiperTopPD.vue'
 import CountdownClock from '@/components/CountdownClock.vue'
+import { scrollToId } from '@/methods/scroll'
 import { mapState, mapActions } from 'pinia'
 import useCountdownStore from '@/stores/countdownTimer.js'
 import { useProductStore } from '@/stores/productStore'
 export default {
   components: {
+    SwiperTopPD,
     CountdownClock
   },
   computed: {
     ...mapState(useCountdownStore, ['isEnded'])
   },
   methods: {
-    ...mapActions(useProductStore, ['filterType', 'goShop'])
+    ...mapActions(useProductStore, ['filterType', 'goShop']),
+    // 滑動至指定區塊
+    goto(id) {
+      scrollToId(id)
+    }
   },
   mounted() {
     document.body.style.backgroundColor = '#f1f4f9'
