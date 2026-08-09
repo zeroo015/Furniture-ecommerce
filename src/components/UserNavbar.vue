@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white topNav fixed-top" id="main-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white topNav sticky-top" id="main-header">
     <div class="container-lg p-lg-0">
       <!-- logo: flex-grow-1 撐滿剩餘空間 -->
       <router-link to="/" class="navbar-brand pt-3 pb-2 flex-grow-1 text-start">

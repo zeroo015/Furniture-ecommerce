@@ -1,6 +1,5 @@
 <template>
-  <div class="main container-fluid">
-
+  <div class="main container-fluid overflow-hidden">
     <!-- 版頭 -->
     <div class="Area Area1220 Area_top">
       <SwiperTopPD></SwiperTopPD>

@@ -346,9 +346,9 @@ footer {
 /* -----------------------------------
  * MainPage.vue 前台首頁
  * ----------------------------------- */
-.home {
-  padding-top: 76px;
-}
+// .home {
+//   padding-top: 76px;
+// }
 .main {
   a:hover {
     @include media-breakpoint-up(md) {
@@ -857,7 +857,7 @@ footer {
     }
   }
   @include media-breakpoint-up(lg) {
-    padding-top: 53px;
+    // padding-top: 53px;
     .navArea {
       top: 76px;
     }

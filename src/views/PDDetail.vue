@@ -14,6 +14,7 @@
           </ol>
         </nav>
         <!-- 產品資訊 -->
+        <div class="tag" v-if="product.is_newItem">New</div>
         <h2 class="fw-normal">{{ product.title }}</h2>
         <div class="hashtag text-primary chiron-goround-tc-font my-3">
           <span class="bg-light px-3 py-2 me-2 rounded-pill" v-for="item in product.style" :key="item">#{{ item }}</span>
@@ -104,7 +105,6 @@
       </div>
       <SwiperProducts :propsProducts="historyProducts" :propsId="productId"></SwiperProducts>
     </div>
-
   </div>
 </template>
 
@@ -172,12 +172,11 @@ export default {
       this.recommendCate = this.product.category
       this.recommendProducts = this.products.filter(item => item.category === this.recommendCate)
     }
-  },
-  created() {
-    // this.productId = this.$route.params.productId
-    // this.getPDDetail(this.productId)
-    this.getSaleProducts()
   }
+  // created() {
+  //   this.productId = this.$route.params.productId
+  //   this.getPDDetail(this.productId)
+  // }
 }
 </script>
 
@@ -185,8 +184,20 @@ export default {
 .detail {
   padding-top: 2.6rem;
   .box_R {
+    position: relative;
     margin-bottom: 3.5em;
   }
+}
+.tag {
+  position: absolute;
+  top: -9.25em;
+  left: 3em;
+  width: 4em;
+  height: 4em;
+  color: var(--bs-primary);
+  text-align: center;
+  align-content: center;
+  border: 1px solid var(--bs-primary);
 }
 .hashtag {
   font-size: .875em;

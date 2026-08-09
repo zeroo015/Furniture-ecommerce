@@ -1,7 +1,7 @@
 <template>
   <div class="shop">
     <!-- 商品類別頁籤 -->
-    <div class="navArea bg-white border-bottom fixed-top">
+    <div class="navArea bg-white border-bottom sticky-top">
       <div class="container-lg p-lg-0">
         <div class="box d-flex justify-content-center">
           <div class="navItem flex-fill" @click="filterType('category', 'all')" :class="{'active': filterObj.category === 'all'}">所有商品</div>
@@ -134,9 +134,9 @@ export default {
     order() {
       this.resetPage()
     }
-  },
-  created() {
-    this.getSaleProducts()
   }
+  // created() {
+  //   this.getSaleProducts() // 因其他頁也需要 products 資料 >> 改在 HomeView.vue 發送請求
+  // }
 }
 </script>
