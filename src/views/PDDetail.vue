@@ -25,6 +25,7 @@
           <h6 class="sub-text my-2 fw-normal text-muted mt-3">{{ product.content }}</h6>
         </template>
         <div class="info-text" v-if="product.description">{{ product.description }}</div>
+        <div class="material mt-3" v-if="product.material"><small class="fw-bold">製材 ＿＿ {{ product.material.join(' . ') }}</small></div>
         <div class="price my-4 text-end">
           <del class="roboto-font text-muted fw-normal me-2">${{ $filters.currency(product.origin_price) }}</del>
           <span class="roboto-font me-3">$<span class="fs-3">{{ $filters.currency(product.price) }}</span></span>
@@ -185,7 +186,7 @@ export default {
   padding-top: 2.6rem;
   .box_R {
     position: relative;
-    margin-bottom: 3.5em;
+    margin-bottom: 5.1em;
   }
 }
 .tag {

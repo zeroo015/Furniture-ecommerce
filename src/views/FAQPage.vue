@@ -2,7 +2,7 @@
   <div class="FAQ container-lg">
     <!-- 麵包屑 -->
     <nav class="my-3" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb default">
         <li class="breadcrumb-item"><router-link to="/" class="link-animated">首頁</router-link></li>
         <li class="breadcrumb-item active" aria-current="page">FAQ</li>
       </ol>
@@ -214,9 +214,6 @@ export default {
   }
 }
 @media screen and (min-width:768px) {
-  .breadcrumb {
-    padding-left: 1.275rem;
-  }
   .box_menu {
     height: calc(100vh - 288px);
     top: 80px;
@@ -227,9 +224,6 @@ export default {
   }
 }
 @media screen and (max-width:767px) {
-  .breadcrumb {
-    padding-left: .5rem;
-  }
   .box_menu {
     top: 86px;
     margin: 0 auto 1.875rem;

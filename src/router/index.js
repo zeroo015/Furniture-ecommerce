@@ -52,6 +52,11 @@ const routes = [
         path: 'finished',
         name: 'finished',
         component: () => import('../views/UserFinish.vue')
+      },
+      {
+        path: 'like',
+        name: 'like',
+        component: () => import('../views/LikelistPage.vue')
       }
     ]
   },

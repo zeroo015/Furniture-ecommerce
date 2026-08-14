@@ -126,7 +126,7 @@ export const useProductStore = defineStore('productStore', {
     },
     // 回商品首頁
     goShop() {
-      this.filterObj.category = 'all'
+      this.clearFilters()
       router.push('/shop')
     },
     // 前往分頁

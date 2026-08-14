@@ -31,6 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 .topAD {
+  z-index: 100;
   position: relative;
   .btnClose {
     position: absolute;

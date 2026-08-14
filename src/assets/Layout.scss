@@ -66,8 +66,18 @@ a {
 
 // Navbar
 .topNav {
+  z-index: 1021;
   @include media-breakpoint-up(lg) {
     height: 76px;
+  }
+  @include media-breakpoint-down(lg) {
+    width: 100%;
+    height: 72px;
+    &.active {
+      .box {
+        padding-bottom: .5rem;
+      }
+    }
   }
   .logo_svg {
     fill: var(--bs-dark);
@@ -196,6 +206,14 @@ footer {
         bottom: -3px;
         left: 0;
       }
+    }
+  }
+  &.default {
+    @include media-breakpoint-up(md) {
+      padding-left: 1.275rem;
+    }
+    @include media-breakpoint-down(md) {
+      padding-left: .5rem;
     }
   }
 }
@@ -940,6 +958,7 @@ footer {
       font-size: 1.625em;
     }
     .icon {
+      width: 1.625em;
       i:last-child {
         display: none;
       }
@@ -951,11 +970,27 @@ footer {
           vertical-align: -0.2em;
         }
       }
+      &.active {
+        i:first-child {
+          display: none;
+        }
+        i:last-child {
+          display: block;
+        }
+      }
     }
     .iconAddCart {
       &.disabled {
         pointer-events: none;
       }
+    }
+  }
+  .icon:hover {
+    i:first-child {
+      display: none;
+    }
+    i:last-child {
+      display: block;
     }
   }
   .card-img-top {
@@ -972,14 +1007,6 @@ footer {
       // .card-img-top {
       //   border: solid 4px var(--bs-primary);
       // }
-    }
-  }
-  .icon:hover {
-    i:first-child {
-      display: none;
-    }
-    i:last-child {
-      display: block;
     }
   }
 }

@@ -66,11 +66,11 @@
               </div>
             </a>
             <div class="actionGroup d-flex align-items-center gap-2">
-              <!-- v-on 加入追蹤
-              <a href="#" class="icon iconAddLike" data-title="追蹤清單">
+              <!-- v-on 加入追蹤 -->
+              <a v-if="likeList" href="#" class="icon iconAddLike" :class="{'active': isLike(item.id)}" data-title="追蹤清單" @click.prevent="toggleLike(item.id)">
                 <i class="bi bi-heart"></i>
-                <i class="bi bi-heart-fill text-primary"></i>
-              </a> -->
+                <i class="bi bi-heart-fill" :class="{'text-info': !isLike(item.id), 'text-primary': isLike(item.id)}"></i>
+              </a>
               <!-- v-on 加入購物車 (1)顯示 loading 狀態 (2)disabled 以免重複點擊 -->
               <a href="#" class="icon iconAddCart" data-title="購物車" @click.prevent="addCart(item.id)" :class="{disabled: cartLoading === item.id}">
                 <div v-if="cartLoading === item.id" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
@@ -97,6 +97,7 @@ import { mapState, mapActions } from 'pinia'
 import { useProductStore } from '@/stores/productStore'
 import { useBrowseLogStore } from '@/stores/productBrowse'
 import cartStore from '@/stores/cartStore'
+import likeStore from '@/stores/likeStore'
 import statusStore from '@/stores/statusStore'
 export default {
   components: {
@@ -105,12 +106,14 @@ export default {
   },
   computed: {
     ...mapState(useProductStore, ['pageData', 'pagination', 'filterObj', 'filterData', 'filterTotal', 'order']),
+    ...mapState(likeStore, ['likeList', 'isLike']),
     ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
     ...mapActions(useProductStore, ['getSaleProducts', 'goPage', 'sortBy', 'filterType', 'resetPage']),
     ...mapActions(useBrowseLogStore, ['goProduct']),
     ...mapActions(cartStore, ['addCart', 'getCart']),
+    ...mapActions(likeStore, ['getLikes', 'toggleLike']),
 
     openFilterOffcanvas() {
       this.$refs.filterOffcanvas.showOffcanvas()
@@ -137,6 +140,7 @@ export default {
   }
   // created() {
   //   this.getSaleProducts() // 因其他頁也需要 products 資料 >> 改在 HomeView.vue 發送請求
+  //   this.getLikes()
   // }
 }
 </script>

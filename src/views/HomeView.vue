@@ -1,7 +1,7 @@
 <template>
   <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <TopAD></TopAD>
-  <div class="home d-flex flex-column min-vh-100">
+  <div class="home d-flex flex-column min-vh-100 position-relative">
     <UserNavbar></UserNavbar>
     <div class="position-relative pb-5 flex-shrink-0">
       <ToastMsgs></ToastMsgs>
@@ -26,6 +26,7 @@ import { mapState, mapActions } from 'pinia'
 import countdownTimer from '@/stores/countdownTimer'
 import { useProductStore } from '@/stores/productStore'
 import cartStore from '@/stores/cartStore'
+import likeStore from '@/stores/likeStore'
 import statusStore from '@/stores/statusStore'
 export default {
   // name: 'HomeView',
@@ -42,11 +43,13 @@ export default {
   },
   methods: {
     ...mapActions(useProductStore, ['getSaleProducts']),
-    ...mapActions(cartStore, ['getCart'])
+    ...mapActions(cartStore, ['getCart']),
+    ...mapActions(likeStore, ['getLikes'])
   },
   created() {
     this.getCart()
     this.getSaleProducts()
+    this.getLikes()
   },
   mounted() {
     // 啟動倒數
