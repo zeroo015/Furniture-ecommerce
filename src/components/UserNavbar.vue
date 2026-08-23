@@ -26,7 +26,16 @@
           <!-- 改點擊後自動收合 -->
           <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/about')">About</a>
           <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/shop')">Shop</a>
-          <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery')">Gallery</a>
+          <!-- <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery')">Gallery</a> -->
+          <div class="btn-group dropdownList">
+            <a href="#" class="nav-link link-animated me-lg-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" :disabled="isLarge">Gallery</a>
+            <ul class="dropdown-menu" :class="{'dropdown-item-text': isLarge}">
+              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/living')">客廳</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/dining')">餐廳</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/study')">書房</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/work')">工作空間</a></li>
+            </ul>
+          </div>
           <a href="#" class="nav-link link-animated me-lg-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/FAQ')">FAQ</a>
         </div>
       </div>
@@ -48,7 +57,8 @@ import likeStore from '@/stores/likeStore.js'
 export default {
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      isLarge: false
     }
   },
   components: {
@@ -76,6 +86,11 @@ export default {
       this.toggleClass()
       this.clearFilters()
       this.$router.push(path)
+    }
+  },
+  mounted() {
+    if (window.innerWidth < 992) {
+      this.isLarge = true
     }
   }
 }

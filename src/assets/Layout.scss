@@ -55,6 +55,11 @@ i.bi {
   }
 }
 
+.italics {
+  display: inline-block;
+  transform: skewX(-8deg);
+}
+
 html, body {
   margin: 0;
   height: 100%; /* 確保頁面高度撐滿視窗 */
@@ -68,7 +73,7 @@ a {
 .topNav {
   z-index: 1021;
   @include media-breakpoint-up(lg) {
-    height: 76px;
+    height: 74px;
   }
   @include media-breakpoint-down(lg) {
     width: 100%;
@@ -120,6 +125,28 @@ a {
       .logo_svg {
         fill: var(--bs-primary);
       }
+    }
+  }
+  .dropdownList {
+    @include media-breakpoint-down(lg) {
+      display: block;
+      .dropdown-menu {
+        border: none;
+        .dropdown-item {
+          text-align: center;
+          border-radius: 5em;
+          transition: all .15s ease-in-out;
+        }
+      }
+    }
+  }
+  .dropdown-toggle {
+    position: relative;
+    &::after {
+      position: absolute;
+      top: 47%;
+      margin-left: unset;
+      transform: translateX(.255em);
     }
   }
 }
@@ -179,7 +206,7 @@ footer {
 .link-animated {
   @include media-breakpoint-up(md) {
     position: relative;
-    &::after {
+    &::before {
       content: "";
       transform-origin: left;
       background: currentColor;
@@ -192,7 +219,7 @@ footer {
       transform: scaleX(0);
     }
     &:hover {
-      &::after {
+      &::before {
         transform: scaleX(1);
       }
     }
@@ -201,7 +228,7 @@ footer {
 .breadcrumb {
   .link-animated {
     @include media-breakpoint-up(md) {
-      &::after {
+      &::before {
         width: 100%;
         bottom: -3px;
         left: 0;
@@ -365,7 +392,7 @@ footer {
  * MainPage.vue 前台首頁
  * ----------------------------------- */
 // .home {
-//   padding-top: 76px;
+//   padding-top: 74px;
 // }
 .main {
   a:hover {
@@ -630,7 +657,7 @@ footer {
       @include media-breakpoint-up(md) {
         transform: translateY(-6px);
       }
-  }
+    }
   }
 }
 
@@ -877,7 +904,7 @@ footer {
   @include media-breakpoint-up(lg) {
     // padding-top: 53px;
     .navArea {
-      top: 76px;
+      top: 74px;
     }
   }
 }

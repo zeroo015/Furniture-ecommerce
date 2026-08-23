@@ -26,7 +26,38 @@ const routes = [
       {
         path: 'gallery',
         name: 'gallery',
-        component: () => import('../views/PDGallery.vue')
+        component: () => import('../views/PDGallery.vue'),
+        children: [
+          // 相同結構的頁面可共用結構 .vue 檔案，分別塞入不同元件
+          {
+            path: 'living',
+            components: {
+              up: () => import('../components/GalleryLiving.vue'), // 屬性為 router-view 的 name
+              down: () => import('../components/GridWaterfallLiving.vue')
+            }
+          },
+          {
+            path: 'dining',
+            components: {
+              up: () => import('../components/GalleryDining.vue'),
+              down: () => import('../components/GridWaterfallDining.vue')
+            }
+          },
+          {
+            path: 'study',
+            components: {
+              up: () => import('../components/GalleryStudy.vue'),
+              down: () => import('../components/GridWaterfallStudy.vue')
+            }
+          },
+          {
+            path: 'work',
+            components: {
+              up: () => import('../components/GalleryWork.vue'),
+              down: () => import('../components/GridWaterfallWork.vue')
+            }
+          }
+        ]
       },
       {
         path: 'FAQ',

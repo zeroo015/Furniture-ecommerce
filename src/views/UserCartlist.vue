@@ -1,9 +1,17 @@
 <template>
   <!-- 購物車頁(1) -->
   <!-- 空車 -->
-  <div class="emptyCart container-lg pt-5" v-if="cart.length < 1">
-    <div class="fs-2 mt-1"><i class="bi bi-cart-x-fill text-primary"></i></div>
-    <p class="fs-5">您的購物車是空車</p>
+  <div class="emptyCart container-lg" v-if="cart.length < 1">
+    <!-- 麵包屑 -->
+    <nav class="my-3" aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+      <ol class="breadcrumb default">
+        <li class="breadcrumb-item"><router-link to="/" class="link-animated">首頁</router-link></li>
+        <li class="breadcrumb-item active" aria-current="page">購物車</li>
+      </ol>
+    </nav>
+    <!-- <div class="fs-2 mt-1"><i class="bi bi-cart-x-fill text-primary"></i></div> -->
+    <div class="statusPic col-10 col-md-6 col-lg-4 mx-auto"><img class="img-fluid" src="../assets/images/status_cart.png" alt=""></div>
+    <p>您的購物車是空車</p>
     <button type="button" class="btn btn-outline-primary mt-4" @click="goShop">前往選購</button>
   </div>
   <div class="cartlist container-lg pt-5" v-else>
@@ -230,6 +238,19 @@ export default {
       top: 50%;
       transform: translateY(-50%);
     }
+  }
+}
+.emptyCart {
+  .statusPic {
+    padding-bottom: .875em;
+  }
+  p {
+    font-size: 1.25em;
+  }
+}
+@media screen and (max-width:768px) {
+  .statusPic {
+    font-size: 3.4vw;
   }
 }
 </style>

@@ -9,8 +9,8 @@
     </nav>
     <!-- 未追蹤 -->
     <div class="noLike" v-if="likeList.length < 1">
-      <div class="fs-2 mt-1"><i class="bi bi-chat-heart text-primary"></i></div>
-      <p class="fs-5">沒有追蹤商品，快去逛逛吧</p>
+      <div class="statusPic col-10 col-md-6 col-lg-4 mx-auto"><img class="img-fluid" src="../assets/images/status_like.png" alt=""></div>
+      <p>沒有追蹤商品，快去逛逛吧</p>
       <button type="button" class="btn btn-outline-primary mt-4" @click="goShop">前往選購</button>
     </div>
     <!-- 追蹤清單 -->
@@ -111,8 +111,23 @@ export default {
       transform: skewX(-8deg) scale(1.08);
     }
   }
+  .noLike {
+    .statusPic {
+      padding-bottom: .875em;
+    }
+    p {
+      font-size: 1.25em;
+    }
+  }
   .btnTwo {
     margin-bottom: 1.5em;
+  }
+}
+@media screen and (max-width:768px) {
+  .like {
+    .noLike {
+      font-size: 3.4vw;
+    }
   }
 }
 @media screen and (min-width:768px) {

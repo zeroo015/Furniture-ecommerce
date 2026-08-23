@@ -45,7 +45,7 @@ export default {
 @import "bootstrap/scss/mixins";
 .topNav {
   @include media-breakpoint-up(lg) {
-    height: 76px;
+    height: 74px;
   }
   .logo_svg {
     fill: #333;

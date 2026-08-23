@@ -28,8 +28,8 @@
           </div>
         </div>
         <div class="modal-footer justify-content-between">
-          <span class="fw-bold">限時倒數</span>
-          <CountdownClock class="me-auto"></CountdownClock>
+          <template v-if="isEnded"><span class="fw-bold me-2">優惠延長</span><span class="italics me-auto fs-5 text-primary">優惠券現領現折！</span></template>
+          <template v-else><span class="fw-bold">限時倒數</span><CountdownClock class="me-auto"></CountdownClock></template>
           <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" @click="goShop">立即前往</button>
         </div>
       </div>
@@ -44,6 +44,7 @@ import { mapState, mapActions } from 'pinia'
 import { useProductStore } from '@/stores/productStore'
 import { useBrowseLogStore } from '@/stores/productBrowse'
 import statusStore from '@/stores/statusStore.js'
+import countdownTimer from '@/stores/countdownTimer.js'
 export default {
   data() {
     return {
@@ -61,6 +62,8 @@ export default {
   computed: {
     ...mapState(useProductStore, ['products']),
     ...mapState(statusStore, ['isLoading']),
+    ...mapState(countdownTimer, ['isEnded']),
+
     // 隨機抓取二品
     randomTwoProducts() {
       const shuffledPD = [...this.products].sort(() => 0.5 - Math.random()) // 亂數排序，機率不均等 https://www.shubo.io/javascript-random-shuffle/
@@ -78,6 +81,7 @@ export default {
   methods: {
     ...mapActions(useProductStore, ['goShop']),
     ...mapActions(useBrowseLogStore, ['goProduct']),
+
     // 開始圓環倒數
     startTimer() {
       this.timerInterval = setInterval(() => {

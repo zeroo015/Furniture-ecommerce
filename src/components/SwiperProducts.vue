@@ -10,6 +10,7 @@
     :breakpoints="{
       768: {slidesPerView: 4.4, slidesPerGroup: 4}
     }"
+    :mousewheel="true"
     :scrollbar="{
       hide: true,
     }"

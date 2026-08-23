@@ -1,15 +1,16 @@
 <template>
   <div v-if="!isClosed" class="topAD d-flex justify-content-center align-items-center bg-primary w-100 gap-1">
     <a class="d-block p-2 text-white" href="#" @click.prevent="goShop">夏日限定全品項 8 折</a>
-    <CountdownClock></CountdownClock>
+    <CountdownClock v-if="!isEnded"></CountdownClock>
     <button type="button" class="btn btnClose text-white" @click="closeArea"><i class="bi bi-x"></i></button>
   </div>
 </template>
 
 <script>
 import CountdownClock from './CountdownClock.vue'
-import { mapActions } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import { useProductStore } from '@/stores/productStore.js'
+import countdownTimer from '@/stores/countdownTimer.js'
 export default {
   data() {
     return {
@@ -18,6 +19,9 @@ export default {
   },
   components: {
     CountdownClock
+  },
+  computed: {
+    ...mapState(countdownTimer, ['isEnded'])
   },
   methods: {
     ...mapActions(useProductStore, ['goShop']),

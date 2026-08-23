@@ -124,6 +124,11 @@ export const useProductStore = defineStore('productStore', {
         this.pagination.has_next = false
       }
     },
+    // 搜尋
+    goSearch() {
+      this.filterObj.category = 'all'
+      router.push('/shop')
+    },
     // 回商品首頁
     goShop() {
       this.clearFilters()

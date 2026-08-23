@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="offcanvas-footer bg-white mt-1">
-      <button type="button" class="btn btn-primary w-100" data-bs-dismiss="offcanvas" aria-label="Close" @click="goShop">搜尋</button>
+      <button type="button" class="btn btn-primary w-100" data-bs-dismiss="offcanvas" aria-label="Close" @click="goSearch">搜尋</button>
       <button type="button" class="btn btn-outline-dark w-100 mt-2" data-bs-dismiss="offcanvas" @click="clearFilters">取消</button>
     </div>
   </div>
@@ -46,7 +46,7 @@ export default {
     ...mapState(useProductStore, ['filterObj'])
   },
   methods: {
-    ...mapActions(useProductStore, ['filterType', 'clearFilters', 'goShop'])
+    ...mapActions(useProductStore, ['filterType', 'clearFilters', 'goSearch'])
   }
 }
 </script>
