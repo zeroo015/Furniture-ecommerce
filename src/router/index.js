@@ -129,6 +129,12 @@ const routes = [
         component: () => import('../views/PDDetail.vue')
       }
     ]
+  },
+  // 404 頁面：須放在最後方，如果不匹配上方任何路由顯示
+  {
+    path: '/:pathMatch(.*)*', // .* 所有子路徑、 * 所有頁面 ( . 代表任意字元 / * 代表 0 個或多個以上)
+    name: 'notfound',
+    component: () => import('../views/NotFound.vue')
   }
 ]
 
