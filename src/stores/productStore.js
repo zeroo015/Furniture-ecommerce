@@ -140,6 +140,10 @@ export const useProductStore = defineStore('productStore', {
       if (page < 1 || page > this.pagination.total_pages) return
       this.pagination.current_page = page
       this.getPageStatus()
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant' // 直接跳至頂部
+      })
     },
     // 更新排序依據
     sortBy(order) {

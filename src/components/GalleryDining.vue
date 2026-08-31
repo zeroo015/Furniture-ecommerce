@@ -13,7 +13,7 @@
       <div class="pic">
         <!-- <img src="https://images.unsplash.com/photo-1721523234710-63c356134fb9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
         <img src="https://images.unsplash.com/photo-1696814292947-8b6f06af3df2?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-        <div class="dot dot_01" @click="goProduct(id1)"></div>
+        <div class="dot dot_01" @click="goProduct('-P0BAhqaIyBEP9vlNZnb')"></div>
         <div class="dot dot_02" @click="goProduct('-Ox21W9vxaqO_wimbNhm')"></div>
       </div>
       <div class="title roboto-font text-white text-end pe-5"><span class="text-primary">Di</span>ning Room</div>
@@ -185,8 +185,8 @@ export default {
   }
   // 圓點定位
   .box_dining {
-    .dot_01 { top: 92px; }
-    .dot_02 { top: 520px; left: 30%; }
+    .dot_01 { top: 9.5%; }
+    .dot_02 { top: 54%; left: 30%; }
   }
 }
 @media screen and (min-width:1200px) {

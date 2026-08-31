@@ -36,7 +36,7 @@ export default {
 <style lang="scss" scoped>
 /* 您可以自由調整多頁面共用的樣式 */
 .countdown-box {
-  font-size: 1.2rem;
+  font-size: 1.2em;
   font-weight: bold;
   .timer-text {
     span {

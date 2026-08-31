@@ -1,11 +1,11 @@
 <template>
   <div class="detail container-lg" v-if="product.title">
-    <div class="row justify-content-evenly align-items-center text-start mb-5">
+    <div class="Area1 row justify-content-evenly align-items-center text-start mb-5">
       <!-- 主圖輪播 -->
       <div class="box_L col-md-6">
         <SwiperThumbs></SwiperThumbs>
       </div>
-      <div class="box_R col-md-5 px-5">
+      <div class="box_R col-md-5 px-4 px-lg-5">
         <!-- 麵包屑 -->
         <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
           <ol class="breadcrumb">
@@ -16,9 +16,9 @@
         <!-- 產品資訊 -->
         <div class="tag" v-if="product.is_newItem">New</div>
         <h2 class="fw-normal">{{ product.title }}</h2>
-        <div class="hashtag text-primary chiron-goround-tc-font my-3">
-          <span class="bg-light px-3 py-2 me-2 rounded-pill" v-for="item in product.style" :key="item">#{{ item }}</span>
-          <span class="bg-light px-3 py-2 me-2 rounded-pill" v-for="item in product.space" :key="item">#{{ item }}</span>
+        <div class="hashtag text-primary chiron-goround-tc-font mt-3">
+          <span class="bg-light me-2 mb-2 mb-xl-0 px-3 py-2 rounded-pill" v-for="item in product.style" :key="item">#{{ item }}</span>
+          <span class="bg-light me-2 mb-2 mb-xl-0 px-3 py-2 rounded-pill" v-for="item in product.space" :key="item">#{{ item }}</span>
         </div>
         <template v-if="product.content">
           <!-- <h5 class="chiron-goround-tc-font fw-normal mt-4">商品介紹</h5> -->
@@ -37,37 +37,38 @@
           <button type="button" class="btnPlus btn btn-secondary border-0 rounded-circle" @click="++qty"><i class="bi bi-plus-lg"></i></button>
         </div>
         <div class="actionGroup d-flex align-items-center gap-2">
+          <!-- v-on 加入追蹤 -->
+          <button type="button" class="btn btn-outline-dark w-100" :class="{'active': isLike(product.id)}" @click="toggleLike(product.id)">
+            <i class="bi bi-heart-fill"></i>
+            <span class="ms-1" v-if="isLike(product.id)">已追蹤</span>
+            <span class="ms-1" v-else>加入追蹤</span>
+          </button>
           <!-- v-on 加入購物車 (1)顯示 loading 狀態 (2)disabled 以免重複點擊 -->
           <button type="button" class="btn btn-primary w-100" @click="addCart(productId, qty)" :disabled="cartLoading === productId">
             <div v-if="cartLoading === productId" class="spinner-border text-light spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
             <i v-else class="bi bi-cart-plus-fill"></i>
             <span class="ms-1">加入購物車</span>
           </button>
-          <!-- v-on 加入追蹤 -->
-          <!-- <button type="button" class="btn btn-outline-dark w-100" @click="addCart">
-            <i class="bi bi-heart-fill"></i>
-            <span class="ms-1">加入追蹤</span>
-          </button> -->
         </div>
       </div>
     </div>
-    <div class="row justify-content-evenly align-items-center text-start Areabottom">
+    <div class="Area2 row justify-content-evenly align-items-center text-start Areabottom">
       <div class="col-md-6 px-3">
         <!-- 提醒事項 -->
         <div class="notice">
           <!-- <h5 class="chiron-goround-tc-font fw-normal mt-4 mb-3">優惠活動</h5> -->
           <ul class="list-unstyled text-start">
             <li class="d-flex align-items-center p-3 mb-3 rounded bg-primary">
-              <span class="text-white chiron-goround-tc-font me-3"><i class="bi bi-box-seam-fill bolder"></i> 到府服務</span>
+              <span class="text-white chiron-goround-tc-font col-2 me-1"><i class="bi bi-box-seam-fill bolder"></i> 到府服務</span>
               <div class="tt me-auto text-light">大型傢俱請於備註欄標示可收貨時間，以利協助送貨到府</div>
             </li>
             <li class="d-flex align-items-center p-3 mb-3 rounded">
-              <span class="text-primary chiron-goround-tc-font me-3"><i class="bi bi-clock bolder"></i> 最後倒數</span>
+              <span class="text-primary chiron-goround-tc-font col-2 me-1"><i class="bi bi-clock bolder"></i> 最後倒數</span>
               <div class="tt me-auto">試營運期間購物即享免運優惠</div>
             </li>
             <li class="d-flex align-items-center p-3 rounded">
-              <span class="text-primary chiron-goround-tc-font me-3"><i class="bi bi-clock bolder"></i> 優惠促銷</span>
-              <div class="tt me-auto">限時輸入優惠碼 <span class="text-primary roboto-font" ref="copyTxt">Today99</span> 享全站消費 9 折</div>
+              <span class="text-primary chiron-goround-tc-font col-2 me-1"><i class="bi bi-clock bolder"></i> 優惠促銷</span>
+              <div class="tt me-auto">限時輸入優惠碼 <span class="text-primary roboto-font" ref="copyTxt">Today99</span> <br class="d-lg-none">享全站消費 9 折</div>
               <div class="copyIcon"><a href="" @click.prevent="copyCoupon('copyTxt')"><i v-if="isCopied" class="bi bi-check-lg text-info"></i><i v-else class="bi bi-copy text-info"></i></a></div>
             </li>
           </ul>
@@ -86,25 +87,29 @@
         </div>
       </div>
     </div>
-    <!-- 推薦商品(輪播) -->
-    <div class="Area_Recommend mb-4">
-      <div class="Area Area1220 mb-2">
-        <div class="AreaTitle d-flex align-items-end">
-          <div class="engTxt roboto-font decoDot text-primary me-4">Recommend</div>
-          <div class="pb-3 fs-3">為您推薦</div>
+  </div>
+  <div class="box_more overflow-hidden">
+    <div class="container-lg">
+      <!-- 推薦商品(輪播) -->
+      <div class="Area_Recommend Area_swiper mb-4">
+        <div class="Area Area1220 mb-2">
+          <div class="AreaTitle d-flex align-items-md-end">
+            <div class="engTxt roboto-font decoDot text-primary me-4">Recommend</div>
+            <div class="pb-mb-3 fs-3">為您推薦</div>
+          </div>
         </div>
+        <SwiperProducts :propsProducts="recommendProducts" :propsId="productId"></SwiperProducts>
       </div>
-      <SwiperProducts :propsProducts="recommendProducts" :propsId="productId"></SwiperProducts>
-    </div>
-    <!-- 瀏覽記錄(輪播) -->
-    <div class="Area_Viewed mb-3">
-      <div class="Area Area1220 mb-2">
-        <div class="AreaTitle d-flex align-items-end">
-          <div class="engTxt roboto-font decoDot text-primary me-4">Recently View</div>
-          <div class="pb-3 fs-3">最近瀏覽</div>
+      <!-- 瀏覽記錄(輪播) -->
+      <div class="Area_Viewed Area_swiper mb-3">
+        <div class="Area Area1220 mb-2">
+          <div class="AreaTitle d-flex align-items-md-end">
+            <div class="engTxt roboto-font decoDot text-primary me-4">Recently View</div>
+            <div class="pb-mb-3 fs-3">最近瀏覽</div>
+          </div>
         </div>
+        <SwiperProducts :propsProducts="historyProducts" :propsId="productId"></SwiperProducts>
       </div>
-      <SwiperProducts :propsProducts="historyProducts" :propsId="productId"></SwiperProducts>
     </div>
   </div>
 </template>
@@ -116,6 +121,7 @@ import { mapState, mapActions } from 'pinia'
 import { useBrowseLogStore } from '@/stores/productBrowse'
 import { useProductStore } from '@/stores/productStore'
 import cartStore from '@/stores/cartStore'
+import likeStore from '@/stores/likeStore'
 import statusStore from '@/stores/statusStore'
 export default {
   data() {
@@ -134,12 +140,14 @@ export default {
   computed: {
     ...mapState(useBrowseLogStore, ['product', 'historyProducts']),
     ...mapState(useProductStore, ['products']),
+    ...mapState(likeStore, ['likeList', 'isLike']),
     ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
     ...mapActions(useBrowseLogStore, ['getPDDetail']),
     ...mapActions(useProductStore, ['getSaleProducts', 'filterType']),
     ...mapActions(cartStore, ['addCart']),
+    ...mapActions(likeStore, ['getLikes', 'toggleLike']),
 
     // 一鍵複製優惠券碼
     async copyCoupon(refName) {
@@ -186,7 +194,6 @@ export default {
   padding-top: 2.6rem;
   .box_R {
     position: relative;
-    margin-bottom: 5.1em;
   }
 }
 .tag {
@@ -203,6 +210,9 @@ export default {
 .hashtag {
   font-size: .875em;
   margin-left: -.15em;
+  span {
+    display: inline-block;
+  }
 }
 /* input 隱藏箭頭 */
 /* Chrome, Safari, Edge, Opera */
@@ -258,7 +268,94 @@ input[type=number] {
     }
   }
 }
-.AreaTitle {
-  font-size: .875em;
+.box_more {
+  position: relative;
+  width: 100%;
+}
+.Area_swiper {
+  .AreaTitle {
+    font-size: .875em;
+  }
+  .swiper {
+    overflow: visible;
+  }
+}
+// PC
+@media screen and (min-width:1200px) {
+  .detail {
+    .box_R {
+      margin-bottom: 5.1em;
+    }
+  }
+}
+// Tablet
+@media (min-width:768px) and (max-width:1199.98px) {
+  .tag {
+    z-index: 2;
+    top: -1.25em;
+    left: -5.3em;
+  }
+  .sub-text {
+    height: 6em;
+    overflow-y: scroll;
+  }
+  .input-group {
+    margin-top: 2.5em;
+  }
+  .actionGroup {
+    flex-direction: column-reverse;
+  }
+  .Area2 {
+    margin-top: 3.5em;
+    .notice {
+      span {
+        width: 30%;
+      }
+    }
+  }
+  .Area_swiper {
+    font-size: 15px;
+    .AreaTitle {
+      padding-left: 3.5%;
+    }
+  }
+}
+// MB
+@media screen and (max-width:768px) {
+  .detail {
+    padding-top: 1.75em;
+    .box_L {
+      margin-bottom: 1em;
+    }
+  }
+  .tag {
+    z-index: 2;
+    top: 0vw;
+    left: 80%;
+  }
+  .Area2 {
+    flex-direction: column-reverse;
+    .note {
+      padding: 0 5%;
+      margin-bottom: 1.5em;
+    }
+    .notice {
+      padding: 0 1.75%;
+      span {
+        width: 30%;
+      }
+    }
+  }
+  .Area_swiper {
+    font-size: 3vw;
+    .AreaTitle {
+      flex-direction: column;
+      padding-left: 5%;
+      text-align: left;
+      .engTxt {
+        margin-bottom: -0.125em;
+      }
+    }
+  }
 }
 </style>

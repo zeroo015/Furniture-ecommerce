@@ -49,7 +49,7 @@ export default {
 #gotop::after  { content: ""; z-index:-1; position:absolute; top:50%; left:50%; border-radius:50px 0 0 50px; transform:translate(-50%,-50%); width:44px; height:44px; background-color:rgba(0,0,0,0.8);}
 #gotop.cate-open { transform: translateX(0%);}
     /*白色*/
-    /* #gotop { color:#000; }
+    #gotop { color:#000; }
     #gotop::before { border-color: transparent transparent #000;}
-    #gotop::after  { background-color: rgba(255,255,255,0.95);  box-shadow:0 1px 0 rgba(242,242,242,1), 0 0 10px rgba(0,0,0,0.2);} */
+    #gotop::after  { background-color: rgba(255,255,255,0.95);  box-shadow:0 1px 0 rgba(242,242,242,1), 0 0 10px rgba(0,0,0,0.2);}
 </style>

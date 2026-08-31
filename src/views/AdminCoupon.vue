@@ -30,7 +30,7 @@
             </td>
             <td>
               <!-- v-on 開啟優惠券浮層 (1)tempCoupon 傳入 CouponModal -->
-              <button type="button" class="btn btn-outline-primary btn-sm me-lg-2 mb-1 mb-lg-0" @click="openCouponModal(false, item)">編輯</button>
+              <button type="button" class="btn btn-outline-primary btn-sm me-md-2 mb-1 mb-md-0" @click="openCouponModal(false, item)">編輯</button>
               <!-- v-on 開啟刪除浮層 (1)tempProduct.title 傳入 DelModal -->
               <button type="button" class="btn btn-outline-danger btn-sm" @click="openDelModal(item)">刪除</button>
             </td>
@@ -74,6 +74,10 @@ export default {
           this.coupons = res.data.coupons
           this.pagination = res.data.pagination
           status.isLoading = false
+          window.scrollTo({
+            top: 0,
+            behavior: 'instant' // 直接跳至頂部
+          })
         }).catch((err) => {
           console.log(err.response.data)
           status.isLoading = false
@@ -96,15 +100,17 @@ export default {
       this.tempCoupon = item
       let api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/coupon` // 新增優惠券 api
       let apiMethod = 'post'
+      let pageNow = 1
       if (!this.isNew) {
         api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/coupon/${item.id}` // 修改優惠券 api
         apiMethod = 'put'
+        pageNow = this.pagination.current_page
       }
       this.$http[apiMethod](api, { data: this.tempCoupon })
         .then((res) => {
           status.isLoading = false
           this.$refs.couponModal.hideModal()
-          this.getCoupons()
+          this.getCoupons(pageNow)
           status.msgState(res, '優惠券更新')
         }).catch((err) => {
           status.isLoading = false
@@ -136,3 +142,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+// Tablet
+@media (min-width:768px) and (max-width:1199.98px) {
+  .table {
+    tr {
+      td:nth-of-type(5) { width: 14%; }
+      td:nth-of-type(6) { width: 16%; }
+    }
+  }
+}
+</style>

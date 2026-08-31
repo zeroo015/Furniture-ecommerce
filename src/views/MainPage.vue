@@ -13,7 +13,7 @@
     <div class="Area Area1220 Area_news Areabottom">
       <div class="box col-md-8 text-start">
         <div class="AreaTitle pb-3 fs-2">最新消息</div>
-        <ul class="list-unstyled fs-5">
+        <ul class="list-unstyled">
           <!-- <li class="mb-2">2026 日式家居新選物全新上架<i class="bi bi-arrow-right-short text-info"></i></li> -->
           <li class="mb-2">2026 試營運期間購物即享免運優惠</li>
           <li class="mb-2"><a href="#" @click.prevent="goto('Area_sale')">2026 夏日限定全品項 8 折<i class="bi bi-arrow-right-short text-info"></i></a></li>
@@ -25,7 +25,7 @@
 
     <!-- 商品分類 -->
     <div class="Area Area1220 Area_category Areabottom">
-      <div class="AreaTitle d-flex justify-content-end align-items-end">
+      <div class="AreaTitle d-flex justify-content-center justify-content-md-end align-items-end">
         <div class="d-flex flex-column me-3">
           <div class="smTxt decoDot align-self-end me-2">Shop by</div>
           <div class="engTxt roboto-font text-primary">Category</div>
@@ -48,8 +48,8 @@
         <div class="pb-3 fs-2">品牌理念</div>
       </div>
       <!-- 1 -->
-      <div class="box box_1 row justify-content-center align-items-end Areabottom">
-        <div class="picArea col-md-6">
+      <div class="box box_1 row justify-content-md-center align-items-end Areabottom">
+        <div class="picArea col-9 col-md-6">
           <div class="decoBig roboto-font text-white">Soothe</div>
           <img class="img-fluid" src="../assets/images/about_01.jpg" alt="">
         </div>
@@ -69,7 +69,7 @@
       </div>
       <!-- 2 -->
       <div class="box box_2 row justify-content-center align-items-end">
-        <div class="txtArea txtL col-md-5 border-bottom">
+        <div class="txtArea txtL col-10 col-md-5 border-bottom">
           <div class="slogan d-flex flex-row align-items-end pb-3">
             <div class="txt1 chiron-goround-tc-font decoDot fs-3 me-5">毛孩友善</div>
             <div class="txt2 roboto-font display-4 text-primary">02</div>
@@ -82,7 +82,7 @@
           </ul>
           <div class="decoTxt">Well Living with All Life</div>
         </div>
-        <div class="picArea col-md-6">
+        <div class="picArea col-8 col-md-6">
           <div class="decoBig roboto-font text-white">Pet-Friendly</div>
           <img class="img-fluid" src="../assets/images/about_02.jpg" alt="">
         </div>
@@ -103,7 +103,7 @@
           </ul>
           <div class="decoTxt">Crafted for Comfort & Perfect</div>
         </div>
-        <div class="picArea col-md-6">
+        <div class="picArea col-9 col-md-6">
           <div class="decoBig roboto-font text-white">Crafted</div>
           <img class="img-fluid" src="../assets/images/about_04.jpg" alt="">
         </div>
@@ -114,7 +114,7 @@
     <div class="Area Area1220 Area_sale Areabottom" id="Area_sale">
       <div class="box">
         <div class="AreaTitle d-flex justify-content-center align-items-end text-white">
-          <div class="smTxt decoDot align-self-end me-4 mb-2">Deal of the Day</div>
+          <div class="smTxt decoDot me-4 mb-2">Deal of the Day</div>
           <div class="fs-2">夏日限定<span class="roboto-font text-warning px-2 display-3">8</span>折</div>
         </div>
         <CountdownClock></CountdownClock>
@@ -127,7 +127,7 @@
 
     <!-- 看更多 -->
     <div class="Area Area_more ps-1 pb-2">
-      <router-link to="/shop" class="fs-4">更多商品<i class="bi bi-arrow-right-circle-fill text-primary ms-1"></i></router-link>
+      <router-link to="/shop">更多商品<i class="bi bi-arrow-right-circle-fill text-primary ms-1"></i></router-link>
     </div>
 
   </div>

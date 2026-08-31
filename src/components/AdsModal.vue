@@ -12,13 +12,13 @@
           <button type="button" class="btn-close rounded-circle" data-bs-dismiss="modal" aria-label="Close"></button>
           <a href="#" data-bs-dismiss="modal" @click.prevent="goShop"><img class="img-fluid" src="../assets/images/ADbn.jpg" alt=""></a>
           <!-- 隨機推薦商品 -->
-          <div class="row p-3">
+          <div class="PDArea row p-3">
             <div class="col-6" v-for="item in randomTwoProducts" :key="item.id">
               <a href="#" @click="goProduct(item.id)" data-bs-dismiss="modal">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="col-5 pic"><img :src="item.imagesUrl[0]" alt="" class="img-fluid"></div>
-                  <div class="col-7 txt">
-                    <div class="mb-4"><i class="bi bi-pin-angle-fill"></i> HOT SALE</div>
+                <div class="contentR d-flex align-items-center">
+                  <div class="pic col-lg-5 p-1 pb-0 p-lg-0"><img :src="item.imagesUrl[0]" alt="" class="img-fluid"></div>
+                  <div class="txt col-lg-7">
+                    <div class="mb-2 mb-lg-4"><i class="bi bi-pin-angle-fill"></i> HOT SALE</div>
                     <div class="pdName">{{ item.title }}</div>
                     <div class="price">折後 <span class="roboto-font fs-3 text-primary">{{ $filters.currency(item.price) }}</span></div>
                   </div>
@@ -28,8 +28,8 @@
           </div>
         </div>
         <div class="modal-footer justify-content-between">
-          <template v-if="isEnded"><span class="fw-bold me-2">優惠延長</span><span class="italics me-auto fs-5 text-primary">優惠券現領現折！</span></template>
-          <template v-else><span class="fw-bold">限時倒數</span><CountdownClock class="me-auto"></CountdownClock></template>
+          <template v-if="isEnded"><span class="fw-bold ps-1 me-1 me-md-2">優惠延長</span><span class="italics me-auto fs-5 text-primary">優惠券現領現折！</span></template>
+          <template v-else><span class="fw-bold smalltxt"><span class="hide">限時</span>倒數</span><CountdownClock class="me-auto"></CountdownClock></template>
           <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" @click="goShop">立即前往</button>
         </div>
       </div>
@@ -141,6 +141,12 @@ export default {
       object-position: center;
     }
   }
+  .contentR {
+    gap: 1em;
+  }
+}
+.smalltxt {
+  margin-right: .1em;
 }
 :deep(.timer) {
   .timer-text {
@@ -151,6 +157,30 @@ export default {
     }
     .unit {
       font-size: .875em;
+    }
+  }
+}
+@media screen and (max-width:768px) {
+  .PDArea, .modal-footer {
+    font-size: 3.8vw;
+  }
+  .hide {
+    display: none;
+  }
+  :deep(.timer) {
+    .timer-text {
+      span {
+        padding: .05em;
+      }
+    }
+  }
+}
+@media screen and (max-width:992px) {
+  .modal-body {
+    .contentR {
+      gap: .875em;
+      flex-direction: column;
+      text-align: center;
     }
   }
 }

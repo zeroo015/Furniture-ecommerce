@@ -2,25 +2,25 @@
   <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
   <div class="d-flex flex-column min-vh-100">
     <AdminNavbar></AdminNavbar>
-    <div class="container position-relative p-4 flex-shrink-0">
+    <div class="admin container position-relative p-4 flex-shrink-0">
       <ToastMsgs></ToastMsgs>
       <div class="row">
         <!-- 頁籤 -->
-        <div class="col-md-3 pb-2">
-          <ul class="nav flex-md-column text-start tabNav">
+        <div class="col-lg-3 pb-2">
+          <ul class="nav flex-lg-column text-start tabNav">
             <li class="nav-item">
-              <router-link to="/admin" class="nav-link py-md-3">商品管理</router-link>
+              <router-link to="/admin" class="nav-link py-lg-3 px-md-4">商品管理</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/admin/order" class="nav-link py-md-3">訂單管理</router-link>
+              <router-link to="/admin/order" class="nav-link py-lg-3 px-md-4">訂單管理</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/admin/coupon" class="nav-link py-md-3">優惠券管理</router-link>
+              <router-link to="/admin/coupon" class="nav-link py-lg-3 px-md-4">優惠券管理</router-link>
             </li>
           </ul>
         </div>
         <!-- 列表區 -->
-        <div class="col-md-9 bg-white rounded-3">
+        <div class="col-lg-9 bg-white rounded-3">
           <router-view/>
         </div>
       </div>

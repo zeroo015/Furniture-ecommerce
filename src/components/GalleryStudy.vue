@@ -13,7 +13,7 @@
       <div class="pic">
         <!-- <img src="https://images.unsplash.com/photo-1547043736-b2247cb34b01?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
         <img src="https://images.unsplash.com/photo-1604307743907-df8d5fe9f1de?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-        <div class="dot dot_01" @click="goProduct(id1)"></div>
+        <div class="dot dot_01" @click="goProduct('-P0Gw6Rza9me76SNzcbO')"></div>
         <div class="dot dot_02" @click="goProduct('-Ox5Kl5R0zMn5VQ0vOGE')"></div>
       </div>
       <div class="title roboto-font text-white text-end pe-5"><span class="text-primary">St</span>udy Room</div>
@@ -120,7 +120,7 @@ export default {
 // 圓點定位
 .box_living {
   .dot_01 { left: 28%; }
-  .dot_02 { left: 69%; }
+  .dot_02 { left: 70%; }
 }
 @media screen and (max-width:768px) {
   .topic {
@@ -186,8 +186,8 @@ export default {
   }
   // 圓點定位
   .box_living {
-    .dot_01 { top: 472px; }
-    .dot_02 { top: 206px; }
+    .dot_01 { top: 49%; }
+    .dot_02 { top: 21%; }
   }
 }
 @media screen and (min-width:1200px) {

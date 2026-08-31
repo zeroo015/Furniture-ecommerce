@@ -4,13 +4,13 @@
         '--swiper-navigation-color': '#2c5760',
         '--swiper-scrollbar-color': '#2c5760',
       }"
-    :spaceBetween="25"
+    :spaceBetween="8"
     :slidesPerView="2.2"
     :slidesPerGroup="2"
     :breakpoints="{
-      768: {slidesPerView: 4.4, slidesPerGroup: 4}
+      768: {spaceBetween: 10, slidesPerView: 4.4, slidesPerGroup: 4},
+      992: {spaceBetween: 25, slidesPerView: 4.4, slidesPerGroup: 4}
     }"
-    :mousewheel="true"
     :scrollbar="{
       hide: true,
     }"

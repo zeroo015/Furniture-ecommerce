@@ -24,8 +24,8 @@
       <div class="collapse navbar-collapse order-lg-2 mt-1 mt-lg-0" id="navbarSupportedContent">
         <div class="navbar-nav align-items-center ms-auto gap-2">
           <!-- 改點擊後自動收合 -->
-          <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/about')">About</a>
-          <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/shop')">Shop</a>
+          <!-- <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/about')">About</a> -->
+          <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/shop')">Store</a>
           <!-- <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery')">Gallery</a> -->
           <div class="btn-group dropdownList">
             <a href="#" class="nav-link link-animated me-lg-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" :disabled="isLarge">Gallery</a>

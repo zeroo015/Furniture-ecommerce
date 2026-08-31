@@ -223,7 +223,7 @@ export default {
     }
   }
 }
-@media screen and (max-width:767px) {
+@media screen and (max-width:768px) {
   .box_menu {
     top: 86px;
     margin: 0 auto 1.875rem;

@@ -50,7 +50,7 @@
       </div>
       <div class="box_PD" data-swiper-parallax="-2500"><img src="../assets/images/topPD_02.png" alt=""></div>
     </swiper-slide>
-    <swiper-slide>
+    <swiper-slide @click.prevent="goProduct('-P0AfcNsJj5_iYPQgFrd')">
       <div class="box col-md-8 d-flex flex-column text-start">
         <div class="subtitle decoDot ps-2" data-swiper-parallax="-300">New Arrival</div>
         <div class="title roboto-font" data-swiper-parallax="-1200">Tables</div>

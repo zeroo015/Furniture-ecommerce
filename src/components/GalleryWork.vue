@@ -13,8 +13,8 @@
       <div class="pic">
         <img src="https://images.unsplash.com/photo-1686100510242-2521b6f89a68?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         <!-- <img src="https://images.unsplash.com/photo-1721523234710-63c356134fb9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
-        <div class="dot dot_01" @click="goProduct(id1)"></div>
-        <div class="dot dot_02" @click="goProduct('-Ox21W9vxaqO_wimbNhm')"></div>
+        <!-- <div class="dot dot_01" @click="goProduct(id1)"></div> -->
+        <div class="dot dot_02" @click="goProduct('-P0BGPQWhlTO9_Tmy0jO')"></div>
       </div>
       <div class="title roboto-font text-white text-end pe-5"><span class="text-primary">W</span>orkspace</div>
       <div class="space d-flex flex-column align-items-end">
@@ -186,8 +186,8 @@ export default {
   }
   // 圓點定位
   .box_dining {
-    .dot_01 { top: 595px; }
-    .dot_02 { top: 520px; left: 68%; }
+    .dot_01 { top: 60.5%; }
+    .dot_02 { top: 54.5%; left: 68%; }
   }
 }
 @media screen and (min-width:1200px) {

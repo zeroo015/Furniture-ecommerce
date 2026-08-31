@@ -57,4 +57,9 @@ export default {
     }
   }
 }
+@media screen and (max-width:768px) {
+  .timer {
+    margin-right: 1.5em;
+  }
+}
 </style>

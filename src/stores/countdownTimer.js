@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 export default defineStore('countdown', {
   state: () => ({
     // 1. 設定未來的目標時間
-    targetDate: new Date('2026-08-15T23:59:59').getTime(),
+    targetDate: new Date('2026-09-15T23:59:59').getTime(),
     // 2. 存放與目標相差的總毫秒數
     remainingTime: 0,
     // 3. 全局唯一計時器

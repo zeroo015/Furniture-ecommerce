@@ -14,7 +14,7 @@
         <img src="https://images.unsplash.com/photo-1722858813922-699fe2d0ff9a?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         <!-- <img src="https://images.unsplash.com/photo-1743647988500-bf99a5869ca1?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
         <!-- <img src="https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> -->
-        <div class="dot dot_01" @click="goProduct('-Ox-mnhh6BRhf4CxX60f')"></div>
+        <div class="dot dot_01" @click="goProduct('-P0GpQWHI0kk44sNCIbM')"></div>
         <!-- <div class="dot dot_02" @click="goProduct(id2)"></div> -->
       </div>
       <div class="title roboto-font text-white text-end pe-5"><span class="text-primary">Li</span>ving Room</div>
@@ -186,7 +186,7 @@ export default {
   }
   // 圓點定位
   .box_living {
-    .dot_01 { top: 477px; }
+    .dot_01 { top: 49%; }
     .dot_02 { top: 535px; }
   }
 }

@@ -36,7 +36,7 @@
             </td>
             <td>
               <!-- v-on 開啟訂單浮層 (1)tempOrder 傳入 OrderModal -->
-              <button type="button" class="btn btn-outline-primary btn-sm me-lg-2 mb-1 mb-lg-0" @click="openOrderModal(item)">查看</button>
+              <button type="button" class="btn btn-outline-primary btn-sm me-md-2 mb-1 mb-md-0" @click="openOrderModal(item)">查看</button>
               <!-- v-on 開啟刪除浮層 (1)自定義 tempOrder.title 傳入 DelModal -->
               <button type="button" class="btn btn-outline-danger btn-sm" @click="openDelModal(item)">刪除</button>
             </td>
@@ -80,6 +80,10 @@ export default {
           this.orders = res.data.orders
           this.pagination = res.data.pagination
           status.isLoading = false
+          window.scrollTo({
+            top: 0,
+            behavior: 'instant' // 直接跳至頂部
+          })
         }).catch((err) => {
           console.log(err.response.data)
           status.isLoading = false
@@ -96,7 +100,7 @@ export default {
         .then((res) => {
           status.isLoading = false
           if (res.data.success) {
-            this.getOrders() // 若成功重新取得列表
+            this.getOrders(this.pagination.current_page) // 若成功重新取得列表
           }
           status.msgState(res, '付款狀態更新')
         }).catch((err) => {
@@ -133,3 +137,19 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+// Tablet
+@media (min-width:768px) and (max-width:1199.98px) {
+  .table {
+    tr {
+      td:nth-of-type(1) { width: 15%; }
+      td:nth-of-type(2) { width: 13%; }
+      td:nth-of-type(3) { width: 9%; }
+      td:nth-of-type(5) { padding-left: 4%; }
+      td:nth-of-type(6) { width: 15%; }
+      td:nth-of-type(7) { width: 16%; }
+    }
+  }
+}
+</style>

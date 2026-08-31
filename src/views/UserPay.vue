@@ -5,7 +5,7 @@
     <ProgressBar class="progressOne Areabottom" :progress="100" :is-active2="true" :is-active3="true"></ProgressBar>
     <div class="row justify-content-center mb-5">
       <div class="col-lg-7 col-11">
-        <!-- 訂單資料 http://localhost:8080/#/paying/-Oy2OinUU6i3h1ISOhYX -->
+        <!-- 訂單資料 -->
         <div class="accordion" id="accordionExample">
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
