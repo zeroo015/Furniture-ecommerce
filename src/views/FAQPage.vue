@@ -232,10 +232,13 @@ export default {
     border-radius: .5rem;
     background-color: rgba(255,255,255,0.85);
     box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    -moz-backdrop-filter: blur(8px);
+    -ms-backdrop-filter: blur(8px);
     &.cate-hover {
       height: auto;
       padding-bottom: 1em;
-      backdrop-filter: blur(8px);
       .click_btn2 {
         border-bottom: 1px solid #e5e5e5;
       }

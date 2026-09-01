@@ -128,6 +128,9 @@ export default {
     .noLike {
       font-size: 3.4vw;
     }
+    .PD_item {
+      font-size: 3.5vw;
+    }
   }
 }
 @media screen and (min-width:768px) {

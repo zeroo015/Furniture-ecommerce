@@ -112,4 +112,10 @@ export default {
 .swiper-button-prev, .swiper-button-next {
   top: 35%;
 }
+// MB
+@media screen and (max-width:768px) {
+  .swiper-button-prev, .swiper-button-next {
+    display: none;
+  }
+}
 </style>

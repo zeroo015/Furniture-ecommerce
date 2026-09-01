@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="productList container-lg pt-5">
+    <div class="productList container-lg pt-4 pt-lg-5">
       <!-- 按鈕區 -->
       <div class="filterBar d-flex justify-content-between align-items-center mb-md-4 px-2">
         <div>

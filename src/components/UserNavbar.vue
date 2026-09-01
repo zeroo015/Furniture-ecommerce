@@ -42,7 +42,7 @@
     </div>
   </nav>
   <!-- 壓黑 -->
-  <div class="blackBox d-lg-none position-fixed top-0 start-0 w-100" style="z-index: 99; height: 100vh; background-color: rgba(0, 0, 0, .5);" :class="{'d-none': !isOpen}"></div>
+  <div class="blackBox d-lg-none position-fixed top-0 start-0 w-100" :class="{'d-none': !isOpen}" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click="toggleClass" style="z-index: 99; height: 100vh; background-color: rgba(0, 0, 0, .5);"></div>
   <SearchOffcanvas ref="searchOffcanvas"></SearchOffcanvas>
   <CartOffcanvas ref="cartOffcanvas"></CartOffcanvas>
 </template>

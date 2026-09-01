@@ -296,7 +296,7 @@ footer {
 		-webkit-transform: translateX(0%);
 	}
 }
-/*motionLine*/
+// motionLine
 @keyframes motionLine {
   0%   { width: 0;}
   100% { width: 3.7em;}
@@ -304,6 +304,12 @@ footer {
 @keyframes motionLineS {
   0%   { height: 0;}
   100% { height: 3.7em;}
+}
+// 飄-上下
+.uptodown-play { animation:uptodown-play 1.5s ease-in-out infinite alternate; }
+@keyframes uptodown-play { 
+  0%   { transform: translate(-8px, 0);} 
+  100% { transform: translate(0px, 0);}
 }
 
 // 輪播共用
@@ -341,6 +347,15 @@ footer {
 .detail, .box_more {
   .swiper-button-disabled {
     display: none;
+  }
+  @include media-breakpoint-between(md, xl) {
+    .swiper {
+      &:hover {
+        .swiper-button-prev, .swiper-button-next {
+          transform: scale(0.7);
+        }
+      }
+    }
   }
 }
 
@@ -684,7 +699,7 @@ footer {
         left: 1.5em;
         height: 1px;
         background-color: #333;
-        animation: motionLine 4s linear both;
+        animation: motionLine 3.5s linear both;
       }
       @include media-breakpoint-up(md) {
         margin-right: 4.25em;
@@ -830,6 +845,9 @@ footer {
     }
     .PD_cate {
       width: 31%;
+      i.bi {
+        font-size: 1.5em;
+      }
     }
   }
 }
@@ -1224,7 +1242,8 @@ footer {
     @include media-breakpoint-down(md) {
       overflow-x: scroll;
       .box {
-        width: 150vw;
+        width: 170vw;
+        padding-right: calc(var(--bs-gutter-x) * 0.5);
       }
     }
     .box {

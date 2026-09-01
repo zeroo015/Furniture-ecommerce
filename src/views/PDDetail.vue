@@ -60,7 +60,7 @@
           <ul class="list-unstyled text-start">
             <li class="d-flex align-items-center p-3 mb-3 rounded bg-primary">
               <span class="text-white chiron-goround-tc-font col-2 me-1"><i class="bi bi-box-seam-fill bolder"></i> 到府服務</span>
-              <div class="tt me-auto text-light">大型傢俱請於備註欄標示可收貨時間，以利協助送貨到府</div>
+              <div class="tt me-auto text-light">大型傢俱請於備註欄標示可收貨時間，以利送貨到府</div>
             </li>
             <li class="d-flex align-items-center p-3 mb-3 rounded">
               <span class="text-primary chiron-goround-tc-font col-2 me-1"><i class="bi bi-clock bolder"></i> 最後倒數</span>

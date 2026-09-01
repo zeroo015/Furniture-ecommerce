@@ -45,7 +45,7 @@ export default {
   }
 }
 :deep(.timer) {
-  font-size: .875em;
+  font-size: .875em !important;
   .timer-text {
     padding: 0 !important;
     font-weight: 500;

@@ -3,9 +3,11 @@
     <!-- 版頭 -->
     <div class="Area Area1220 Area_top">
       <SwiperTopPD></SwiperTopPD>
-      <div class="scroll d-flex align-content-center">
-        <div class="arrowline align-self-center"></div>
-        <span class="ms-2">SCROLL</span>
+      <div class="scroll">
+        <div class="d-flex align-content-center uptodown-play">
+          <div class="arrowline align-self-center"></div>
+          <span class="ms-2">SCROLL</span>
+        </div>
       </div>
     </div>
 

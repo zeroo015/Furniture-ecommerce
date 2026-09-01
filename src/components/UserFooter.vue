@@ -9,18 +9,20 @@
         <ul class="list-unstyled m-0 p-0 pt-3 pt-md-0 d-flex gap-3 justify-content-center align-items-center align-items-md-start" style="font-size: .875rem">
           <!-- <li class="me-3"><router-link to="/about" class="nav-link">About</router-link></li> -->
           <li class="me-3"><router-link to="/shop" class="nav-link">Store</router-link></li>
-          <li class="me-3"><router-link to="/gallery" class="nav-link">Gallery</router-link></li>
-          <li><router-link to="/gallery" class="nav-link">FAQ</router-link></li>
-          <li class="d-md-none ms-3 align-self-start"><a href="#"><i class="bi bi-instagram fs-5"></i></a></li>
-          <li class="d-md-none ms-2 align-self-start"><a href="#"><i class="bi bi-github fs-5"></i></a></li>
+          <li class="me-3"><router-link to="/gallery/living" class="nav-link">Gallery</router-link></li>
+          <li><router-link to="/FAQ" class="nav-link">FAQ</router-link></li>
+          <!-- <li class="d-md-none ms-3 align-self-start"><a href="#"><i class="bi bi-instagram fs-5"></i></a></li> -->
+          <li class="d-md-none ms-3 align-self-start"><router-link to="/admin"><i class="bi bi-person-circle fs-5"></i></router-link></li>
+          <li class="d-md-none ms-2 align-self-start"><a href="https://github.com/zeroo015"><i class="bi bi-github fs-5"></i></a></li>
         </ul>
       </div>
       <div class="line2 d-flex justify-content-between flex-column flex-md-row">
         <span class="align-self-center mt-1" style="font-size: .875rem">© 2026 SOOThing. All rights reserved. 本網站僅作個人練習，無商業用途</span>
         <div class="d-none d-md-block">
           <!-- <a class="me-3" href="#"><i class="bi bi-envelope-fill fs-4"></i></a> -->
-          <a class="me-3" href="#"><i class="bi bi-instagram fs-4"></i></a>
-          <a href="#"><i class="bi bi-github fs-4"></i></a>
+          <!-- <a class="me-3" href="#"><i class="bi bi-instagram fs-4"></i></a> -->
+          <router-link to="/admin" class="me-3" title="管理後台"><i class="bi bi-person-circle fs-4"></i></router-link>
+          <a href="https://github.com/zeroo015" title="Github" target="_blank"><i class="bi bi-github fs-4"></i></a>
         </div>
       </div>
     </div>
