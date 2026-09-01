@@ -156,7 +156,7 @@ footer {
   .logo_svg {
     fill: var(--bs-white);
     @include media-breakpoint-down(md) {
-        transform: scale(.95);
+        transform: scale(.96);
         transform-origin: top right;
       }
   }
@@ -172,13 +172,19 @@ footer {
     }
   }
   &.bg-dark {
-    a{
+    a {
       color: #fff;
       &:hover {
         color: var(--bs-secondary);
         .logo_svg {
           fill: var(--bs-secondary);
         }
+      }
+    }
+    .navTxt {
+      font-size: .875em;
+      @include media-breakpoint-down(md) {
+        font-size: 1.02em;
       }
     }
   }

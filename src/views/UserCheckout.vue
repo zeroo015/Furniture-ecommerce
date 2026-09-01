@@ -94,9 +94,9 @@
         </div>
         <div class="d-flex gap-2 mt-4">
           <!-- v-on 回上一頁 -->
-          <button class="btn btn-sm btn-outline-dark w-100" @click="goCartlist">回上一頁</button>
+          <button class="btn btn-outline-dark w-100" @click="goCartlist">回上一頁</button>
           <!-- v-on 前往結帳頁 -->
-          <button class="btn btn-sm btn-primary w-100" form="checkForm">前往結帳</button>
+          <button class="btn btn-primary w-100" form="checkForm">前往結帳</button>
         </div>
       </div>
     </div>
