@@ -4,7 +4,6 @@
   <div class="home d-flex flex-column min-vh-100 position-relative">
     <UserNavbar></UserNavbar>
     <div class="position-relative pb-5 flex-shrink-0">
-      <ToastMsgs></ToastMsgs>
       <router-view/>
       <GoTop></GoTop>
     </div>
@@ -17,7 +16,6 @@
 // @ is an alias to /src
 import UserNavbar from '@/components/UserNavbar.vue'
 import UserFooter from '@/components/UserFooter.vue'
-import ToastMsgs from '@/components/ToastMsgs.vue'
 import GoTop from '@/components/GoTop.vue'
 import TopAD from '@/components/TopAD.vue'
 import AdsModal from '@/components/AdsModal.vue'
@@ -33,7 +31,6 @@ export default {
   components: {
     UserNavbar,
     UserFooter,
-    ToastMsgs,
     GoTop,
     TopAD,
     AdsModal

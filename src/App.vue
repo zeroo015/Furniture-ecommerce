@@ -1,6 +1,16 @@
 <template>
   <router-view/>
+  <ToastMsgs></ToastMsgs>
 </template>
+
+<script>
+import ToastMsgs from './components/ToastMsgs.vue'
+export default {
+  components: {
+    ToastMsgs
+  }
+}
+</script>
 
 <style lang="scss">
 @import "./assets/Layout";

@@ -1,9 +1,8 @@
 <template>
   <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
-  <div class="d-flex flex-column min-vh-100">
+  <div class="d-flex flex-column min-vh-100" v-if="!isCheckLogin">
     <AdminNavbar></AdminNavbar>
     <div class="admin container position-relative p-4 flex-shrink-0">
-      <ToastMsgs></ToastMsgs>
       <div class="row">
         <!-- 頁籤 -->
         <div class="col-lg-3 pb-2">
@@ -37,13 +36,16 @@
 
 <script>
 import AdminNavbar from '@/components/AdminNavbar.vue'
-import ToastMsgs from '@/components/ToastMsgs.vue'
 import { mapState } from 'pinia'
 import statusStore from '@/stores/statusStore'
 export default {
+  data() {
+    return {
+      isCheckLogin: false
+    }
+  },
   components: {
-    AdminNavbar,
-    ToastMsgs
+    AdminNavbar
   },
   computed: {
     ...mapState(statusStore, ['isLoading'])
@@ -57,16 +59,19 @@ export default {
     this.$http.defaults.headers.common.Authorization = token
 
     // 檢視登入狀態
+    this.isCheckLogin = true
     const api = `${process.env.VUE_APP_API}v2/api/user/check`
     this.$http.post(api)
       .then((res) => {
         console.log(res.data) // 檢視登入狀態
+        this.isCheckLogin = false
         // 若未登入跳轉回登入頁
         if (!res.data.success) {
           this.$router.push('/login')
         }
       }).catch((err) => {
         console.log(err.response.data)
+        this.isCheckLogin = false
         this.$router.push('/login')
       })
   },
