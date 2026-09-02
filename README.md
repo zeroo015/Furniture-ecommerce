@@ -36,19 +36,24 @@ https://zeroo015.github.io/Furniture-ecommerce/
 - SCSS
 - ESlint(Standard)
 
-### Plugin 套件/函式庫
+### Plugin 套件
 - [VueRouter](https://router.vuejs.org/) 路由設置
 - [Vue-axios](https://github.com/imcvampire/vue-axios) API 串接
 - [Pinia](https://pinia.vuejs.org/) 狀態管理
 - [Vee-validate/zod](https://vee-validate.logaretm.com/v4/integrations/zod-schema-validation/) 表單驗證
 - [Vue-loading-overlay](https://www.npmjs.com/package/vue-loading-overlay) 讀取效果
 - [Swiper](https://swiperjs.com/) 輪播動態
-- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [Bootstrap Icons](https://icons.getbootstrap.com/) 圖示庫
 
 
 ## Project setup
 ```
 npm install
+```
+
+Having the upstream dependency conflict, retry this command with
+```
+npm install --legacy-peer-deps
 ```
 
 ### Compiles and hot-reloads for development
