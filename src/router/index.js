@@ -33,28 +33,48 @@ const routes = [
             path: 'living',
             components: {
               up: () => import('../components/GalleryLiving.vue'), // 屬性為 router-view 的 name
-              down: () => import('../components/GridWaterfallLiving.vue')
+              down: () => import('../components/GridWaterfallFilter.vue')
+            },
+            props: {
+              down: {
+                filterSpace: '客廳'
+              }
             }
           },
           {
             path: 'dining',
             components: {
               up: () => import('../components/GalleryDining.vue'),
-              down: () => import('../components/GridWaterfallDining.vue')
+              down: () => import('../components/GridWaterfallFilter.vue')
+            },
+            props: {
+              down: {
+                filterSpace: '餐廳'
+              }
             }
           },
           {
             path: 'study',
             components: {
               up: () => import('../components/GalleryStudy.vue'),
-              down: () => import('../components/GridWaterfallStudy.vue')
+              down: () => import('../components/GridWaterfallFilter.vue')
+            },
+            props: {
+              down: {
+                filterSpace: '書房'
+              }
             }
           },
           {
             path: 'work',
             components: {
               up: () => import('../components/GalleryWork.vue'),
-              down: () => import('../components/GridWaterfallWork.vue')
+              down: () => import('../components/GridWaterfallFilter.vue')
+            },
+            props: {
+              down: {
+                filterSpace: '工作空間'
+              }
             }
           }
         ]

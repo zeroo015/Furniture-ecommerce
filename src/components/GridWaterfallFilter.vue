@@ -44,12 +44,18 @@ export default {
       resizeTimer: null
     }
   },
+  props: {
+    filterSpace: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
     ...mapState(useProductStore, ['products']),
 
     // 篩選本頁商品
     filterProducts() {
-      return this.products.filter((item) => item.space.includes('客廳'))
+      return this.products.filter((item) => item.space.includes(this.filterSpace))
     },
     totalNum() {
       return this.filterProducts.length
