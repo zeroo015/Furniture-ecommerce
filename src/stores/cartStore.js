@@ -26,7 +26,6 @@ export default defineStore('cartStore', {
       const cartItem = { product_id: id, qty: qty } // 建立回傳資料格式
       axios.post(api, { data: cartItem })
         .then((res) => {
-          // console.log(res.data)
           this.getCart()
           status.cartLoading = ''
           status.msgState(res, '加入購物車')
@@ -40,7 +39,6 @@ export default defineStore('cartStore', {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/cart` // 購物車 api
       axios.get(api)
         .then((res) => {
-          // console.log(res.data)
           this.cart = res.data.data.carts
           this.total.total = res.data.data.total
           this.total.final_total = res.data.data.final_total
@@ -49,7 +47,7 @@ export default defineStore('cartStore', {
             this.coupon = this.cart[0].coupon
           }
         }).catch((err) => {
-          console.log(err.response.data)
+          console.log(err.response?.data)
         })
     },
     // 更改商品數量
@@ -63,12 +61,11 @@ export default defineStore('cartStore', {
       }
       axios[apiMethod](api, { data: cartItem })
         .then((res) => {
-          // console.log(res.data)
           status.cartLoading = ''
           this.getCart()
         }).catch((err) => {
           status.cartLoading = ''
-          status.msgState(err, '更改商品數量')
+          status.msgState(err, '商品數量更新')
         })
     },
     // 刪除單一商品
@@ -108,13 +105,12 @@ export default defineStore('cartStore', {
       const order = form
       axios.post(api, { data: order })
         .then((res) => {
-          // console.log(res)
           const orderId = res.data.orderId
           status.isLoading = false
           router.push(`/paying/${orderId}`)
         }).catch((err) => {
-          console.log(err.response.data)
           status.isLoading = false
+          status.msgState(err, '訂單建立')
         })
     },
     // 取得單一訂單: 不加 Vueloading 體驗較順暢
@@ -122,10 +118,9 @@ export default defineStore('cartStore', {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/order/${id}` // 取得某筆訂單 api
       axios.get(api)
         .then((res) => {
-          // console.log(res.data)
           this.order = res.data.order
         }).catch((err) => {
-          console.log(err.response.data)
+          console.log(err.response?.data)
         })
     },
     // 結帳付款
@@ -134,7 +129,6 @@ export default defineStore('cartStore', {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/pay/${id}` // 付款 api
       axios.post(api)
         .then((res) => {
-          // console.log(res)
           status.cartLoading = ''
           status.msgState(res, '訂單付款')
           this.getOrder(id) // 重新取得訂單確認付款狀態

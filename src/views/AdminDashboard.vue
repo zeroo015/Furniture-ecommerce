@@ -38,6 +38,7 @@
 import AdminNavbar from '@/components/AdminNavbar.vue'
 import { mapState } from 'pinia'
 import statusStore from '@/stores/statusStore'
+const status = statusStore()
 export default {
   data() {
     return {
@@ -63,16 +64,17 @@ export default {
     const api = `${process.env.VUE_APP_API}v2/api/user/check`
     this.$http.post(api)
       .then((res) => {
-        console.log(res.data) // 檢視登入狀態
         this.isCheckLogin = false
         // 若未登入跳轉回登入頁
         if (!res.data.success) {
           this.$router.push('/login')
         }
       }).catch((err) => {
-        console.log(err.response.data)
-        this.isCheckLogin = false
-        this.$router.push('/login')
+        status.msgState(err, '登入驗證')
+        setTimeout(() => {
+          this.isCheckLogin = false
+          this.$router.push('/login')
+        }, 1000)
       })
   },
   mounted() {

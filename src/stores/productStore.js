@@ -93,7 +93,6 @@ export const useProductStore = defineStore('productStore', {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/products/all` // 取得所有商品 api
       axios.get(api)
         .then((res) => {
-          // console.log(res.data)
           this.products = res.data.products
           if (!this.filterObj.category) {
             this.filterObj.category = 'all' // 避免其他頁頁面跳轉類別條件被覆蓋 >> 若無類別再執行
@@ -102,7 +101,7 @@ export const useProductStore = defineStore('productStore', {
           this.resetPage() // 確保載入後在第一頁
           status.isLoading = false
         }).catch((err) => {
-          console.log(err.response.data)
+          console.log(err.response?.data)
           status.isLoading = false
         })
     },

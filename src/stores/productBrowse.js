@@ -22,12 +22,11 @@ export const useBrowseLogStore = defineStore('productBrowse', {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/product/${id}` // 取得單一商品 api
       axios.get(api)
         .then((res) => {
-          // console.log(res.data)
           this.product = res.data.product
           this.recordBrowsing(res.data.product)
           status.isLoading = false
         }).catch((err) => {
-          console.log(err.response.data)
+          console.log(err.response?.data)
           status.isLoading = false
         })
     },

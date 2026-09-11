@@ -30,8 +30,8 @@ export default {
           // 清空 hexToken cookie
           document.cookie = `hexToken=;expires= ${new Date(0).toGMTString()}` // set the expires parameter to a past date
         }).catch((err) => {
-          console.log(err.response.data)
           status.isLoading = false
+          status.msgState(err, '登出')
         })
     }
   }

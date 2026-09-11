@@ -71,7 +71,6 @@ export default {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}` // 取得商品列表 api
       this.$http.get(api)
         .then((res) => {
-          console.log(res.data)
           this.products = res.data.products
           this.pagination = res.data.pagination
           status.isLoading = false
@@ -80,7 +79,7 @@ export default {
             behavior: 'instant' // 直接跳至頂部
           })
         }).catch((err) => {
-          console.log(err.response.data)
+          console.log(err.response?.data)
           status.isLoading = false
         })
     },

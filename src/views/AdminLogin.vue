@@ -41,7 +41,6 @@ export default {
       const api = `${process.env.VUE_APP_API}v2/admin/signin` // 登入 api
       this.$http.post(api, this.user)
         .then((res) => {
-          // console.log(res.data)
           status.isLoading = false
           if (res.data.success) {
             const { token, expired } = res.data
@@ -49,15 +48,10 @@ export default {
             this.$router.push('/admin')
           }
         }).catch((err) => {
-          console.log(err.response.data)
           status.isLoading = false
+          status.msgState(err, '登入')
         })
     }
-  },
-  created() {
-    // 確認 api 站點連接成功
-    // console.log(process.env.VUE_APP_API)
-    // console.log(process.env.VUE_APP_PATH)
   }
 }
 </script>

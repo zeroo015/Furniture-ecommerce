@@ -167,8 +167,7 @@ const router = createRouter({
   linkExactActiveClass: 'active', // 預設為 router-link-exact-active，嚴格匹配(當有 path:'' 的頁面選到它的 children 不會同時高亮)
 
   // 換頁回到最上方
-  scrollBehavior(to, from, savedPosition) {
-    // console.log(to, from, savedPosition) // to 前往頁面、from 來自頁面、視窗位置(未存取顯示 null)
+  scrollBehavior(to, from, savedPosition) { // to 前往頁面、from 來自頁面、視窗位置(未存取顯示 null)
     // 當網址路徑含有 '/' 的頁面有 scrollTop
     if (to.fullPath.match('/')) {
       return {

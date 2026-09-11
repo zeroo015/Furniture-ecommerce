@@ -79,7 +79,7 @@ export default {
             behavior: 'instant' // 直接跳至頂部
           })
         }).catch((err) => {
-          console.log(err.response.data)
+          console.log(err.response?.data)
           status.isLoading = false
         })
     },
@@ -126,7 +126,6 @@ export default {
       const api = `${process.env.VUE_APP_API}v2/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}` // 刪除優惠券 api
       this.$http.delete(api)
         .then((res) => {
-          // console.log(res, this.tempCoupon)
           status.isLoading = false
           this.$refs.delModal.hideModal()
           this.getCoupons()
