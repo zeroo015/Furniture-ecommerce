@@ -96,6 +96,12 @@ export default {
   },
   mounted() {
     this.startTimer()
+  },
+  unmounted() {
+    // 倒數結束前離開頁面時清除
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval)
+    }
   }
 }
 </script>

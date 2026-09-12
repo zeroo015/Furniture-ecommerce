@@ -90,6 +90,7 @@ export default {
         this.tempProduct = { ...item } // 編輯
       }
       this.isNew = isNew
+      this.$refs.productModal.resetInput() // 清空上傳圖片欄位
       this.$refs.productModal.showModal()
     },
     updateProduct(item) {

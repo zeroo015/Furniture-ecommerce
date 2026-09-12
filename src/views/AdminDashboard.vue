@@ -27,7 +27,7 @@
     <!-- Sticky footer >> flexbox 自動撐滿剩餘區域 -->
     <footer class="footer mt-auto py-3">
       <div class="container p-lg-0 d-flex justify-content-center flex-column flex-md-row">
-        <a class="me-2" href="#"><i class="bi bi-github fs-4"></i></a>
+        <a class="me-2" href="https://github.com/zeroo015" target="_blank"><i class="bi bi-github fs-4"></i></a>
         <span class="align-self-center text-muted" style="font-size: .875rem">© 2026 SOOThing. All rights reserved. 本網站僅作個人練習，無商業用途</span>
       </div>
     </footer>
@@ -60,16 +60,19 @@ export default {
     this.$http.defaults.headers.common.Authorization = token
 
     // 檢視登入狀態
+    status.isLoading = true
     this.isCheckLogin = true
     const api = `${process.env.VUE_APP_API}v2/api/user/check`
     this.$http.post(api)
       .then((res) => {
+        status.isLoading = false
         this.isCheckLogin = false
         // 若未登入跳轉回登入頁
         if (!res.data.success) {
           this.$router.push('/login')
         }
       }).catch((err) => {
+        status.isLoading = false
         status.msgState(err, '登入驗證')
         setTimeout(() => {
           this.isCheckLogin = false

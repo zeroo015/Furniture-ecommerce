@@ -21,22 +21,22 @@
       <button class="navbar-toggler pe-1 border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="toggleClass">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse order-lg-2 mt-1 mt-lg-0" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse order-lg-2 mt-1 mt-lg-0" id="navbarSupportedContent" :class="{show: isOpen}">
         <div class="navbar-nav align-items-center ms-auto gap-2">
           <!-- 改點擊後自動收合 -->
-          <!-- <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/about')">About</a> -->
-          <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/shop')">Store</a>
-          <!-- <a href="#" class="nav-link link-animated me-lg-3" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery')">Gallery</a> -->
+          <!-- <router-link to="/about" class="nav-link link-animated me-lg-3" @click.prevent="navLinkTo">About</router-link> -->
+          <router-link to="/shop" class="nav-link link-animated me-lg-3" @click.prevent="navLinkTo">Store</router-link>
+          <!-- <router-link to="/gallery" class="nav-link link-animated me-lg-3" @click.prevent="navLinkTo">Gallery</router-link> -->
           <div class="btn-group dropdownList">
             <a href="#" class="nav-link link-animated me-lg-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" :disabled="isLarge">Gallery</a>
             <ul class="dropdown-menu" :class="{'dropdown-item-text': isLarge}">
-              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/living')">客廳</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/dining')">餐廳</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/study')">書房</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/gallery/work')">工作空間</a></li>
+              <li><router-link to="/gallery/living" class="dropdown-item" @click.prevent="navLinkTo">客廳</router-link></li>
+              <li><router-link to="/gallery/dining" class="dropdown-item" @click.prevent="navLinkTo">餐廳</router-link></li>
+              <li><router-link to="/gallery/study" class="dropdown-item" @click.prevent="navLinkTo">書房</router-link></li>
+              <li><router-link to="/gallery/work" class="dropdown-item" @click.prevent="navLinkTo">工作空間</router-link></li>
             </ul>
           </div>
-          <a href="#" class="nav-link link-animated me-lg-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" @click.prevent="navLinkTo('/FAQ')">FAQ</a>
+          <router-link to="/FAQ" class="nav-link link-animated me-lg-4" @click.prevent="navLinkTo">FAQ</router-link>
         </div>
       </div>
     </div>
@@ -82,10 +82,9 @@ export default {
     toggleClass() {
       this.isOpen = !this.isOpen
     },
-    navLinkTo(path) {
+    navLinkTo() {
       this.toggleClass()
       this.clearFilters()
-      this.$router.push(path)
     }
   },
   mounted() {

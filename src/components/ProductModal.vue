@@ -208,6 +208,9 @@ export default {
     },
     cofirmAdd() {
       this.tempProduct.imagesUrl.push(this.tempProduct.imageUrl)
+      this.resetInput()
+    },
+    resetInput() {
       this.$refs.urlInput.value = '' // 清空輸入網址欄位
       this.$refs.fileInput.value = '' // 清空選擇檔案欄位
     }

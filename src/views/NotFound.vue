@@ -12,7 +12,8 @@
 export default {
   data() {
     return {
-      timeLeft: 3
+      timeLeft: 3,
+      timerInterval: null
     }
   },
   methods: {
@@ -31,6 +32,12 @@ export default {
     this.startTimer()
     // 自動轉址：3 秒後跳轉至首頁 home
     // setTimeout(() => this.$router.push({ path: '/' }), 3000) // path 為 "/" 既為根目錄，3000為毫秒
+  },
+  unmounted() {
+    // 倒數結束前離開頁面時清除
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval)
+    }
   }
 }
 </script>
