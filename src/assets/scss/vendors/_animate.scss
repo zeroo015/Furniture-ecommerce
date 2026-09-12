@@ -1,0 +1,113 @@
+// 動態
+.link-animated {
+  @include media-breakpoint-up(md) {
+    position: relative;
+    &::before {
+      content: "";
+      transform-origin: left;
+      background: currentColor;
+      width: 85%;
+      height: 1px;
+      transition: transform .3s;
+      position: absolute;
+      bottom: 4px;
+      left: 11%;
+      transform: scaleX(0);
+    }
+    &:hover {
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+.breadcrumb {
+  .link-animated {
+    @include media-breakpoint-up(md) {
+      &::before {
+        width: 100%;
+        bottom: -3px;
+        left: 0;
+      }
+    }
+  }
+  &.default {
+    @include media-breakpoint-up(md) {
+      padding-left: 1.275rem;
+    }
+    @include media-breakpoint-down(md) {
+      padding-left: .5rem;
+    }
+  }
+}
+
+// 向左滑
+.slideLeft {
+	animation-name: slideLeft;
+	-webkit-animation-name: slideLeft;	
+
+	animation-duration: 1s;	
+	-webkit-animation-duration: 1s;
+
+	animation-timing-function: ease-in-out;	
+	-webkit-animation-timing-function: ease-in-out;		
+
+	visibility: visible !important;	
+}
+@keyframes slideLeft {
+	0% {
+		transform: translateX(150%);
+	}
+	50%{
+		transform: translateX(-4%);
+	}
+	65%{
+		transform: translateX(1%);
+	}
+	80%{
+		transform: translateX(-1%);
+	}
+	95%{
+		transform: translateX(0%);
+	}			
+	100% {
+		transform: translateX(0%);
+	}
+}
+@-webkit-keyframes slideLeft {
+	0% {
+		-webkit-transform: translateX(150%);
+	}
+	50%{
+		-webkit-transform: translateX(-4%);
+	}
+	65%{
+		-webkit-transform: translateX(1%);
+	}
+	80%{
+		-webkit-transform: translateX(-1%);
+	}
+	95%{
+		-webkit-transform: translateX(0%);
+	}			
+	100% {
+		-webkit-transform: translateX(0%);
+	}
+}
+
+// motionLine
+@keyframes motionLine {
+  0%   { width: 0;}
+  100% { width: 3.7em;}
+}
+@keyframes motionLineS {
+  0%   { height: 0;}
+  100% { height: 3.7em;}
+}
+
+// 飄-上下
+.uptodown-play { animation:uptodown-play 1.5s ease-in-out infinite alternate; }
+@keyframes uptodown-play { 
+  0%   { transform: translate(-8px, 0);} 
+  100% { transform: translate(0px, 0);}
+}

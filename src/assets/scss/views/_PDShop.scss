@@ -1,0 +1,227 @@
+/* -----------------------------------
+ * PDShop.vue 前台商品館頁
+ * ----------------------------------- */
+.shop {
+  .navArea {
+    border-color: #333 !important;
+    @include media-breakpoint-down(md) {
+      overflow-x: scroll;
+      .box {
+        width: 170vw;
+        padding-right: calc(var(--bs-gutter-x) * 0.5);
+      }
+    }
+    .box {
+      @include media-breakpoint-up(md) {
+        width: 900px;
+        margin: 0 auto;
+        .navItem {
+          width: 150px;
+          &:hover {
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 5px;
+              background-color: var(--bs-primary);
+            }
+          }
+        }
+      }
+      .navItem {
+        padding: .75em 0 1em;
+        cursor: pointer;
+        position: relative;
+        &.active {
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+          }
+        }
+      }
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    // padding-top: 53px;
+    .navArea {
+      top: 74px;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    .navArea {
+      top: 72px;
+    }
+  }
+  @include media-breakpoint-between(md, xl) {
+    .navArea {
+      .box {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// 按鈕區
+.filterBar {
+  .selectOrder {
+    width: 10em;
+    border-radius: .5em;
+    &.dropdown-toggle::after {
+      margin-left: 0;
+      border-width: .35em;
+      position: absolute;
+      top: 46%;
+      right: 8%;
+    }
+    .sortTxt {
+      display: none;
+    }
+  }
+  .btnFilter {
+    border-radius: .5em;
+    i.bi {
+      font-size: 1.2em;
+    }
+    small {
+      display: inline-block;
+      width: 1.5em;
+      height: 1.5em;
+      transform: translateY(-1px);
+    }
+  }
+  .arrangeIcon {
+    font-size: 1.5em;
+    i.bi {
+      &::before {
+        font-weight: 700 !important;
+      }
+    }
+  }
+}
+.resultTxt {
+  font-size: 1.125em;
+}
+
+// 商品列表
+.PD_item {
+  position: relative;
+  transition: all .4s ease;
+  @include media-breakpoint-down(md) {
+    font-size: 3vw;
+  }
+  .direction {
+    flex-direction: column;
+  }
+  .tag {
+    // font-size: 1.125em;
+    padding: .25em .625em;
+  }
+  .card-body {
+    padding: .875em 0;
+  }
+  .pdName {
+    font-size: 1.25em;
+    margin-bottom: .375em;
+    // 超出一行...
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    white-space: nowrap; // 不換行
+  }
+  .oriPrice {
+    font-size: .9375em;
+  }
+  .salePrice {
+    font-size: 1.75em;
+  }
+  .actionGroup {
+    position: absolute;
+    bottom: 1.6em;
+    right: .63em;
+    i.bi {
+      font-size: 1.625em;
+    }
+    .icon {
+      width: 1.625em;
+      i:last-child {
+        display: none;
+      }
+    }
+    .iconAddLike {
+      margin-right: .25em;
+      i.bi {
+        &::before {
+          vertical-align: -0.2em;
+        }
+      }
+      &.active {
+        i:first-child {
+          display: none;
+        }
+        i:last-child {
+          display: block;
+        }
+      }
+    }
+    .iconAddCart {
+      &.disabled {
+        pointer-events: none;
+      }
+    }
+  }
+  .icon:hover {
+    i:first-child {
+      display: none;
+    }
+    i:last-child {
+      display: block;
+    }
+  }
+  .card-img-top {
+    // 正方形圖片
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    transition: all .4s ease;
+  }
+  &:hover {
+    @include media-breakpoint-up(md) {
+      transform: translateY(-6px);
+      // .card-img-top {
+      //   border: solid 4px var(--bs-primary);
+      // }
+    }
+  }
+}
+// 條狀排列
+.arrangeLine {
+  justify-content: center;
+  .PD_item {
+    width: 100%;
+    .direction {
+      flex-direction: row;
+    }
+    .tag {
+      font-size: .875em;
+    }
+    .pic {
+      flex-basis: 11%;
+      margin-right: 1.5em;
+      @include media-breakpoint-down(lg) {
+        flex-basis: 24%;
+      }
+    }
+    .card-body {
+      align-self: center;
+      padding: .125em 0;
+    }
+  }
+}

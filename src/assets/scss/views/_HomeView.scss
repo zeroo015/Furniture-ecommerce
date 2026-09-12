@@ -1,0 +1,49 @@
+// 前台共用
+// .home {
+//   padding-top: 74px;
+// }
+.Area {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  padding: 0;
+}
+.Area1220 {
+  @include media-breakpoint-up(lg) {
+    width: 1220px;
+  }
+  // @include media-breakpoint-only(lg) {
+  //   width: 100%;
+  // }
+}
+.Areabottom {
+  margin-bottom: 10vw;
+  @include media-breakpoint-up(md) {
+    margin-bottom: 80px;
+  }
+}
+.AreaTitle {
+  .smTxt {
+    font-size: 1.5em;
+    letter-spacing: .01em;
+    margin-bottom: -1em;
+  }
+  .engTxt {
+    font-size: 4.375em;
+    line-height: 1.35;
+  }
+}
+.decoDot {
+  position: relative;
+  width: fit-content;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 24%;
+    right: -.825rem;
+    width: .435rem;
+    height: .435rem;
+    border-radius: 50%;
+    background-color: var(--bs-info);
+  }
+}

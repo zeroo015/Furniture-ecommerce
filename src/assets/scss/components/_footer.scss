@@ -1,0 +1,38 @@
+// Footer
+footer {
+  .logo_svg {
+    fill: var(--bs-white);
+    @include media-breakpoint-down(md) {
+        transform: scale(.96);
+        transform-origin: top right;
+      }
+  }
+  a {
+    color: var(--bs-secondary-color);
+    &:hover {
+      color: var(--bs-primary);
+    }
+    i.fs-4 {
+      @include media-breakpoint-down(lg) {
+        font-size: 1.5rem !important;
+      }
+    }
+  }
+  &.bg-dark {
+    a {
+      color: #fff;
+      &:hover {
+        color: var(--bs-secondary);
+        .logo_svg {
+          fill: var(--bs-secondary);
+        }
+      }
+    }
+    .navTxt {
+      font-size: .875em;
+      @include media-breakpoint-down(md) {
+        font-size: 1.02em;
+      }
+    }
+  }
+}

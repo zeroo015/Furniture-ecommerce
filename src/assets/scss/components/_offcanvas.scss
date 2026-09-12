@@ -1,0 +1,17 @@
+// Offcanvas
+.offcanvas {
+  .offcanvas {
+    &-body {
+      .tt {
+        line-height: 1.75;
+        font-size: 1.1em;
+      }
+      .form-check {
+        margin-bottom: .5em;
+      }
+    }
+    &-footer {
+      padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
+    }
+  }
+}
