@@ -1,8 +1,8 @@
 <template>
   <div class="gallery container-lg">
     <!-- 情境推薦 -->
-    <router-view name="up"></router-view>
+    <router-view name="up" />
     <!-- 瀑布流商品 -->
-    <router-view name="down"></router-view>
+    <router-view name="down" />
   </div>
 </template>

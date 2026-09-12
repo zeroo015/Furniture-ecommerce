@@ -17,7 +17,7 @@
     </div>
     <div class="cartlist pt-5" v-else>
       <!-- 進度條 -->
-      <ProgressBar class="progressOne Areabottom" :progress="0"></ProgressBar>
+      <ProgressBar class="progressOne Areabottom" :progress="0" />
       <!-- 購物車清單 -->
       <div class="list text-start mb-5">
         <h5 class="mb-2">購物車 ({{ cart.length }} 件)</h5>

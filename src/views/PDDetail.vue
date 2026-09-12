@@ -3,7 +3,7 @@
     <div class="Area1 row justify-content-evenly align-items-center text-start mb-5">
       <!-- 主圖輪播 -->
       <div class="box_L col-md-6">
-        <SwiperThumbs></SwiperThumbs>
+        <SwiperThumbs />
       </div>
       <div class="box_R col-md-5 px-4 px-lg-5">
         <!-- 麵包屑 -->
@@ -98,7 +98,7 @@
             <div class="pb-mb-3 fs-3">為您推薦</div>
           </div>
         </div>
-        <SwiperProducts :propsProducts="recommendProducts" :propsId="productId"></SwiperProducts>
+        <SwiperProducts :propsProducts="recommendProducts" :propsId="productId" />
       </div>
       <!-- 瀏覽記錄(輪播) -->
       <div class="Area_Viewed Area_swiper mb-3">
@@ -108,7 +108,7 @@
             <div class="pb-mb-3 fs-3">最近瀏覽</div>
           </div>
         </div>
-        <SwiperProducts :propsProducts="historyProducts" :propsId="productId"></SwiperProducts>
+        <SwiperProducts :propsProducts="historyProducts" :propsId="productId" />
       </div>
     </div>
   </div>

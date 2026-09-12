@@ -2,7 +2,7 @@
   <!-- ToastList：控制定位和訊息呈現 >> 避免頁面過長看不到改為 fixed -->
   <div class="toast-container position-fixed end-0 p-4">
     <!-- props 將 msg 傳至子元件 Toast -->
-    <ToastUnit v-for="(msg, index) in messages" :key="'msg'+index" :msg="msg"></ToastUnit>
+    <ToastUnit v-for="(msg, index) in messages" :key="'msg'+index" :msg="msg" />
   </div>
 </template>
 

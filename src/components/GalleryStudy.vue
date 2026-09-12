@@ -22,8 +22,8 @@
         <div class="caption text-end text-primary pe-3">A coordinated, organised space<br>makes it easier to work</div>
       </div>
       <div class="Area_PD d-flex justify-content-end">
-        <ProductCard :productId="'-Ox06xZm-d0AOM2s64Wg'" :index="'0'"></ProductCard>
-        <ProductCard :productId="'-OwznPUwdjZvtlXkfO9g'" :index="'1'"></ProductCard>
+        <ProductCard :productId="'-Ox06xZm-d0AOM2s64Wg'" :index="'0'" />
+        <ProductCard :productId="'-OwznPUwdjZvtlXkfO9g'" :index="'1'" />
       </div>
     </div>
   </div>

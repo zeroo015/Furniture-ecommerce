@@ -45,9 +45,9 @@
       </table>
     </div>
     <!-- 分頁按鈕 -->
-    <PaginationItem :pages="pagination" @update-page="getOrders"></PaginationItem>
+    <PaginationItem :pages="pagination" @update-page="getOrders" />
   </div>
-  <OrderModal ref="orderModal" :order="tempOrder"></OrderModal>
+  <OrderModal ref="orderModal" :order="tempOrder" />
   <DelModal ref="delModal" :product="tempOrder" @delete-product="delOrder"><template #page>訂單</template></DelModal>
 </template>
 

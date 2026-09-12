@@ -1,5 +1,5 @@
 <template>
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48" />
   <div class="container-fluid login">
     <!-- v-on 登入 -->
     <form class="row justify-content-center align-items-center min-vh-100" @submit.prevent="signIn">

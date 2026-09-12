@@ -1,7 +1,7 @@
 <template>
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48" />
   <div class="d-flex flex-column min-vh-100" v-if="!isCheckLogin">
-    <AdminNavbar></AdminNavbar>
+    <AdminNavbar />
     <div class="admin container position-relative p-4 flex-shrink-0">
       <div class="row">
         <!-- 頁籤 -->
@@ -20,7 +20,7 @@
         </div>
         <!-- 列表區 -->
         <div class="col-lg-9 bg-white rounded-3">
-          <router-view/>
+          <router-view />
         </div>
       </div>
     </div>

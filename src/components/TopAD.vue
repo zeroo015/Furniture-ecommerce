@@ -1,7 +1,7 @@
 <template>
   <div v-if="!isClosed" class="topAD d-flex justify-content-center align-items-center bg-primary w-100 gap-1">
     <a class="d-block p-2 text-white" href="#" @click.prevent="goShop">夏日限定全品項 8 折</a>
-    <CountdownClock v-if="!isEnded"></CountdownClock>
+    <CountdownClock v-if="!isEnded" />
     <button type="button" class="btn btnClose text-white" @click="closeArea"><i class="bi bi-x"></i></button>
   </div>
 </template>

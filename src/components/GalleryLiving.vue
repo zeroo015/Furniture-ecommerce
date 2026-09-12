@@ -23,8 +23,8 @@
         <div class="caption text-end text-primary pe-3">An airy room<br>you want to spend all day in</div>
       </div>
       <div class="Area_PD d-flex justify-content-end">
-        <ProductCard :productId="'-Ox4nJMx74GMcyVGGRWx'" :index="'0'"></ProductCard>
-        <ProductCard :productId="'-Ox02cA1TPweUNT2TkZp'" :index="'1'"></ProductCard>
+        <ProductCard :productId="'-Ox4nJMx74GMcyVGGRWx'" :index="'0'" />
+        <ProductCard :productId="'-Ox02cA1TPweUNT2TkZp'" :index="'1'" />
       </div>
     </div>
   </div>

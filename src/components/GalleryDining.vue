@@ -22,8 +22,8 @@
         <div class="caption text-end text-primary pe-3">An inviting dining space<br>to connect with those you love</div>
       </div>
       <div class="Area_PD d-flex justify-content-end">
-        <ProductCard :productId="'-Ox52uSd2_6coKsEvg5F'" :index="'0'"></ProductCard>
-        <ProductCard :productId="'-Ox5BaSaeK9QP911L_ur'" :index="'1'"></ProductCard>
+        <ProductCard :productId="'-Ox52uSd2_6coKsEvg5F'" :index="'0'" />
+        <ProductCard :productId="'-Ox5BaSaeK9QP911L_ur'" :index="'1'" />
       </div>
     </div>
   </div>

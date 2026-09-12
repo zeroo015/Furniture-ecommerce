@@ -29,7 +29,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <template v-if="isEnded"><span class="fw-bold ps-1 me-1 me-md-2">優惠延長</span><span class="italics me-auto fs-5 text-primary">優惠券現領現折！</span></template>
-          <template v-else><span class="fw-bold smalltxt"><span class="hide">限時</span>倒數</span><CountdownClock class="me-auto"></CountdownClock></template>
+          <template v-else><span class="fw-bold smalltxt"><span class="hide">限時</span>倒數</span><CountdownClock class="me-auto" /></template>
           <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" @click="goShop">立即前往</button>
         </div>
       </div>

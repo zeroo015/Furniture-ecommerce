@@ -30,19 +30,19 @@
       <!-- 右側問答手風琴 -->
       <div class="box_QA col-md-9 ps-md-4 px-3">
         <h5 id="paymentQA" class="text-start">付款方式</h5>
-        <QAAccordion :propsQA="payment" :propsName="'Payment'"></QAAccordion>
+        <QAAccordion :propsQA="payment" :propsName="'Payment'" />
         <h5 id="exchageQA" class="text-start mt-5">退換貨</h5>
-        <QAAccordion :propsQA="exchange" :propsName="'Exchange'"></QAAccordion>
+        <QAAccordion :propsQA="exchange" :propsName="'Exchange'" />
         <h5 id="woodQA" class="text-start mt-5">清潔保養 - 木製</h5>
-        <QAAccordion :propsQA="wood" :propsName="'Wood'"></QAAccordion>
+        <QAAccordion :propsQA="wood" :propsName="'Wood'" />
         <h5 id="fabricQA" class="text-start mt-5">清潔保養 - 布料</h5>
-        <QAAccordion :propsQA="fabric" :propsName="'Fabric'"></QAAccordion>
+        <QAAccordion :propsQA="fabric" :propsName="'Fabric'" />
         <h5 id="leatherQA" class="text-start mt-5">清潔保養 - 皮製</h5>
-        <QAAccordion :propsQA="leather" :propsName="'Leather'"></QAAccordion>
+        <QAAccordion :propsQA="leather" :propsName="'Leather'" />
         <h5 id="metalQA" class="text-start mt-5">清潔保養 - 金屬</h5>
-        <QAAccordion :propsQA="metal" :propsName="'Metal'"></QAAccordion>
+        <QAAccordion :propsQA="metal" :propsName="'Metal'" />
         <h5 id="othersQA" class="text-start mt-5">其他問題</h5>
-        <QAAccordion :propsQA="others" :propsName="'Others'"></QAAccordion>
+        <QAAccordion :propsQA="others" :propsName="'Others'" />
       </div>
     </div>
   </div>

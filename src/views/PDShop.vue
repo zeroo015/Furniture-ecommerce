@@ -84,9 +84,9 @@
         </div>
       </div>
       <!-- 分頁按鈕 -->
-      <PaginationItem class="mt-3 mb-1" :pages="pagination" @update-page="goPage"></PaginationItem>
+      <PaginationItem class="mt-3 mb-1" :pages="pagination" @update-page="goPage" />
     </div>
-    <FilterOffcanvas ref="filterOffcanvas"></FilterOffcanvas>
+    <FilterOffcanvas ref="filterOffcanvas" />
   </div>
 </template>
 

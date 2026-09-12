@@ -39,9 +39,9 @@
       </table>
     </div>
     <!-- 分頁按鈕 -->
-    <PaginationItem :pages="pagination" @update-page="getCoupons"></PaginationItem>
+    <PaginationItem :pages="pagination" @update-page="getCoupons" />
   </div>
-  <CouponModal ref="couponModal" :coupon="tempCoupon" @update-coupon="updateCoupon"></CouponModal>
+  <CouponModal ref="couponModal" :coupon="tempCoupon" @update-coupon="updateCoupon" />
   <DelModal ref="delModal" :product="tempCoupon" @delete-product="delCoupon"><template #page>優惠活動</template></DelModal>
 </template>
 

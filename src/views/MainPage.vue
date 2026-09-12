@@ -2,7 +2,7 @@
   <div class="main container-fluid overflow-hidden">
     <!-- 版頭 -->
     <div class="Area Area1220 Area_top">
-      <SwiperTopPD></SwiperTopPD>
+      <SwiperTopPD />
       <div class="scroll">
         <div class="d-flex align-content-center uptodown-play">
           <div class="arrowline align-self-center"></div>
@@ -119,7 +119,7 @@
           <div class="smTxt decoDot me-4 mb-2">Deal of the Day</div>
           <div class="fs-2">夏日限定<span class="roboto-font text-warning px-2 display-3">8</span>折</div>
         </div>
-        <CountdownClock></CountdownClock>
+        <CountdownClock />
         <button type="button" class="btn btn-secondary px-5 py-2 fs-5 text-primary fw-bold rounded-pill" @click.prevent="goShop">
           <span v-if="isEnded">我要追蹤</span>
           <span v-else>立即購買</span>

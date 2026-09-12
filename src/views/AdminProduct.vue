@@ -39,10 +39,10 @@
       </table>
     </div>
     <!-- 分頁按鈕 -->
-    <PaginationItem :pages="pagination" @update-page="getProducts"></PaginationItem>
+    <PaginationItem :pages="pagination" @update-page="getProducts" />
   </div>
-  <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
-  <DelModal ref="delModal" :product="tempProduct" @delete-product="delProduct"></DelModal>
+  <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct" />
+  <DelModal ref="delModal" :product="tempProduct" @delete-product="delProduct" />
 </template>
 
 <script>

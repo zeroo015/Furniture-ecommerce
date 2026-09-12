@@ -22,8 +22,8 @@
         <div class="caption text-end text-primary pe-3">Step into a well-equipped<br>and flexible co-working community</div>
       </div>
       <div class="Area_PD d-flex justify-content-end">
-        <ProductCard :productId="'-Ox1yCkVNWzojp4wOz-r'" :index="'0'"></ProductCard>
-        <ProductCard :productId="'-Owzupj8g7ApRx1H7jaf'" :index="'1'"></ProductCard>
+        <ProductCard :productId="'-Ox1yCkVNWzojp4wOz-r'" :index="'0'" />
+        <ProductCard :productId="'-Owzupj8g7ApRx1H7jaf'" :index="'1'" />
       </div>
     </div>
   </div>

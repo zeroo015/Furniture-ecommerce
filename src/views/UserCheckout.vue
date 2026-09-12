@@ -2,50 +2,50 @@
   <!-- 購物車頁(2) -->
   <div class="checkout container-lg pt-5">
     <!-- 進度條 -->
-    <ProgressBar class="progressOne Areabottom" :progress="50" :is-active2="true"></ProgressBar>
+    <ProgressBar class="progressOne Areabottom" :progress="50" :is-active2="true" />
     <div class="row justify-content-between text-start Areabottom">
       <!-- 左側：填寫資料表單 -->
       <div class="userData col-lg-7 col-11 mx-auto">
         <h5 class="mb-3">收件人資料</h5>
-        <v-form v-slot="{ errors }" @submit="createOrder(form)" id="checkForm" class="mt-3">
+        <VForm v-slot="{ errors }" @submit="createOrder(form)" id="checkForm" class="mt-3">
           <!-- 姓名 -->
           <div class="row mb-3">
             <label for="name" class="col-sm-1 col-form-label">姓名</label>
             <div class="col-lg-10 col-sm-11 text-start">
-              <v-field id="name" name="姓名" type="text" placeholder="請輸入姓名" class="form-control"
+              <VField id="name" name="姓名" type="text" placeholder="請輸入姓名" class="form-control"
                 :class="{ 'is-invalid': errors['姓名'] }" rules="required|min:2" v-model="form.user.name">
-              </v-field>
-              <error-message name="姓名" class="invalid-feedback ps-2"></error-message>
+              </VField>
+              <ErrorMessage name="姓名" class="invalid-feedback ps-2" />
             </div>
           </div>
           <!-- e-mail -->
           <div class="row mb-3">
             <label for="email" class="col-sm-1 col-form-label">Email</label>
             <div class="col-lg-10 col-sm-11 text-start">
-              <v-field id="email" name="email" type="email" placeholder="請輸入 Email" class="form-control"
+              <VField id="email" name="email" type="email" placeholder="請輸入 Email" class="form-control"
                 :class="{ 'is-invalid': errors['email'] }" rules="required|email" v-model="form.user.email">
-              </v-field>
-              <error-message name="email" class="invalid-feedback ps-2"></error-message>
+              </VField>
+              <ErrorMessage name="email" class="invalid-feedback ps-2" />
             </div>
           </div>
           <!-- 電話 -->
           <div class="row mb-3">
             <label for="tel" class="col-sm-1 col-form-label">電話</label>
             <div class="col-lg-10 col-sm-11 text-start">
-              <v-field id="tel" name="電話" type="text" placeholder="請輸入電話 (市話請加區號)" class="form-control"
+              <VField id="tel" name="電話" type="text" placeholder="請輸入電話 (市話請加區號)" class="form-control"
                 :class="{ 'is-invalid': errors['電話'] }" rules="required|min:10" v-model="form.user.tel">
-              </v-field>
-              <error-message name="電話" class="invalid-feedback ps-2"></error-message>
+              </VField>
+              <ErrorMessage name="電話" class="invalid-feedback ps-2" />
             </div>
           </div>
           <!-- 地址 -->
           <div class="row mb-3">
             <label for="address" class="col-sm-1 col-form-label">地址</label>
             <div class="col-lg-10 col-sm-11 text-start">
-              <v-field id="address" name="地址" type="text" placeholder="請輸入地址" class="form-control"
+              <VField id="address" name="地址" type="text" placeholder="請輸入地址" class="form-control"
                 :class="{ 'is-invalid': errors['地址'] }" rules="required|min:10" v-model="form.user.address">
-              </v-field>
-              <error-message name="地址" class="invalid-feedback ps-2"></error-message>
+              </VField>
+              <ErrorMessage name="地址" class="invalid-feedback ps-2" />
             </div>
           </div>
           <!-- 備註 -->
@@ -55,7 +55,7 @@
               <textarea id="message" name="備註" class="form-control" rows="5" v-model="form.message" placeholder="可收貨時間、商品顏色...等"></textarea>
             </div>
           </div>
-        </v-form>
+        </VForm>
       </div>
       <!-- 右側：訂購清單(不可改) -->
       <div class="order col-lg-5 col-11 mx-auto">

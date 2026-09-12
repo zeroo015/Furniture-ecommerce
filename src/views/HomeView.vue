@@ -1,14 +1,14 @@
 <template>
-  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48"></VueLoading>
-  <TopAD></TopAD>
+  <VueLoading v-model:active="isLoading" :color="'#2c5760'" :width="48" :height="48" />
+  <TopAD />
   <div class="home d-flex flex-column min-vh-100 position-relative">
-    <UserNavbar></UserNavbar>
+    <UserNavbar />
     <div class="position-relative pb-5 flex-shrink-0">
-      <router-view/>
-      <GoTop></GoTop>
+      <router-view />
+      <GoTop />
     </div>
-    <UserFooter></UserFooter>
-    <AdsModal ref="adsModel"></AdsModal>
+    <UserFooter />
+    <AdsModal ref="adsModel" />
   </div>
 </template>
 

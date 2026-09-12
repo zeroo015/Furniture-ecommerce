@@ -2,7 +2,7 @@
   <!-- 購物車頁(3) -->
   <div class="paying container-lg pt-5">
     <!-- 進度條 -->
-    <ProgressBar class="progressOne Areabottom" :progress="100" :is-active2="true" :is-active3="true"></ProgressBar>
+    <ProgressBar class="progressOne Areabottom" :progress="100" :is-active2="true" :is-active3="true" />
     <div class="row justify-content-center mb-5">
       <div class="col-lg-7 col-11">
         <!-- 訂單資料 -->
