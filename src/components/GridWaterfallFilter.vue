@@ -6,7 +6,7 @@
           <img class="product-image" :src="item.imagesUrl[0]" :alt="item.title" @load="handleImageLoad($event, item)">
           <div class="product-info text-center">
             <div class="txt text-white">[ {{ item.title }} ]</div>
-            <div class="price roboto-font text-info"><span>$</span>{{ $filters.currency(item.price) }}</div>
+            <div class="price roboto-font text-secondary"><span>$</span>{{ $filters.currency(item.price) }}</div>
           </div>
         </a>
       </div>
@@ -243,7 +243,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.7);
   }
   &:hover {
     &::after {

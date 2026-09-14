@@ -22,38 +22,50 @@
       <div class="list text-start mb-5">
         <h5 class="mb-2">購物車 ({{ cart.length }} 件)</h5>
         <table class="table table-responsive align-middle cartItem">
-          <thead class="border-0">
+          <thead class="border-0 hide">
             <tr>
-              <td width="350">品項</td>
-              <td width="350">優惠活動</td>
-              <td width="350">數量</td>
-              <td width="200">小計</td>
-              <td></td>
+              <td>
+                <span class="td1">品項</span>
+                <span class="td2">優惠活動</span>
+                <span class="td3">數量</span>
+                <span class="td4">小計</span>
+              </td>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in cart" :key="item.id">
-              <td class="pdLink row align-items-center" @click="goProduct(item.product.id)">
-                <div class="col-md-4 pic"><img :src="item.product.imagesUrl[0]" alt="" class="img-fluid"></div>
-                <div class="col-md-8">{{ item.product.title }}</div>
-              </td>
-              <td><span v-if="item.coupon">{{ item.coupon.title }}</span></td>
-              <td>
-                <!-- v-model 產品數量 (1)min 設定最小值 (2)v-on:change 即時更新購物車 (3):disabled 避免快速連續點擊 -->
-                <div class="input-group input-group-sm w-50">
-                  <button type="button" class="btnMinus btn btn-secondary border-0 rounded-circle" @click="changeQty(item, --item.qty)" :disabled="cartLoading === item.id"><i class="bi bi-dash-lg"></i></button>
-                  <input type="number" class="form-control text-center border-0 border-bottom shadow-none mx-1" v-model.number="item.qty" min="0" @change="changeQty(item, item.qty)" :disabled="cartLoading === item.id">
-                  <button type="button" class="btnPlus btn btn-secondary border-0 rounded-circle" @click="changeQty(item, ++item.qty)" :disabled="cartLoading === item.id"><i class="bi bi-plus-lg"></i></button>
-                  <!-- <div class="input-group-text">/ {{ item.product.unit }}</div> -->
+            <tr>
+              <td class="row justify-content-center py-0 border-0">
+                <div class="row text-start px-2 py-3 py-md-1 border-bottom" v-for="item in cart" :key="item.id">
+                  <div class="pdLink col-3 col-md-1 p-1" @click="goProduct(item.product.id)">
+                    <div class="pic"><img :src="item.product.imagesUrl[0]" alt="" class="img-fluid"></div>
+                  </div>
+                  <div class="col-9 col-md-11 d-flex flex-column flex-md-row justify-content-center align-items-md-center">
+                    <p class="pdName mb-0">{{ item.product.title }}</p>
+                    <div class="eventName" :class="{'hide': !item.coupon}">
+                      <span class="d-md-none">＜</span>
+                      <span v-if="item.coupon">{{ item.coupon.title }}</span>
+                      <span v-else> - </span>
+                      <span class="d-md-none">＞</span>
+                    </div>
+                    <!-- v-model 產品數量 (1)min 設定最小值 (2)v-on:change 即時更新購物車 (3):disabled 避免快速連續點擊 -->
+                    <div class="pdNum input-group input-group-sm">
+                      <button type="button" class="btnMinus btn btn-secondary border-0 rounded-circle" @click="changeQty(item, --item.qty)" :disabled="cartLoading === item.id"><i class="bi bi-dash-lg"></i></button>
+                      <input type="number" class="form-control text-center border-0 border-bottom shadow-none mx-1" v-model.number="item.qty" min="0" @change="changeQty(item, item.qty)" :disabled="cartLoading === item.id">
+                      <button type="button" class="btnPlus btn btn-secondary border-0 rounded-circle" @click="changeQty(item, ++item.qty)" :disabled="cartLoading === item.id"><i class="bi bi-plus-lg"></i></button>
+                      <!-- <div class="input-group-text">/ {{ item.product.unit }}</div> -->
+                    </div>
+                    <div class="price position-relative">
+                      <small class="me-1" v-if="item.final_total !== item.total">折扣價</small>
+                      <small class="me-1" v-else>金額</small>
+                      {{ $filters.currency(item.final_total) }}
+                      <div class="saleTxt"><small class="text-success" v-if="item.final_total !== item.total">已套用優惠券</small></div>
+                      <div class="del_icon position-absolute">
+                        <a href="" @click.prevent="delItem(item.id)"><i class="bi bi-trash3 text-sm"></i></a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </td>
-              <td>
-                <small class="me-1" v-if="item.final_total !== item.total">折扣價</small>
-                <small class="me-1" v-else>金額</small>
-                {{ $filters.currency(item.final_total) }}
-                <div><small class="text-success" v-if="item.final_total !== item.total">已套用優惠券</small></div>
-              </td>
-              <td class="del_icon"><a href="" @click.prevent="delItem(item.id)"><i class="bi bi-trash3 text-sm"></i></a></td>
             </tr>
           </tbody>
         </table>
@@ -228,6 +240,15 @@ export default {
       transform-origin: center right;
     }
   }
+  .cartItem {
+    td {
+      display: flex;
+    }
+    .del_icon {
+      bottom: -.375em;
+      right: 0;
+    }
+  }
 }
 .notice {
   li {
@@ -255,10 +276,67 @@ export default {
     font-size: 1.25em;
   }
 }
+// PC
+@media screen and (min-width:1200px) {
+  .list {
+    .cartItem {
+      td {
+        .td1, .td2, .td3 {
+          flex: 3;
+        }
+        .td4 {
+          flex: 2;
+        }
+      }
+      .pdName {
+        flex: 4.7;
+      }
+      .eventName {
+        flex: 7;
+      }
+      .pdNum {
+        flex: 3.5;
+        padding-right: 15%;
+      }
+      .price {
+        flex: 4.5;
+      }
+    }
+  }
+}
 // Tablet
 @media (min-width:768px) and (max-width:1199.98px) {
   .list {
     padding: 0 2%;
+    .cartItem {
+      td {
+        .td1 {
+          flex: 3;
+        }
+        .td2, .td3 {
+          flex: 2.3;
+        }
+        .td4 {
+          flex: 1.6;
+        }
+      }
+      .pdName {
+        flex: 6.4;
+      }
+      .eventName {
+        flex: 7;
+      }
+      .pdNum {
+        flex: 5;
+        padding-right: 8%;
+      }
+      .price {
+        flex: 4.5;
+      }
+      .del_icon {
+        right: -11%;
+      }
+    }
   }
   .notice {
     span {
@@ -276,19 +354,30 @@ export default {
   }
   .list {
     padding: 0 .5rem;
-    .cartItem {
-      tr {
-        td:nth-of-type(3) { width: 14%; }
-        td:nth-of-type(4) { width: 20%; padding-left: 4%; }
-        td:nth-of-type(5) { width: 5%; }
-      }
+    .hide {
+      display: none;
     }
     .input-group {
       justify-content: center;
       gap: .25em;
-      width: 100% !important;
       .btnMinus, .btnPlus {
         transform-origin: center;
+      }
+    }
+    .cartItem {
+      .eventName {
+        margin-top: .2em;
+      }
+      .pdNum {
+        margin: .6em 0;
+        width: 75%;
+      }
+      .saleTxt {
+        display: inline-block;
+        margin-left: .4em;
+      }
+      .del_icon {
+        right: -8%;
       }
     }
   }

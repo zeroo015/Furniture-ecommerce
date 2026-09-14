@@ -18,9 +18,9 @@
         <ul class="list-unstyled">
           <!-- <li class="mb-2">2026 日式家居新選物全新上架<i class="bi bi-arrow-right-short text-info"></i></li> -->
           <li class="mb-2">2026 試營運期間購物即享免運優惠</li>
-          <li class="mb-2"><a href="#" @click.prevent="goto('Area_sale')">2026 夏日限定全品項 8 折<i class="bi bi-arrow-right-short text-info"></i></a></li>
-          <li class="mb-2"><a href="#" @click.prevent="goShop">0601＿0615 限時優惠／領取優惠碼全站消費 9 折<i class="bi bi-arrow-right-short text-info"></i></a></li>
-          <li><span class="badge bg-primary rounded-4 align-text-top me-2">預告</span>人氣 IP 聯名商品將於 7 月到貨</li>
+          <li class="mb-2"><a href="#" @click.prevent="goto('Area_sale')">2026 夏日限定全品項 8 折<i class="bi bi-arrow-right-circle-fill text-primary ms-1"></i></a></li>
+          <li class="mb-2"><a href="#" @click.prevent="goShop">0601＿0615 限時優惠／領取優惠碼全站消費 9 折<i class="bi bi-arrow-right-circle-fill text-primary ms-1"></i></a></li>
+          <li><span class="badge bg-primary rounded-3 align-text-top me-2">預告</span>人氣 IP 聯名商品將於 7 月到貨</li>
         </ul>
       </div>
     </div>

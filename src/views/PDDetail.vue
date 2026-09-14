@@ -207,6 +207,9 @@ export default {
   align-content: center;
   border: 1px solid var(--bs-primary);
 }
+.sub-text, .info-text {
+  line-height: 1.5;
+}
 .hashtag {
   font-size: .875em;
   margin-left: -.15em;

@@ -17,7 +17,7 @@
           <div class="col-8">
             <p class="mb-2">{{ item.product.title }}</p>
             <!-- v-model 產品數量 (1)min 設定最小值 (2)v-on:change 即時更新購物車 (3):disabled 避免快速連續點擊 -->
-            <div class="input-group input-group-sm mb-3 w-50">
+            <div class="input-group input-group-sm mb-3">
               <button type="button" class="btnMinus btn btn-secondary border-0 rounded-circle" @click="changeQty(item, --item.qty)" :disabled="cartLoading === item.id"><i class="bi bi-dash-lg"></i></button>
               <input type="number" class="form-control text-center border-0 border-bottom shadow-none mx-1" v-model.number="item.qty" min="0" @change="changeQty(item, item.qty)" :disabled="cartLoading === item.id">
               <button type="button" class="btnPlus btn btn-secondary border-0 rounded-circle" @click="changeQty(item, ++item.qty)" :disabled="cartLoading === item.id"><i class="bi bi-plus-lg"></i></button>
@@ -38,7 +38,8 @@
     </div>
     <div class="offcanvas-footer bg-white mt-1">
       <!-- v-on 前往購物車 -->
-      <button type="button" class="btn btn-primary w-100" data-bs-dismiss="offcanvas" aria-label="Close" @click="goCartlist" :disabled="cart.length < 1">訂單結帳</button>
+      <button type="button" class="btn btn-primary w-100" data-bs-dismiss="offcanvas" aria-label="Close" @click="goShop" v-if="cart.length < 1">前往選購</button>
+      <button type="button" class="btn btn-primary w-100" data-bs-dismiss="offcanvas" aria-label="Close" @click="goCartlist" v-else>訂單結帳</button>
       <!-- v-on 清空購物車 -->
       <button type="button" class="btn btn-outline-dark w-100 mt-2" @click="clearCart" :disabled="cart.length < 1">
         <div v-if="cartLoading === 'clearCart'" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
@@ -51,6 +52,7 @@
 <script>
 import offcanvasMixin from '@/mixins/offcanvasMixin'
 import { mapState, mapActions } from 'pinia'
+import { useProductStore } from '@/stores/productStore'
 import cartStore from '@/stores/cartStore'
 import statusStore from '@/stores/statusStore'
 
@@ -66,6 +68,7 @@ export default {
     ...mapState(statusStore, ['cartLoading'])
   },
   methods: {
+    ...mapActions(useProductStore, ['goShop']),
     ...mapActions(cartStore, ['changeQty', 'delItem', 'clearCart', 'goCartlist'])
   }
 }
@@ -100,6 +103,7 @@ input[type=number] {
   appearance: textfield;
 }
 .input-group {
+  width: 50%;
   .btn {
     transform: scale(.7);
   }
@@ -108,6 +112,12 @@ input[type=number] {
   }
   .btnPlus {
     transform-origin: center right;
+  }
+}
+// MB
+@media screen and (max-width:768px) {
+  .input-group {
+    width: 60%;
   }
 }
 </style>

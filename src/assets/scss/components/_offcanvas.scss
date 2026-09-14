@@ -14,4 +14,9 @@
       padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
     }
   }
+  @include media-breakpoint-down(md) {
+    &.offcanvas-end {
+      width: 89vw;
+    }
+  }
 }
