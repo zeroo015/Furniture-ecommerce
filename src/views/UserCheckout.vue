@@ -7,10 +7,10 @@
       <!-- 左側：填寫資料表單 -->
       <div class="userData col-lg-7 col-11 mx-auto">
         <h5 class="mb-3">收件人資料</h5>
-        <VForm v-slot="{ errors }" @submit="createOrder(form)" id="checkForm" class="mt-3">
+        <VForm v-slot="{ errors }" @submit="createOrder(form)" id="checkForm" class="mt-3" ref="checkForm">
           <!-- 姓名 -->
           <div class="row mb-3">
-            <label for="name" class="col-sm-1 col-form-label">姓名</label>
+            <label for="name" class="col-sm-1 col-form-label required">姓名</label>
             <div class="col-lg-10 col-sm-11 text-start">
               <VField id="name" name="姓名" type="text" placeholder="請輸入姓名" class="form-control"
                 :class="{ 'is-invalid': errors['姓名'] }" rules="required|min:2" v-model="form.user.name">
@@ -20,7 +20,7 @@
           </div>
           <!-- e-mail -->
           <div class="row mb-3">
-            <label for="email" class="col-sm-1 col-form-label">Email</label>
+            <label for="email" class="col-sm-1 col-form-label required modified">Email</label>
             <div class="col-lg-10 col-sm-11 text-start">
               <VField id="email" name="email" type="email" placeholder="請輸入 Email" class="form-control"
                 :class="{ 'is-invalid': errors['email'] }" rules="required|email" v-model="form.user.email">
@@ -30,7 +30,7 @@
           </div>
           <!-- 電話 -->
           <div class="row mb-3">
-            <label for="tel" class="col-sm-1 col-form-label">電話</label>
+            <label for="tel" class="col-sm-1 col-form-label required">電話</label>
             <div class="col-lg-10 col-sm-11 text-start">
               <VField id="tel" name="電話" type="text" placeholder="請輸入電話 (市話請加區號)" class="form-control"
                 :class="{ 'is-invalid': errors['電話'] }" rules="required|min:10" v-model="form.user.tel">
@@ -40,7 +40,7 @@
           </div>
           <!-- 地址 -->
           <div class="row mb-3">
-            <label for="address" class="col-sm-1 col-form-label">地址</label>
+            <label for="address" class="col-sm-1 col-form-label required">地址</label>
             <div class="col-lg-10 col-sm-11 text-start">
               <VField id="address" name="地址" type="text" placeholder="請輸入地址" class="form-control"
                 :class="{ 'is-invalid': errors['地址'] }" rules="required|min:10" v-model="form.user.address">
@@ -75,15 +75,15 @@
               </tr>
             </tbody>
           </table>
-          <table class="table table-borderless table-light table-responsive mt-5 mb-1">
+          <table class="table table2 table-borderless table-light table-responsive mt-5 mb-1">
             <thead>
               <tr>
                 <td>總金額</td>
                 <td class="text-end">$ {{ $filters.currency(total.total) }}</td>
               </tr>
               <tr>
-                <td>折扣<small class="text-success" v-if="cart[0]?.coupon"> (已套用{{ cart[0].coupon.title }}優惠活動)</small></td>
-                <td class="text-end">- $ {{ $filters.currency(total.total - total.final_total) || 0 }}</td>
+                <td class="saleTxt">折扣<small class="text-success" v-if="cart[0]?.coupon"> (已套用{{ cart[0].coupon.title }}優惠活動)</small></td>
+                <td class="text-end align-content-center">- $ {{ $filters.currency(total.total - total.final_total) || 0 }}</td>
               </tr>
               <tr>
                 <th>總計</th>
@@ -96,7 +96,7 @@
           <!-- v-on 回上一頁 -->
           <button class="btn btn-outline-dark w-100" @click="goCartlist">回上一頁</button>
           <!-- v-on 前往結帳頁 -->
-          <button class="btn btn-primary w-100" form="checkForm">前往結帳</button>
+          <button class="btn btn-primary w-100" form="checkForm" @click="checkScroll">前往結帳</button>
         </div>
       </div>
     </div>
@@ -129,7 +129,19 @@ export default {
     ...mapState(cartStore, ['cart', 'total'])
   },
   methods: {
-    ...mapActions(cartStore, ['goCartlist', 'createOrder'])
+    ...mapActions(cartStore, ['goCartlist', 'createOrder']),
+
+    // 若驗證錯誤回資料區
+    async checkScroll() {
+      const isValid = await this.$refs.checkForm.validate()
+      console.log(isValid.valid)
+      if (!isValid.valid) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' // 平滑滚动
+        })
+      }
+    }
   }
 }
 </script>
@@ -142,7 +154,38 @@ export default {
     }
   }
 }
+.userData {
+  .required {
+    position: relative;
+    &::after {
+      content: "*";
+      position: absolute;
+      top: .25em;
+      left: 2.9em;
+      width: 1em;
+      height: 1em;
+      color: var(--bs-danger);
+    }
+    &.modified {
+      &::after {
+        left: 3.4em;
+      }
+    }
+  }
+}
 .boxOrder {
   padding: 1.5em 2em;
+}
+// MB
+@media screen and (max-width:768px) {
+  .boxOrder {
+    padding: 1.5em 1.8em;
+    .table2 {
+      margin-top: 2em !important;
+    }
+    .saleTxt {
+      max-width: 8em;
+    }
+  }
 }
 </style>
