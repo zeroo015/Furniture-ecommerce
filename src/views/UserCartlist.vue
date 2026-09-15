@@ -126,7 +126,7 @@
           <div class="d-flex gap-2">
             <!-- v-on 清空購物車 -->
             <button class="btn btn-outline-dark w-100" @click="clearCart">
-              <div v-if="cartLoading === 'clearCart'" class="spinner-border text-dark spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
+              <div v-if="cartLoading === 'clearCart'" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
               <span v-else>清空購物車</span>
             </button>
             <!-- v-on 前往填寫資料頁 -->
