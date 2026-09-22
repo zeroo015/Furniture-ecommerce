@@ -8,9 +8,9 @@
         </router-link>
         <ul class="navTxt list-unstyled m-0 mb-2 mb-md-0 p-0 pt-3 pt-md-0 d-flex gap-3 justify-content-center align-items-center align-items-md-start">
           <!-- <li class="me-3"><router-link to="/about" class="nav-link">About</router-link></li> -->
-          <li class="me-3"><router-link to="/shop" class="nav-link">Store</router-link></li>
-          <li class="me-3"><router-link to="/gallery/living" class="nav-link">Gallery</router-link></li>
-          <li><router-link to="/FAQ" class="nav-link">FAQ</router-link></li>
+          <li class="me-3"><router-link to="/shop" class="nav-link" @click.prevent="navLinkTo">嚴選商品</router-link></li>
+          <li class="me-3"><router-link to="/gallery/living" class="nav-link">空間靈感</router-link></li>
+          <li><router-link to="/FAQ" class="nav-link">常見問題</router-link></li>
           <!-- <li class="d-md-none ms-3 align-self-start"><a href="#"><i class="bi bi-instagram fs-5"></i></a></li> -->
           <li class="d-md-none ms-3 align-self-start"><router-link to="/admin"><i class="bi bi-person-circle fs-5"></i></router-link></li>
           <li class="d-md-none ms-2 align-self-start"><a href="https://github.com/zeroo015"><i class="bi bi-github fs-5"></i></a></li>
@@ -28,3 +28,17 @@
     </div>
   </footer>
 </template>
+
+<script>
+import { mapActions } from 'pinia'
+import { useProductStore } from '@/stores/productStore'
+export default {
+  methods: {
+    ...mapActions(useProductStore, ['clearFilters']),
+
+    navLinkTo() {
+      this.clearFilters()
+    }
+  }
+}
+</script>
