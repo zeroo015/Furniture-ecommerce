@@ -29,10 +29,16 @@ export default {
   box-sizing: border-box;
   padding: 0;
   align-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.25em;
+  height: 2.25em;
   .bi {
     font-size: 1.25rem;
+  }
+}
+// MB
+@media screen and (max-width:768px) {
+  .page-link {
+    font-size: 3.6vw;
   }
 }
 </style>

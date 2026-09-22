@@ -79,5 +79,9 @@
       margin-left: unset;
       transform: translateX(.255em);
     }
+    &.disabled {
+      pointer-events: none;
+      color: var(--bs-dark);
+    }
   }
 }

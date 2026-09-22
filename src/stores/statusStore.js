@@ -17,7 +17,7 @@ export default defineStore('statusStore', {
         }
       } else {
         // api 回傳的訊息有些是字串，有些則是陣列 >> 統一格式為陣列
-        const message = typeof res.response.data.message === 'string' ? [res.response.data.message] : res.response.data.message // err.response.data
+        const message = typeof res.response.data?.message === 'string' ? [res.response.data?.message] : res.response.data?.message // err.response.data
         msg = {
           type: 'Error',
           style: 'danger',

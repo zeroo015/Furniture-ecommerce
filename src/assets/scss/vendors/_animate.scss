@@ -1,6 +1,6 @@
 // 動態
 .link-animated {
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     position: relative;
     &::before {
       content: "";

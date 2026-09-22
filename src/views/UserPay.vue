@@ -75,7 +75,7 @@
         </table>
         <!-- v-on 付款 -->
         <div class="text-end me-1" v-if="order.is_paid === false">
-          <button class="btn btn-primary" @click="goPay(orderId)">
+          <button type="button" class="btn btn-primary" @click="goPay(orderId)">
             <div v-if="cartLoading === 'paying'" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
             <span v-if="cartLoading === 'paying'">付款中</span>
             <span v-else>確認付款</span>

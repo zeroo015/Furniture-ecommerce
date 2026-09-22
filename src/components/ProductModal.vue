@@ -27,7 +27,7 @@
               </div>
               <div class="mb-4">
                 <!-- v-on 圖片加入多圖陣列 -->
-                <button class="btn btn-primary btn-sm d-block w-100" @click="cofirmAdd">
+                <button type="button" class="btn btn-primary btn-sm d-block w-100" @click="cofirmAdd">
                   <div v-if="cartLoading === 'uploadFile'" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
                   <template v-else>新增圖片</template>
                 </button>

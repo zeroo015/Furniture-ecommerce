@@ -1,6 +1,5 @@
 <template>
   <div class="pd_card bg-white" @click="goProduct(historyProducts[index]?.id)">
-    <!-- <div class="card-img"><img src="../assets/images/about_03.jpg" alt=""></div> -->
     <div class="card-img"><img :src="historyProducts[index]?.imagesUrl[0]" alt=""></div>
     <div class="tt chiron-goround-tc-font">{{ historyProducts[index]?.title }}</div>
     <i class="bi bi-arrow-right-circle-fill text-primary"></i>

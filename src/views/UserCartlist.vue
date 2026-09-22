@@ -111,7 +111,7 @@
           <!-- 套用優惠券 -->
           <div class="input-group mt-4">
             <input type="text" class="form-control border-primary" placeholder="請輸入優惠代碼" v-model="coupon.code">
-            <button class="btn btn-outline-primary" type="button" @click="addCoupon">套用優惠碼</button>
+            <button type="button" class="btn btn-outline-primary" @click="addCoupon">套用優惠碼</button>
           </div>
           <small class="text-success ms-1" v-if="total.final_total !== total.total">已套用優惠券</small>
           <hr class="mt-4 mb-2">
@@ -125,12 +125,12 @@
           </table>
           <div class="d-flex gap-2">
             <!-- v-on 清空購物車 -->
-            <button class="btn btn-outline-dark w-100" @click="clearCart">
+            <button type="button" class="btn btn-outline-dark w-100" @click="clearCart">
               <div v-if="cartLoading === 'clearCart'" class="spinner-border text-info spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div>
               <span v-else>清空購物車</span>
             </button>
             <!-- v-on 前往填寫資料頁 -->
-            <button class="btn btn-primary w-100" @click="goCheckout">確認結帳</button>
+            <button type="button" class="btn btn-primary w-100" @click="goCheckout">確認結帳</button>
           </div>
         </div>
       </div>

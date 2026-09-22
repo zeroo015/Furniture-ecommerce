@@ -19,8 +19,8 @@
       <img :src="item" />
     </swiper-slide>
     <!-- 自定義 navigation -->
-    <button class="swiper-button-next"></button>
-    <button class="swiper-button-prev"></button>
+    <button type="button" class="swiper-button-next"></button>
+    <button type="button" class="swiper-button-prev"></button>
   </swiper>
   <!-- 切換小圖 -->
   <swiper
