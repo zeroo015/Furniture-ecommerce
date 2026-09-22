@@ -18,7 +18,12 @@
             <th width="200">編輯</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="products.length < 1">
+          <tr>
+            <td colspan="6" class="text-center text-muted py-5">沒有商品</td>
+          </tr>
+        </tbody>
+        <tbody v-else>
           <tr v-for="item in products" :key="item.id">
             <td>{{ item.category }}</td>
             <td>{{ item.title }}</td>

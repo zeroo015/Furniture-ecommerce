@@ -6,20 +6,25 @@
         <thead class="border-0">
           <tr>
             <th width="130">訂單編號</th>
-            <th width="130">購買時間</th>
+            <th width="130" class="hide">購買時間</th>
             <th width="100">訂購人</th>
-            <th width="200">項目</th>
+            <th width="200" class="hide">項目</th>
             <th width="120">訂單金額</th>
             <th>付款狀態</th>
             <th width="140">編輯</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="orders.length < 1">
+          <tr>
+            <td colspan="6" class="text-center text-muted py-5">沒有訂單</td>
+          </tr>
+        </tbody>
+        <tbody v-else>
           <tr v-for="item in orders" :key="item.id">
             <td>{{ item.create_at }}</td>
-            <td>{{ $filters.date(item.create_at) }}</td>
+            <td class="hide">{{ $filters.date(item.create_at) }}</td>
             <td>{{ item.user.name }}</td>
-            <td>
+            <td class="hide">
               <ul class="list-unstyled mb-0">
                 <li v-for="product in item.products" :key="product.id">{{ product.product.title }} x {{ product.qty }}</li>
               </ul>
@@ -149,6 +154,12 @@ export default {
       td:nth-of-type(6) { width: 15%; }
       td:nth-of-type(7) { width: 16%; }
     }
+  }
+}
+// MB
+@media screen and (max-width:768px) {
+  .hide {
+    display: none;
   }
 }
 </style>

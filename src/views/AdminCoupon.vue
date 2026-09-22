@@ -11,18 +11,23 @@
         <thead class="border-0">
           <tr>
             <th width="150">優惠代碼</th>
-            <th width="240">優惠活動</th>
-            <th width="100">折扣</th>
+            <th width="240" class="hide">優惠活動</th>
+            <th width="100" class="hide">折扣</th>
             <th width="130">到期日</th>
             <th>是否啟用</th>
             <th width="200">編輯</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="coupons.length < 1">
+          <tr>
+            <td colspan="6" class="text-center text-muted py-5">沒有優惠券</td>
+          </tr>
+        </tbody>
+        <tbody v-else>
           <tr v-for="(item, i) in coupons" :key="'coupon'+i">
             <td>{{ item.code }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.percent }}</td>
+            <td class="hide">{{ item.title }}</td>
+            <td class="hide">{{ item.percent }}</td>
             <td>{{ $filters.date(item.due_date) }}</td>
             <td>
               <p class="mb-0" style="font-size: 1.1rem;" v-if="item.is_enabled"><span class="badge bg-success">已啟用</span></p>
@@ -150,6 +155,12 @@ export default {
       td:nth-of-type(5) { width: 14%; }
       td:nth-of-type(6) { width: 16%; }
     }
+  }
+}
+// MB
+@media screen and (max-width:768px) {
+  .hide {
+    display: none;
   }
 }
 </style>
